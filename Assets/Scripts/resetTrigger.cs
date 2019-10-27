@@ -4,11 +4,24 @@ using UnityEngine;
 
 public class resetTrigger : StateMachineBehaviour
 {
+    float time;
+    AttackLogic attack;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     //{
     //    
     //}
+    public override void OnStateEnter(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
+    {
+        time = Time.time;
+        attack = animator.GetComponent<AttackLogic>();
+        attack.encountered.Clear();
+    }
+
+    public override void OnStateUpdate(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
+    {
+        attack.LaunchAttack();
+    }
     public override void OnStateExit(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
     {
         animator.ResetTrigger("attack1");
