@@ -14,6 +14,7 @@ public class attack1 : StateMachineBehaviour
 
         attack = animator.GetComponent<AttackLogic>();
         attack.encountered.Clear();
+        GameController.instance.attacking = true;
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
@@ -30,5 +31,6 @@ public class attack1 : StateMachineBehaviour
     public override void OnStateExit(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
     {
         Debug.Log("Exit: " + Time.time);
+
     }
 }

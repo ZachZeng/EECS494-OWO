@@ -42,7 +42,7 @@ public class AttackLogic : MonoBehaviour
                 if (!encountered.Contains(c))
                 {
                     encountered.Add(c);
-                    c.gameObject.GetComponent<Health>().ModifyHealth(-50);
+                    c.gameObject.GetComponent<Health>().ModifyHealth(-10);
 
                 }
             }
@@ -53,7 +53,9 @@ public class AttackLogic : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            if (!knocked_back)
+            Collider myCollider = collision.contacts[0].thisCollider;
+            Debug.Log(myCollider.tag);
+            if (!knocked_back && myCollider.CompareTag("Player"))
             {
                 Debug.Log("enemy collided with me");
                 myHealth.ModifyHealth(-10);
