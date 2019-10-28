@@ -1,0 +1,1 @@
+Our goldspike feature is the player 3-combo attack system. We had to make sure each button press was responsive, no lingering button presses, and no skipping phases for the animations.
