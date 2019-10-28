@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Gamepad active = Gamepad.all[playerNum];
         //if (!myAttackStatus.knocked_back)
@@ -51,7 +51,6 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.rotation = Quaternion.LookRotation(current_input);
         }
-
         rb.velocity = current_input;
         //}
         //Debug.Log(rb.velocity);
@@ -108,6 +107,6 @@ public class PlayerMovement : MonoBehaviour
             horizontal_input = 0;
         if (Mathf.Abs(vertical_input) < 0.1)
             vertical_input = 0;
-        return new Vector3(horizontal_input * movementSpeed, 0, vertical_input * movementSpeed);
+        return new Vector3(horizontal_input * movementSpeed *5, 0, vertical_input * movementSpeed*5);
     }
 }
