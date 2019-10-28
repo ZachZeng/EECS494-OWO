@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
         //{
         Vector3 current_input = GetInput();
         anim.SetBool("movement", current_input != Vector3.zero);
+        anim.SetFloat("movespeed", movementSpeed);
         if (current_input.magnitude != 0)
         {
             transform.rotation = Quaternion.LookRotation(current_input);
