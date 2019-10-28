@@ -14,9 +14,10 @@ public class Escort_Obj_Movement : MonoBehaviour
     private Animator animator;
     //The current target we need to navigate
     public Transform target;
+    public float speed;
     void Start()
     {
-        nav = GetComponent<NavMeshAgent>();
+        //nav = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         target = GetTarget();
     }
@@ -33,7 +34,9 @@ public class Escort_Obj_Movement : MonoBehaviour
                 target = GetTarget();
             }
         }
-        nav.SetDestination(target.position);
+        //nav.SetDestination(target.position);
+        transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+        transform.LookAt(target);
     }
 
     //if the escort object reaches the previous target, then get a new target
@@ -55,6 +58,8 @@ public class Escort_Obj_Movement : MonoBehaviour
     {
         if (other.tag == "Escort_Navigation_Target") {
             Destroy(other.gameObject);
+            target = null;
+            //Debug.Log("triggered!");
         }
         if (other.tag == "Escort_Navigation_Target_Final") {
             Debug.Log("Get Final target!");

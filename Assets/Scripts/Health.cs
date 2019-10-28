@@ -5,8 +5,7 @@ using System;
 public class Health : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField]
-    int maxHealth = 100;
+    [SerializeField] int maxHealth = 100;
     int currentHealth;
     public event Action<float> onHealthChange = delegate { };
 

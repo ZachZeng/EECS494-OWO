@@ -20,7 +20,7 @@ public class Escort_State : MonoBehaviour
     bool escortStatus;
     //initialEscortHealth : the initial value of health
     [SerializeField]
-    int initialEscortHealth = 100;
+    int initialEscortHealth = 1000;
     //shieldState: TODO
     bool shieldState;
     //goalState : if the escort reaches the final goal

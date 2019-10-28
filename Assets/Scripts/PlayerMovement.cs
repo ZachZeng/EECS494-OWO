@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        if(comboParams == null || (comboParams != null && comboParams.Length == 0))
+        if (comboParams == null || (comboParams != null && comboParams.Length == 0))
         {
             comboParams = new string[] { "attack1", "attack2", "attack3" };
         }
@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+
         Gamepad active = Gamepad.all[playerNum];
         //if (!myAttackStatus.knocked_back)
         //{
@@ -75,9 +75,9 @@ public class PlayerMovement : MonoBehaviour
             lastAttackTime = Time.time;
             //StartCoroutine(attack());
         }
-        
+
         //Debug.Log(numButtonPressed);
-        
+
 
     }
     IEnumerator attack()

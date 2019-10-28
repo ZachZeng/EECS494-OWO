@@ -16,6 +16,8 @@ public class AttackLogic : MonoBehaviour
     public Material pureRed;
     public Material originalMaterial;
     public bool knocked_back = false;
+
+    public int ATK;
     void Start()
     {
         col = hitbox.GetComponent<BoxCollider>();
@@ -42,7 +44,7 @@ public class AttackLogic : MonoBehaviour
                 if (!encountered.Contains(c))
                 {
                     encountered.Add(c);
-                    c.gameObject.GetComponent<Health>().ModifyHealth(-10);
+                    c.gameObject.GetComponent<Health>().ModifyHealth(-ATK);
 
                 }
             }
@@ -54,7 +56,7 @@ public class AttackLogic : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Collider myCollider = collision.contacts[0].thisCollider;
-            Debug.Log(myCollider.tag);
+            //Debug.Log(myCollider.tag);
             if (!knocked_back && myCollider.CompareTag("Player"))
             {
                 Debug.Log("enemy collided with me");

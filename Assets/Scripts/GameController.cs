@@ -6,6 +6,7 @@ public class GameController : MonoBehaviour
 {
     public static GameController instance;
     public bool attacking = false;
+    public bool isGameOver;
     // Start is called before the first frame update
     void Awake()
     {
@@ -20,7 +21,7 @@ public class GameController : MonoBehaviour
     }
     void Start()
     {
-        
+        isGameOver = false;
     }
 
     // Update is called once per frame

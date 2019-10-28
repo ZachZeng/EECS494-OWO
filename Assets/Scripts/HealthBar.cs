@@ -37,14 +37,7 @@ public class HealthBar : MonoBehaviour
         foreground.fillAmount = pct;
     }
 
-    private void LateUpdate()
-    {
-        if (isEnemy)
-        {
-            transform.LookAt(Camera.main.transform);
-            transform.Rotate(0, 180, 0);
-        }
-    }
+
 
 
     void Start()
