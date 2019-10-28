@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     float maxDelay = 1f;
     public int comboIndex;
     public string[] comboParams;
+    public AttackLogic myAttackStatus;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -26,12 +27,16 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
+        myAttackStatus = GetComponent<AttackLogic>();
     }
 
     // Update is called once per frame
     void Update()
     {
+       
         Gamepad active = Gamepad.all[playerNum];
+        //if (!myAttackStatus.knocked_back)
+        //{
         Vector3 current_input = GetInput();
         anim.SetBool("movement", current_input != Vector3.zero);
         if (current_input.magnitude != 0)
@@ -39,15 +44,16 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(current_input);
         }
         rb.velocity = current_input;
+        //}
         //Debug.Log(rb.velocity);
         if ((Time.time - lastAttackTime > maxDelay || comboIndex >= 3))
         {
-            
+
             comboIndex = 0;
             anim.SetTrigger("reset");
-            Debug.Log("reset triggered");
+            //Debug.Log("reset triggered");
         }
-        
+
         if (comboIndex > 0)
         {
             anim.SetBool("combo", false);
@@ -68,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
             lastAttackTime = Time.time;
             //StartCoroutine(attack());
         }
+        
         //Debug.Log(numButtonPressed);
         
 

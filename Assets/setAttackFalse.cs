@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class resetTrigger : StateMachineBehaviour
+public class setAttackFalse : StateMachineBehaviour
 {
-    float time;
-    AttackLogic attack;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     //{
@@ -13,21 +11,6 @@ public class resetTrigger : StateMachineBehaviour
     //}
     public override void OnStateEnter(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
     {
-        time = Time.time;
-        attack = animator.GetComponent<AttackLogic>();
-        attack.encountered.Clear();
-        GameController.instance.attacking = true;
-    }
-
-    public override void OnStateUpdate(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
-    {
-        attack.LaunchAttack();
-    }
-    public override void OnStateExit(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
-    {
-        animator.ResetTrigger("attack1");
-        animator.ResetTrigger("attack2");
-        animator.ResetTrigger("attack3");
         GameController.instance.attacking = false;
     }
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

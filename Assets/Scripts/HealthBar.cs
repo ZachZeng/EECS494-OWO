@@ -11,6 +11,8 @@ public class HealthBar : MonoBehaviour
     [SerializeField]
     public float updateSpeed = 0.5f;
 
+    public bool isEnemy = true;
+
     private void Awake()
     {
         GetComponent<Health>().onHealthChange += Handle_OnHealthChange;
@@ -37,8 +39,11 @@ public class HealthBar : MonoBehaviour
 
     private void LateUpdate()
     {
-        transform.LookAt(Camera.main.transform);
-        transform.Rotate(0, 180, 0);
+        if (isEnemy)
+        {
+            transform.LookAt(Camera.main.transform);
+            transform.Rotate(0, 180, 0);
+        }
     }
 
 
