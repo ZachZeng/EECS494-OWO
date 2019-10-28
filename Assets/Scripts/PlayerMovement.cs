@@ -10,9 +10,17 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rb;
     Animator anim;
     bool attacking = false;
+    float lastAttackTime = 0;
+    float maxDelay = 1f;
+    public int comboIndex;
+    public string[] comboParams;
     // Start is called before the first frame update
     private void Awake()
     {
+        if(comboParams == null || (comboParams != null && comboParams.Length == 0))
+        {
+            comboParams = new string[] { "attack1", "attack2", "attack3" };
+        }
     }
     void Start()
     {
@@ -32,16 +40,37 @@ public class PlayerMovement : MonoBehaviour
         }
         rb.velocity = current_input;
         //Debug.Log(rb.velocity);
-
-        if (active.aButton.wasPressedThisFrame)
+        if ((Time.time - lastAttackTime > maxDelay || comboIndex >= 3))
         {
-            anim.SetBool("Attack", true);
-            //StartCoroutine(attack());
+            
+            comboIndex = 0;
+            anim.SetTrigger("reset");
+            Debug.Log("reset triggered");
+        }
+        
+        if (comboIndex > 0)
+        {
+            anim.SetBool("combo", false);
         }
         else
         {
-            anim.SetBool("Attack", false);
+            anim.SetBool("combo", true);
         }
+        if (active.aButton.wasPressedThisFrame && comboIndex < comboParams.Length)
+        {
+            Debug.Log(comboParams[comboIndex] + " triggered");
+            anim.SetTrigger(comboParams[comboIndex]);
+            if (comboIndex == 2)
+                anim.SetBool("attack2finished", false);
+            if (comboIndex == 1)
+                anim.SetBool("attack1finished", false);
+            comboIndex++;
+            lastAttackTime = Time.time;
+            //StartCoroutine(attack());
+        }
+        //Debug.Log(numButtonPressed);
+        
+
     }
     IEnumerator attack()
     {
