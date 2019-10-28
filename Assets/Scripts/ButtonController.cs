@@ -7,6 +7,7 @@ public class ButtonController : MonoBehaviour
 {
     public void PlayAgian()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        
+        SceneManager.LoadScene("MainScene");
     }
 }

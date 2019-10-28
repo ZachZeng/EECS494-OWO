@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyDamage: 5
-  EnemyDamageFrequency: 0.5
+  EnemyDamageFrequency: 0.3
 --- !u!1 &6777832806182703647
 GameObject:
   m_ObjectHideFlags: 0

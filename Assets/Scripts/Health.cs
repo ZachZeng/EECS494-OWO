@@ -34,7 +34,23 @@ public class Health : MonoBehaviour
         }
         if (currentHealth <= 0)
         {
-            Destroy(gameObject);
+            if(gameObject.tag == "Player")
+            {
+                gameObject.GetComponent<PlayerMovement>().canMove = false;
+                StartCoroutine(Respawn());
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
+    }
+
+
+    IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(3);
+        gameObject.GetComponent<PlayerMovement>().canMove = true;
+        onHealthChange(1);
     }
 }
