@@ -497,14 +497,14 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2946003707713413134}
   serializedVersion: 2
-  m_Mass: 1e+9
-  m_Drag: 10
-  m_AngularDrag: 10
+  m_Mass: 10
+  m_Drag: 3
+  m_AngularDrag: 3
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &2945898831080556018
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -530,11 +530,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f65c78c8506f4743b6e2f979efc8122, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerNum: 0
+  playerNum: 1
   movementSpeed: 2
   comboIndex: 0
   comboParams: []
   myAttackStatus: {fileID: 0}
+  canMove: 0
 --- !u!114 &2945898831078046902
 MonoBehaviour:
   m_ObjectHideFlags: 0

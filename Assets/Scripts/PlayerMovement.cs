@@ -109,4 +109,14 @@ public class PlayerMovement : MonoBehaviour
             vertical_input = 0;
         return new Vector3(horizontal_input * movementSpeed *5, 0, vertical_input * movementSpeed*5);
     }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            Debug.Log("obstacle!!!");
+            rb.AddForce(new Vector3(0, -1000, 0), ForceMode.Impulse);
+
+        }
+    }
 }
