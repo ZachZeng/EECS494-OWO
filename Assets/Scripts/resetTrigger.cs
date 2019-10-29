@@ -16,6 +16,8 @@ public class resetTrigger : StateMachineBehaviour
         time = Time.time;
         attack = animator.GetComponent<AttackLogic>();
         attack.encountered.Clear();
+        Rigidbody rb = animator.GetComponent<Rigidbody>();
+        rb.AddForce(new Vector3(0, 500, 0), ForceMode.Impulse);
         GameController.instance.attacking = true;
     }
 
