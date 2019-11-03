@@ -9,9 +9,10 @@ public class Escort_Obj_Movement : MonoBehaviour
     [SerializeField]
     Transform[] EscortNavigationTargetTrans;
     //NavMeshAgent, use it to navigate our obj
-    private NavMeshAgent nav;
+    //private NavMeshAgent nav;
     //For future animator
     private Animator animator;
+    private Rigidbody rb;
     //The current target we need to navigate
     public Transform target;
     public float speed;
@@ -20,6 +21,8 @@ public class Escort_Obj_Movement : MonoBehaviour
         //nav = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         target = GetTarget();
+        rb = GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezePositionZ;
     }
 
     void Update()
@@ -59,6 +62,7 @@ public class Escort_Obj_Movement : MonoBehaviour
         if (other.tag == "Escort_Navigation_Target") {
             Destroy(other.gameObject);
             target = null;
+            rb.constraints = RigidbodyConstraints.FreezePosition;
             //Debug.Log("triggered!");
         }
         if (other.tag == "Escort_Navigation_Target_Final") {
