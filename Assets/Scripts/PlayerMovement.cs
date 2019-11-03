@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -16,6 +17,11 @@ public class PlayerMovement : MonoBehaviour
     public string[] comboParams;
     public AttackLogic myAttackStatus;
     public bool canMove;
+    public bool sprinting = false;
+    public Image dashImg;
+    public Text dashCD;
+    public bool dashCDset = false;
+    public bool dashOnCD = false;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -33,57 +39,85 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
+        
         Gamepad active = Gamepad.all[playerNum];
         //if (!myAttackStatus.knocked_back)
         //{
+        
         Vector3 current_input = GetInput();
-        anim.SetBool("movement", current_input != Vector3.zero);
-        anim.SetFloat("movespeed", movementSpeed);
-
-        if (!canMove)
+        
+        if (active.yButton.wasPressedThisFrame && !sprinting && !dashOnCD)
         {
-            anim.SetFloat("movespeed", 0);
+            Debug.Log("y button pressed");
+            rb.velocity = transform.forward.normalized * 20;
+            Debug.Log(rb.velocity);
+            sprinting = true;
+            dashCDset = false;
+            dashOnCD = true;
+            StartCoroutine(StartSprint());
         }
+        if (sprinting)
+        {
+            rb.velocity = transform.forward.normalized * 20;
+            if (active.aButton.wasPressedThisFrame)
+            {
+                comboIndex = 0;
+                Debug.Log("pressed a");
+                anim.SetTrigger("attack1");
+                comboIndex++;
+                lastAttackTime = Time.time;
+            }
+        }
+        if (!sprinting)
+        {
+            anim.SetBool("movement", current_input != Vector3.zero);
+            anim.SetFloat("movespeed", movementSpeed);
+
+            if (!canMove)
+            {
+                anim.SetFloat("movespeed", 0);
+            }
 
             if (current_input.magnitude != 0)
-        {
-            transform.rotation = Quaternion.LookRotation(current_input);
-        }
-        rb.velocity = current_input;
-        //}
-        //Debug.Log(rb.velocity);
+            {
+                transform.rotation = Quaternion.LookRotation(current_input);
+            }
+            rb.velocity = current_input;
+            //}
+            //Debug.Log(rb.velocity);
 
-        if ((Time.time - lastAttackTime > maxDelay || comboIndex >= 3))
-        {
+            if ((Time.time - lastAttackTime > maxDelay || comboIndex >= 3))
+            {
 
-            comboIndex = 0;
-            anim.SetTrigger("reset");
-            //Debug.Log("reset triggered");
-        }
+                comboIndex = 0;
+                anim.SetTrigger("reset");
+                //Debug.Log("reset triggered");
+            }
 
-        if (comboIndex > 0)
-        {
-            anim.SetBool("combo", false);
+            if (comboIndex > 0)
+            {
+                anim.SetBool("combo", false);
+            }
+            else
+            {
+                anim.SetBool("combo", true);
+            }
+            if (active.aButton.wasPressedThisFrame && comboIndex < comboParams.Length)
+            {
+                Debug.Log(comboParams[comboIndex] + " triggered");
+                anim.SetTrigger(comboParams[comboIndex]);
+                if (comboIndex == 2)
+                    anim.SetBool("attack2finished", false);
+                if (comboIndex == 1)
+                    anim.SetBool("attack1finished", false);
+                comboIndex++;
+                lastAttackTime = Time.time;
+                //StartCoroutine(attack());
+            }
         }
-        else
-        {
-            anim.SetBool("combo", true);
-        }
-        if (active.aButton.wasPressedThisFrame && comboIndex < comboParams.Length)
-        {
-            Debug.Log(comboParams[comboIndex] + " triggered");
-            anim.SetTrigger(comboParams[comboIndex]);
-            if (comboIndex == 2)
-                anim.SetBool("attack2finished", false);
-            if (comboIndex == 1)
-                anim.SetBool("attack1finished", false);
-            comboIndex++;
-            lastAttackTime = Time.time;
-            //StartCoroutine(attack());
-        }
-
+        
         //Debug.Log(numButtonPressed);
 
     }
@@ -123,4 +157,38 @@ public class PlayerMovement : MonoBehaviour
 
         }
     }
+
+    IEnumerator StartSprint()
+    {
+        anim.SetBool("sprint", true);
+        Debug.Log(rb.velocity);
+        yield return new WaitForSeconds(0.5f);
+        anim.SetBool("sprint", false);
+        sprinting = false;
+        if (!dashCDset)
+        {
+            StartCoroutine(StartDashCD());
+        }
+
+    }
+
+    public IEnumerator StartDashCD()
+    {
+        dashCD.text = "8";
+        dashImg.enabled = true;
+        dashCD.enabled = true;
+        for (int i = 5; i > 0; --i)
+        {
+            dashCD.text = i.ToString();
+            yield return new WaitForSeconds(1f);
+        }
+        dashOnCD = false;
+        dashImg.enabled = false;
+        dashCD.enabled = false;
+    }
+    public void DashCD()
+    {
+        StartCoroutine(StartDashCD());
+    }
+        
 }

@@ -19,6 +19,7 @@ public class attack0 : StateMachineBehaviour
         GameController.instance.attacking = true;
         hitEnemy = false;
         audio = animator.GetComponent<SoundEffects>();
+        
 
     }
 
@@ -33,6 +34,8 @@ public class attack0 : StateMachineBehaviour
             }
             else
             {
+                animator.GetComponent<PlayerMovement>().comboIndex = 0;
+                animator.SetBool("combo", true);
                 animator.SetBool("attack1finished", false);
                 animator.ResetTrigger("attack2");
                 animator.ResetTrigger("attack3");

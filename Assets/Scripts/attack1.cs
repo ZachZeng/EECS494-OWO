@@ -32,6 +32,8 @@ public class attack1 : StateMachineBehaviour
             }
             else
             {
+                animator.GetComponent<PlayerMovement>().comboIndex = 0;
+                animator.SetBool("combo", true);
                 animator.SetBool("attack2finished", false);
                 animator.ResetTrigger("attack2");
                 animator.ResetTrigger("attack3");
