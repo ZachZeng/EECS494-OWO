@@ -35,7 +35,7 @@ public class Escort_Enemy_example : MonoBehaviour
             } 
         }
         
-        Debug.Log(Escort_State.instance.getCurrentEscortHealth());
-        Debug.Log(Escort_State.instance.getStatus() ? "Status:live" : "Status:die");
+        //Debug.Log(Escort_State.instance.getCurrentEscortHealth());
+        //Debug.Log(Escort_State.instance.getStatus() ? "Status:live" : "Status:die");
     }
 }

@@ -6,6 +6,9 @@ public class resetTrigger : StateMachineBehaviour
 {
     float time;
     AttackLogic attack;
+    SoundEffects audio;
+    bool audioPlayed = false;
+    bool effectPlayed = false;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     //{
@@ -19,18 +22,42 @@ public class resetTrigger : StateMachineBehaviour
         Rigidbody rb = animator.GetComponent<Rigidbody>();
         rb.AddForce(new Vector3(0, 500, 0), ForceMode.Impulse);
         GameController.instance.attacking = true;
+        audio = animator.GetComponent<SoundEffects>();
+
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
     {
-        attack.LaunchAttack();
+        if (audioPlayed == false && Time.time - time > 0.1f)
+        {
+            audio.Attack2();
+            audioPlayed = true;
+
+        }
+        if (Time.time - time > 0.35f)
+        {
+            attack.LaunchAttack3();
+            if (effectPlayed == false)
+            {
+                Debug.LogWarning("called crack");
+                attack.StopGroundCrack();
+                attack.PlayGroundCrack();
+                effectPlayed = true;
+            }
+        }
+
+
     }
     public override void OnStateExit(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
     {
+
         animator.ResetTrigger("attack1");
         animator.ResetTrigger("attack2");
         animator.ResetTrigger("attack3");
         GameController.instance.attacking = false;
+        audioPlayed = false;
+        effectPlayed = false;
+
     }
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

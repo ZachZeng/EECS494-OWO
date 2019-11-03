@@ -7,6 +7,9 @@ public class attack1 : StateMachineBehaviour
 {
     float time;
     AttackLogic attack;
+    bool hitEnemy;
+    SoundEffects audio;
+    bool audioPlayed = false;
     public override void OnStateEnter(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
     {
         time = Time.time;
@@ -15,22 +18,41 @@ public class attack1 : StateMachineBehaviour
         attack = animator.GetComponent<AttackLogic>();
         attack.encountered.Clear();
         GameController.instance.attacking = true;
+        audio = animator.GetComponent<SoundEffects>();
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
     {
         if (Time.time - time > 0.5f)
         {
-            animator.SetBool("attack2finished", true);
+            if (hitEnemy)
+            {
+                animator.GetComponent<PlayerMovement>().comboIndex++;
+                animator.SetBool("attack2finished", true);
+            }
+            else
+            {
+                animator.SetBool("attack2finished", false);
+                animator.ResetTrigger("attack2");
+                animator.ResetTrigger("attack3");
+            }
         }
-        else
+        else if (Time.time - time > 0.2f)
         {
-            attack.LaunchAttack();
+            bool local_hitEnemy = attack.LaunchAttack();
+            if (hitEnemy == false)
+                hitEnemy = local_hitEnemy;
+            if (!audioPlayed)
+            {
+                audio.Attack1nohit();
+                audioPlayed = true;
+            }
         }
     }
     public override void OnStateExit(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
     {
         Debug.Log("Exit: " + Time.time);
+        audioPlayed = false;
 
     }
 }

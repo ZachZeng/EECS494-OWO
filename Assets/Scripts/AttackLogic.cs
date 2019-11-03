@@ -16,6 +16,7 @@ public class AttackLogic : MonoBehaviour
     public Material pureRed;
     public Material originalMaterial;
     public bool knocked_back = false;
+    public ParticleSystem groundcrack;
 
     public int ATK;
     void Start()
@@ -34,8 +35,9 @@ public class AttackLogic : MonoBehaviour
         
     }
 
-    public void LaunchAttack()
+    public bool LaunchAttack()
     {
+        bool hitEnemy = false;
         Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents, col.transform.rotation);
         foreach (Collider c in cols)
         {
@@ -45,10 +47,32 @@ public class AttackLogic : MonoBehaviour
                 {
                     encountered.Add(c);
                     c.gameObject.GetComponent<Health>().ModifyHealth(-ATK);
+                    hitEnemy = true;
 
                 }
             }
         }
+        return hitEnemy;
+    }
+
+    public bool LaunchAttack3()
+    {
+        bool hitEnemy = false;
+        Collider[] cols = Physics.OverlapSphere(col.bounds.center, 4f);
+        foreach (Collider c in cols)
+        {
+            if (c.gameObject.CompareTag("Enemy"))
+            {
+                if (!encountered.Contains(c))
+                {
+                    encountered.Add(c);
+                    c.gameObject.GetComponent<Health>().ModifyHealth(-ATK - 10);
+                    hitEnemy = true;
+
+                }
+            }
+        }
+        return hitEnemy;
     }
 
     private void OnCollisionStay(Collision collision)
@@ -100,4 +124,12 @@ public class AttackLogic : MonoBehaviour
         }
 
     }*/
+    public void PlayGroundCrack()
+    {
+        groundcrack.Play();
+    }
+    public void StopGroundCrack()
+    {
+        groundcrack.Stop();
+    }
 }

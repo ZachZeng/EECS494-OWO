@@ -87,6 +87,10 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log(numButtonPressed);
 
     }
+    protected void LateUpdate()
+    {
+        transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, 0);
+    }
     IEnumerator attack()
     {
         anim.SetTrigger("attack");
