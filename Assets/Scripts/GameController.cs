@@ -28,9 +28,5 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for(int i = 0; i < 2; i++)
-        {
-            Debug.Log(playerChosen[i]);
-        }
     }
 }

@@ -24,6 +24,7 @@ public class LevelChanger : MonoBehaviour
     }
     public void FadeToLevel(int levelIndex)
     {
+
         animator.SetTrigger("FadeOut");
         levelToLoad = levelIndex;
     }
