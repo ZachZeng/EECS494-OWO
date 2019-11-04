@@ -12,6 +12,7 @@ public class startScreenKnight : MonoBehaviour
     Transform startPosition;
     public int num = 0;
     public Text myText;
+    public Light myLight;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,13 +27,19 @@ public class startScreenKnight : MonoBehaviour
         transform.position = startPosition.position;
         if (GameController.instance.playerChosen[0] == num)
         {
-            myText.color = new Color32(219, 50, 54, 200);
+            Color red = new Color32(219, 50, 54, 200);
+            myText.color = red;
             myText.text = "Red Player!";
+            myLight.color = red;
+            myLight.enabled = true;
         }
         else if (GameController.instance.playerChosen[1] == num)
         {
-            myText.color = new Color32(72, 133, 237, 200); ;
+            Color blue = new Color32(72, 133, 237, 200);
+            myText.color = blue;
             myText.text = "Blue Player!";
+            myLight.color = blue;
+            myLight.enabled = true;
         }
     }
     void loopAnimation()

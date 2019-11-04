@@ -19,6 +19,7 @@ public class LevelChanger : MonoBehaviour
         if(GameController.instance.playerChosen[0] != -1 && GameController.instance.playerChosen[1] != -1)
         {
             FadeToLevel(1);
+            Debug.LogWarning("ok");
         }
     }
     public void FadeToLevel(int levelIndex)
