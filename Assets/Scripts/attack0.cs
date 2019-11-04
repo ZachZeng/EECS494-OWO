@@ -11,6 +11,7 @@ public class attack0 : StateMachineBehaviour
     bool hitEnemy = false;
     SoundEffects audio;
     bool audioPlayed = false;
+
     public override void OnStateEnter(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
     {
         time = Time.time;
@@ -43,6 +44,7 @@ public class attack0 : StateMachineBehaviour
         }
         else if (Time.time - time > 0.2f)
         {
+            //Debug.Log("oops");
             bool local_hitEnemy = attack.LaunchAttack();
             if (hitEnemy == false)
             {
@@ -50,6 +52,7 @@ public class attack0 : StateMachineBehaviour
             }
             if (!audioPlayed)
             {
+                audioPlayed = true;
                 if (hitEnemy)
                 {
                     audio.Attack0hit();
@@ -58,7 +61,7 @@ public class attack0 : StateMachineBehaviour
                 {
                     audio.Attack0nohit();
                 }
-                audioPlayed = true;
+                
             }
         }
     }

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream:Assets/Polygonal Metalon/Textures/Polygonal Metalon Green.psd.meta
 guid: eb118efcd9688724695a55b9619a35a7
+=======
+guid: 2f95fb5b71d834c118618fc279e345fa
+>>>>>>> Stashed changes:Assets/Scenes/ZachScene/ReflectionProbe-0.exr.meta
 TextureImporter:
   fileIDToRecycleName: {}
   externalObjects: {}

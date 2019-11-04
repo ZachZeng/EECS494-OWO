@@ -40,6 +40,8 @@ public class Escort_Obj_Movement : MonoBehaviour
         //nav.SetDestination(target.position);
         transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
         transform.LookAt(target);
+        transform.position = new Vector3(transform.position.x, 0.4f, transform.position.z);
+
     }
 
     //if the escort object reaches the previous target, then get a new target

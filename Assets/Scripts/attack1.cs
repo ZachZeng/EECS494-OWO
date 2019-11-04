@@ -55,6 +55,7 @@ public class attack1 : StateMachineBehaviour
     {
         Debug.Log("Exit: " + Time.time);
         audioPlayed = false;
+        animator.SetBool("Attack2", false);
 
     }
 }

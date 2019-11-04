@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public int playerNum;
     public float movementSpeed;
+    public GameController gameController;
     Rigidbody rb;
     Animator anim;
     bool attacking = false;
@@ -36,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         myAttackStatus = GetComponent<AttackLogic>();
         canMove = true;
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
+        playerNum = gameController.playerChosen[0];
     }
 
     // Update is called once per frame
@@ -58,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
             dashOnCD = true;
             StartCoroutine(StartSprint());
         }
+
         if (sprinting)
         {
             rb.velocity = transform.forward.normalized * 20;
@@ -70,21 +74,28 @@ public class PlayerMovement : MonoBehaviour
                 lastAttackTime = Time.time;
             }
         }
+
         if (!sprinting)
         {
             anim.SetBool("movement", current_input != Vector3.zero);
             anim.SetFloat("movespeed", movementSpeed);
 
-            if (!canMove)
-            {
-                anim.SetFloat("movespeed", 0);
-            }
 
             if (current_input.magnitude != 0)
             {
                 transform.rotation = Quaternion.LookRotation(current_input);
             }
-            rb.velocity = current_input;
+
+            if(canMove)
+            {
+                rb.velocity = current_input;
+                //Debug.Log("move");
+            }
+            else
+            {
+                rb.velocity = Vector3.zero;
+            }
+            
             //}
             //Debug.Log(rb.velocity);
 
@@ -116,6 +127,8 @@ public class PlayerMovement : MonoBehaviour
                 lastAttackTime = Time.time;
                 //StartCoroutine(attack());
             }
+            
+            
         }
         
         //Debug.Log(numButtonPressed);
@@ -152,7 +165,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-            Debug.Log("obstacle!!!");
+            //Debug.Log("obstacle!!!");
             rb.AddForce(new Vector3(0, -1000, 0), ForceMode.Impulse);
 
         }

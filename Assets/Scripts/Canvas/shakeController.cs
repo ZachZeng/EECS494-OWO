@@ -75,7 +75,7 @@ public class shakeController : MonoBehaviour
         m_timer += Time.deltaTime * (1 / m_duration);
         if (m_timer > 1.1f) /*Object.Destroy(this);*/
             this.enabled = false;
-        Debug.Log("myshaderis"+m_shader);
+       // Debug.Log("myshaderis"+m_shader);
     }
     void OnDisable()
     {

@@ -7,7 +7,8 @@ public class ButtonController : MonoBehaviour
 {
     public void PlayAgian()
     {
-        
-        SceneManager.LoadScene("MainScene");
+        GameController.instance.isGameOver = false;
+        GameController.instance.playerChosen = new int[2] { -1, -1 };
+        SceneManager.LoadScene("StartScene");
     }
 }
