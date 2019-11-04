@@ -10,6 +10,7 @@ TagManager:
   - Escort_Navigation_Target_Final
   - Escort_Object
   - Obstacle
+  - Player2
   layers:
   - Default
   - TransparentFX

@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour
     public static GameController instance;
     public bool attacking = false;
     public bool isGameOver;
+    public int[] playerChosen = new int[2] { -1, -1 };
     // Start is called before the first frame update
     void Awake()
     {
@@ -27,6 +28,9 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        for(int i = 0; i < 2; i++)
+        {
+            Debug.Log(playerChosen[i]);
+        }
     }
 }
