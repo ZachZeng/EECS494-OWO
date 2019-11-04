@@ -29,7 +29,7 @@ public class GenerateEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        canGenerate &= enemyCount < 5;
+        canGenerate &= enemyCount < 100;
         timer += Time.deltaTime;
         if (timer >= lastestTime && canGenerate)
         {

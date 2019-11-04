@@ -4,13 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
-  - Target
+  - Escort_Object
   - Escort_Navigation_Target
   - Escort_Navigation_Target_Final
-  - Escort_Object
+  - Enemy
   - Obstacle
-  - Player2
   layers:
   - Default
   - TransparentFX
@@ -20,9 +18,9 @@ TagManager:
   - UI
   - 
   - 
-  - Enemy
-  - Target
-  - Sword
+  - 
+  - 
+  - 
   - 
   - 
   - 

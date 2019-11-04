@@ -5,11 +5,11 @@ using System;
 public class Health : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] int maxHealth = 100;
-    int currentHealth;
+    [SerializeField] int maxHealth;
+    public int currentHealth;
     public event Action<float> onHealthChange = delegate { };
 
-    private void OnEnable()
+    private void Awake()
     {
         currentHealth = maxHealth;
     }
@@ -20,10 +20,6 @@ public class Health : MonoBehaviour
         onHealthChange(currentHealthPct);
     }
 
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -32,11 +28,27 @@ public class Health : MonoBehaviour
         {
             ModifyHealth(-10);
         }
+
+        if(currentHealth >= maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
         if (currentHealth <= 0)
         {
             if(gameObject.tag == "Player")
             {
-                gameObject.GetComponent<PlayerMovement>().canMove = false;
+                if(gameObject.name == "Knight")
+                {
+                    gameObject.GetComponent<PlayerMovement>().canMove = false;
+                }
+                else if(gameObject.name == "Mage")
+                {
+                    gameObject.GetComponent<MagePlayerMovement>().canMove = false;
+                    if(gameObject.GetComponent<MageAttack>().isCasting)
+                    {
+                        gameObject.GetComponent<MageAttack>().StopCast();
+                    }
+                }
                 StartCoroutine(Respawn());
             }
             else
@@ -50,7 +62,16 @@ public class Health : MonoBehaviour
     IEnumerator Respawn()
     {
         yield return new WaitForSeconds(3);
-        gameObject.GetComponent<PlayerMovement>().canMove = true;
+        if (gameObject.name == "Knight")
+        {
+            gameObject.GetComponent<PlayerMovement>().canMove = true;
+            Debug.Log("restore movement");
+        }
+        else if (gameObject.name == "Mage")
+        {
+            gameObject.GetComponent<MagePlayerMovement>().canMove = true;
+        }
         onHealthChange(1);
+        currentHealth = 100;
     }
 }

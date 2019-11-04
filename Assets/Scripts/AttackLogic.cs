@@ -19,6 +19,7 @@ public class AttackLogic : MonoBehaviour
     public ParticleSystem groundcrack;
 
     public int ATK;
+
     void Start()
     {
         col = hitbox.GetComponent<BoxCollider>();
@@ -104,7 +105,7 @@ public class AttackLogic : MonoBehaviour
     {
         while (knocked_back)
         {
-            Debug.Log("hello");
+            //Debug.Log("hello");
             model_mr.material = pureRed;
             yield return new WaitForSeconds(0.2f);
             model_mr.material = originalMaterial;
@@ -126,6 +127,7 @@ public class AttackLogic : MonoBehaviour
     }*/
     public void PlayGroundCrack()
     {
+        groundcrack.transform.position = gameObject.transform.position;
         groundcrack.Play();
     }
     public void StopGroundCrack()

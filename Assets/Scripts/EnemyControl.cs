@@ -18,7 +18,11 @@ public class EnemyControl : MonoBehaviour
     SkinnedMeshRenderer srd;
     public GameObject mRender;
     public Material pureRed;
+    public Material frozen;
     public bool knocked_back;
+
+    private float frozenTimer;
+    public float frozenTime;
  
     // Update is called once per frame
     private void Start()
@@ -29,11 +33,12 @@ public class EnemyControl : MonoBehaviour
         speed = agent.speed;
         srd = mRender.GetComponent<SkinnedMeshRenderer>();
         original = srd.material;
+        frozenTimer = 0;
     }
 
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Escort_Object")
         {
             am.SetBool("Walk Forward", false);
             na.isStopped = true;
@@ -41,9 +46,17 @@ public class EnemyControl : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.gameObject.name == "CastRange(Clone)")
+        {
+            isTrapped = true;
+        }
+    }
+
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Escort_Object")
         {
 
             isAttacking = false;
@@ -65,10 +78,19 @@ public class EnemyControl : MonoBehaviour
         if (isTrapped)
         {
             agent.speed *= 0.1f;
+            srd.material = frozen;
+            frozenTimer += Time.deltaTime;
         }
         else
         {
             agent.speed = speed;
+            srd.material = original;
+        }
+
+        if(frozenTimer >= frozenTime)
+        {
+            isTrapped = false;
+            frozenTimer = 0;
         }
 
 

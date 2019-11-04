@@ -44,7 +44,7 @@ public class attack0 : StateMachineBehaviour
         }
         else if (Time.time - time > 0.2f)
         {
-            Debug.Log("oops");
+            //Debug.Log("oops");
             bool local_hitEnemy = attack.LaunchAttack();
             if (hitEnemy == false)
             {

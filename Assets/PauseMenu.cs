@@ -41,8 +41,17 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
-        player1.GetComponent<PlayerMovement>().enabled = true;
-        player2.GetComponent<PlayerMovement>().enabled = true;
+        if(player1.gameObject.name == "Knight")
+        {
+            player1.GetComponent<PlayerMovement>().enabled = true;
+            player2.GetComponent<MagePlayerMovement>().enabled = true;
+        }
+        else
+        {
+            player1.GetComponent<MagePlayerMovement>().enabled = true;
+            player2.GetComponent<PlayerMovement>().enabled = true;
+        }
+
         isPaused = false;
     }
 
@@ -51,8 +60,16 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         myEventSystem.SetSelectedGameObject(null);
         myEventSystem.SetSelectedGameObject(myEventSystem.firstSelectedGameObject);
-        player1.GetComponent<PlayerMovement>().enabled = false;
-        player2.GetComponent<PlayerMovement>().enabled = false;
+        if (player1.gameObject.name == "Knight")
+        {
+            player1.GetComponent<PlayerMovement>().enabled = false;
+            player2.GetComponent<MagePlayerMovement>().enabled = false;
+        }
+        else
+        {
+            player1.GetComponent<MagePlayerMovement>().enabled = false;
+            player2.GetComponent<PlayerMovement>().enabled = false;
+        }
         Time.timeScale = 0f;
         isPaused = true;
     }
@@ -62,6 +79,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
+        GameController.instance.playerChosen = new int[2] { -1, -1 };
         fader.GetComponent<LevelChanger>().FadeToLevel(0);
     }
 }
