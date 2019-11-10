@@ -34,6 +34,7 @@ public class EnemyControl : MonoBehaviour
         srd = mRender.GetComponent<SkinnedMeshRenderer>();
         original = srd.material;
         frozenTimer = 0;
+        na.stoppingDistance = 2.0f;
     }
 
     private void OnCollisionStay(Collision collision)
