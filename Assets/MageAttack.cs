@@ -89,7 +89,7 @@ public class MageAttack : MonoBehaviour
         //Finish Cast
         if (isCasting && gamepad.aButton.wasPressedThisFrame && castTimer >= castTime)
         {
-            FinishCast();
+            FinishCast(); 
         }
 
         //Stop Cast

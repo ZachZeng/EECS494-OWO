@@ -25,6 +25,8 @@ public class Escort_State : MonoBehaviour
     bool shieldState;
     //goalState : if the escort reaches the final goal
     bool goalState;
+    //isBlocked : if the bus is blocked
+    bool isBlocked;
     private void Awake()
     {
         instance = this;
@@ -35,6 +37,7 @@ public class Escort_State : MonoBehaviour
         escortStatus = true;
         shieldState = false;
         goalState = false;
+        isBlocked = false;
     }
 
     void Update()
@@ -69,6 +72,14 @@ public class Escort_State : MonoBehaviour
     //Method for goalState:
     public bool getGoalState() {
         return goalState;
+    }
+    public bool getBlockState()
+    {
+        return isBlocked;
+    }
+    public void setBlockState(bool value)
+    {
+        isBlocked = value;
     }
     public void setGoalState() {
         goalState = true;

@@ -16,18 +16,23 @@ public class Escort_Obj_Movement : MonoBehaviour
     //The current target we need to navigate
     public Transform target;
     public float speed;
+    Vector3 stopPosition;
     void Start()
     {
         //nav = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         target = GetTarget();
         rb = GetComponent<Rigidbody>();
-        rb.constraints = RigidbodyConstraints.FreezePositionZ;
+        //rb.constraints = RigidbodyConstraints.FreezePositionZ;
+        rb.constraints = RigidbodyConstraints.FreezePosition;
     }
 
     void Update()
     {
-        if (target == null)
+        if (Escort_State.instance.getBlockState()) {
+            transform.position = stopPosition;
+        }
+        else if (target == null)
         {
             if (GetTarget() == null)
             {
@@ -71,6 +76,10 @@ public class Escort_Obj_Movement : MonoBehaviour
             Debug.Log("Get Final target!");
             Escort_State.instance.setGoalState();
             Destroy(other.gameObject);
+        }
+        if (other.name == "Obstacle_Road") {
+            stopPosition = gameObject.transform.position;
+            Escort_State.instance.setBlockState(true);
         }
     }
 }
