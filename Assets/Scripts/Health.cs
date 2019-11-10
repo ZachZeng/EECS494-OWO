@@ -53,6 +53,9 @@ public class Health : MonoBehaviour
             }
             else
             {
+                if (gameObject.name == "Obstacle_Road") {
+                    Escort_State.instance.setBlockState(false);
+                }
                 Destroy(gameObject);
             }
         }
