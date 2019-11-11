@@ -6,9 +6,10 @@ public class EnemyControl : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject target;
-    public NavMeshAgent agent;
+    public GameObject impactParticle;
+    public Vector3 impactNormal;
     public bool isTrapped;
-
+    public int ATK;
     Animator am;
     NavMeshAgent na;
     Material original;
@@ -17,7 +18,7 @@ public class EnemyControl : MonoBehaviour
     public bool getAttacked;
     SkinnedMeshRenderer srd;
     public GameObject mRender;
-    public Material pureRed;
+    public Material flash;
     public Material frozen;
     public bool knocked_back;
 
@@ -30,110 +31,96 @@ public class EnemyControl : MonoBehaviour
         am = GetComponent<Animator>();
         isAttacking = false;
         na = GetComponent<NavMeshAgent>();
-        speed = agent.speed;
+        speed = na.speed;
         srd = mRender.GetComponent<SkinnedMeshRenderer>();
         original = srd.material;
         frozenTimer = 0;
-        na.stoppingDistance = 2.0f;
+        ATK = 10;
     }
 
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Escort_Object")
-        {
-            am.SetBool("Walk Forward", false);
-            na.isStopped = true;
-            isAttacking = true;
-        }
+        isAttacking |= (collision.gameObject.tag.Contains("Player") || collision.gameObject.tag == "Escort_Object");
     }
+
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.gameObject.name == "CastRange(Clone)")
-        {
-            isTrapped = true;
-        }
+        isTrapped |= other.gameObject.name == "CastRange(Clone)";
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        getAttacked |= collision.gameObject.tag == "Weapon";
+    }
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Escort_Object")
-        {
-
-            isAttacking = false;
-            am.ResetTrigger("Stab Attack");
-            na.isStopped = false;
-        }
+        isAttacking &= (collision.gameObject.tag.Contains("Player") && collision.gameObject.tag != "Escort_Object");
+        getAttacked &= collision.gameObject.tag.Contains("Weapon");
     }
 
 
-    void Update()
+    void JudgeAttack()
     {
-        if (target != null && !isAttacking && !getAttacked)
+        if (isAttacking)
         {
-            am.SetBool("Walk Forward", true);
-            agent.SetDestination(target.transform.position);
-
+            am.SetTrigger("Attack 01");
         }
+    }
 
+    void JudageGetAttacked()
+    {
+        if (getAttacked)
+        {
+            am.ResetTrigger("Attack 01");
+            am.SetTrigger("Take Damage");
+            GameObject ip = Instantiate(impactParticle, gameObject.transform.position, Quaternion.FromToRotation(Vector3.up, impactNormal));
+            ip.transform.parent = gameObject.transform;
+            Destroy(ip, 3);
+            StartCoroutine(Flash());
+        }
+    }
+
+    void JudgeTrapped()
+    {
         if (isTrapped)
         {
-            agent.speed *= 0.1f;
-            srd.material = frozen;
-            frozenTimer += Time.deltaTime;
+            StartCoroutine(Frozen());
         }
         else
         {
-            agent.speed = speed;
-            srd.material = original;
-        }
-
-        if(frozenTimer >= frozenTime)
-        {
-            isTrapped = false;
-            frozenTimer = 0;
-        }
-
-
-
-        if (isAttacking && am.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
-        {
-            am.SetTrigger("Stab Attack");
-        }
-
-        if (!isAttacking)
-        {
-            am.ResetTrigger("Stab Attack");
-        }
-
-        if (getAttacked)
-        {
-      
-            am.SetBool("Walk Forward", false);
-            //am.ResetTrigger("Stab Attack");
-            am.SetTrigger("Take Damage");
-            StartCoroutine(InvincibleFrame());
-            StartCoroutine(Flash());
-            getAttacked = false;
+            na.speed = speed;
         }
     }
 
-    IEnumerator InvincibleFrame()
+    IEnumerator Frozen()
     {
-        knocked_back = true;
-        yield return new WaitForSeconds(1f);
-        knocked_back = false;
+        na.speed *= 0.1f;
+        srd.material = frozen;
+        yield return new WaitForSeconds(frozenTime);
+        isTrapped = false;
+    }
+
+    void Update()
+    {
+        if (target != null && !isAttacking && !getAttacked && !isTrapped)
+        {
+            srd.material = original;
+            am.SetBool("Walk Forward", true);
+            na.SetDestination(target.transform.position);
+        }
+        JudgeAttack();
+        JudageGetAttacked();
+        JudgeTrapped();
+
     }
 
     IEnumerator Flash()
     {
-        while (knocked_back)
-        {
-            srd.material = pureRed;
-            yield return new WaitForSeconds(0.2f);
-            srd.material = original;
-            yield return new WaitForSeconds(0.2f);
-        }
+        srd.material = flash;
+        yield return new WaitForSeconds(0.2f);
+        srd.material = original;
+        yield return new WaitForSeconds(0.2f);
         srd.material = original;
     }
 
