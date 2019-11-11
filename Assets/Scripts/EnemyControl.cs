@@ -48,7 +48,8 @@ public class EnemyControl : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         isTrapped |= other.gameObject.name == "CastRange(Clone)";
-        gameObject.GetComponent<AimSystem>().mage_aim[0] += 30;
+        if(other.gameObject.name == "CastRange(Clone)")
+            gameObject.GetComponent<AimSystem>().mage_aim[0] += 30;
     }
 
     private void OnCollisionEnter(Collision collision)
