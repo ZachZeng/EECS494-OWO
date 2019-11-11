@@ -20,6 +20,7 @@ public class ggController : MonoBehaviour
         bx.enabled = false;
         am = GetComponent<Animator>();
         am.SetBool("Run", true);
+        target = GameObject.Find("Escort Object");
     }
 
     private void OnTriggerEnter(Collider other)

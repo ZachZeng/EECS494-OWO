@@ -8,7 +8,18 @@ public class CameraController : MonoBehaviour
     public float m_ScreenEdgeBuffer = 4f;           // Space between the top/bottom most target and the screen edge.
     public float m_MinSize = 6.5f;                  // The smallest orthographic size the camera can be.
     public float m_MaxSize = 20f;
-    /*[HideInInspector]*/ public Transform[] m_Targets; // All the targets the camera needs to encompass.
+    /*[HideInInspector]*/
+    public Transform[] m_Targets; // All the targets the camera needs to encompass.
+
+    GameController gameController;
+    public GameObject final_destination;
+    public GameObject target1;
+    public GameObject target2;
+    public GameObject original_position;
+
+    public float overviewSpeed;
+    public float backSpeed;
+
 
 
     private Camera m_Camera;                        // Used for referencing the camera.
@@ -20,16 +31,27 @@ public class CameraController : MonoBehaviour
     private void Awake()
     {
         m_Camera = GetComponentInChildren<Camera>();
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
+    }
+
+    private void Start()
+    {
+        StartCoroutine(overviewMap());
     }
 
 
     private void FixedUpdate()
     {
-        // Move the camera towards a desired position.
-        Move();
 
-        // Change the size of the camera based.
-        Zoom();
+        if (gameController.isGameBegin)
+        {
+            // Move the camera towards a desired position.
+            Move();
+
+            // Change the size of the camera based.
+            Zoom();
+        }
+
     }
 
 
@@ -124,5 +146,43 @@ public class CameraController : MonoBehaviour
 
         // Find and set the required size of the camera.
         m_Camera.orthographicSize = FindRequiredSize();
+    }
+
+
+    IEnumerator overviewMap()
+    {
+        m_Camera.orthographicSize = 10;
+
+        while (transform.position != target1.transform.position)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target1.transform.position, Time.deltaTime * overviewSpeed);
+            yield return transform.position;
+        }
+
+        while (transform.position != target2.transform.position)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target2.transform.position, Time.deltaTime * overviewSpeed);
+            yield return transform.position;
+        }
+
+        while (transform.position != final_destination.transform.position)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, final_destination.transform.position, Time.deltaTime * overviewSpeed);
+            yield return transform.position;
+        }
+
+        yield return new WaitForSeconds(1);
+
+        while (transform.position != original_position.transform.position)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, original_position.transform.position, Time.deltaTime * backSpeed);
+            yield return transform.position;
+        }
+
+        yield return new WaitForSeconds(1);
+
+        gameController.isGameBegin = true;
+        Move();
+        Zoom();
     }
 }

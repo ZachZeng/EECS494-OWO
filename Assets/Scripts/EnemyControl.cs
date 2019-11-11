@@ -36,6 +36,7 @@ public class EnemyControl : MonoBehaviour
         original = srd.material;
         frozenTimer = 0;
         ATK = 10;
+        na.stoppingDistance = 1f;
     }
 
     private void OnCollisionStay(Collision collision)
@@ -47,16 +48,19 @@ public class EnemyControl : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         isTrapped |= other.gameObject.name == "CastRange(Clone)";
+        gameObject.GetComponent<AimSystem>().mage_aim[0] += 30;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        getAttacked |= collision.gameObject.tag == "Weapon";
+        getAttacked |= collision.gameObject.tag.Contains("Weapon");
+
     }
     private void OnCollisionExit(Collision collision)
     {
-        isAttacking &= (collision.gameObject.tag.Contains("Player") && collision.gameObject.tag != "Escort_Object");
-        getAttacked &= collision.gameObject.tag.Contains("Weapon");
+        isAttacking &= (!collision.gameObject.tag.Contains("Player") && collision.gameObject.tag != "Escort_Object");
+        
+        //Debug.Log("exit collision" + isAttacking);
     }
 
 
@@ -76,6 +80,7 @@ public class EnemyControl : MonoBehaviour
             am.SetTrigger("Take Damage");
             GameObject ip = Instantiate(impactParticle, gameObject.transform.position, Quaternion.FromToRotation(Vector3.up, impactNormal));
             ip.transform.parent = gameObject.transform;
+            na.isStopped = true;
             Destroy(ip, 3);
             StartCoroutine(Flash());
         }
@@ -122,6 +127,8 @@ public class EnemyControl : MonoBehaviour
         srd.material = original;
         yield return new WaitForSeconds(0.2f);
         srd.material = original;
+        getAttacked = false;
+        na.isStopped = false;
     }
 
 }

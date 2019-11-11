@@ -17,6 +17,7 @@ public class Escort_Obj_Movement : MonoBehaviour
     public Transform target;
     public float speed;
     Vector3 stopPosition;
+
     void Start()
     {
         //nav = GetComponent<NavMeshAgent>();
@@ -29,23 +30,28 @@ public class Escort_Obj_Movement : MonoBehaviour
 
     void Update()
     {
-        if (Escort_State.instance.getBlockState()) {
-            transform.position = stopPosition;
-        }
-        else if (target == null)
+        if(GameController.instance.isGameBegin)
         {
-            if (GetTarget() == null)
+            if (Escort_State.instance.getBlockState())
             {
-                return;
+                transform.position = stopPosition;
             }
-            else {
-                target = GetTarget();
+            else if (target == null)
+            {
+                if (GetTarget() == null)
+                {
+                    return;
+                }
+                else
+                {
+                    target = GetTarget();
+                }
             }
+            //nav.SetDestination(target.position);
+            transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+            transform.LookAt(target);
+            transform.position = new Vector3(transform.position.x, 0.4f, transform.position.z);
         }
-        //nav.SetDestination(target.position);
-        transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-        transform.LookAt(target);
-        transform.position = new Vector3(transform.position.x, 0.4f, transform.position.z);
 
     }
 
@@ -64,20 +70,27 @@ public class Escort_Obj_Movement : MonoBehaviour
     /*
      * if tag = final, then set the goal state of escort object true
      */
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Escort_Navigation_Target") {
+        if (other.gameObject.tag == "Escort_Navigation_Target")
+        {
             Destroy(other.gameObject);
             target = null;
             rb.constraints = RigidbodyConstraints.FreezePosition;
             //Debug.Log("triggered!");
         }
-        if (other.tag == "Escort_Navigation_Target_Final") {
+        if (other.gameObject.tag == "Escort_Navigation_Target_Final")
+        {
             Debug.Log("Get Final target!");
             Escort_State.instance.setGoalState();
             Destroy(other.gameObject);
         }
-        if (other.name == "Obstacle_Road") {
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.name == "Obstacle_Road") {
             stopPosition = gameObject.transform.position;
             Escort_State.instance.setBlockState(true);
         }

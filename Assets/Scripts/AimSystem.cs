@@ -20,8 +20,8 @@ public class AimSystem : MonoBehaviour
 
     float cooldownTimer = 0;
     float cooldwon = 1.0f;
-    int[] mage_aim = new[] { 0, 0, 0 }; // aim, index, control
-    int[] warrior_aim = new[] { 0, 0, 0 };
+    public int[] mage_aim = new[] { 0, 0, 0 }; // aim, index, control
+    public int[] warrior_aim = new[] { 0, 0, 0 };
 
     EnemyControl ec;
     GameObject target;
@@ -29,12 +29,13 @@ public class AimSystem : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         string cur_tag = collision.gameObject.tag;
-        if (magesWeapons.Contains(cur_tag))
+        if (cur_tag.Contains("Fireball"))
         {
             mage_aim[0] += mage_aim_change_per;
         }
-        else if (warriorWeapons.Contains(cur_tag))
+        else if (cur_tag.Contains("Sword"))
         {
+            Debug.Log("sword attack!");
             warrior_aim[0] += warrior_aim_change_per;
         }
     }
@@ -42,7 +43,11 @@ public class AimSystem : MonoBehaviour
     private void Start()
     {
         ec = GetComponent<EnemyControl>();
+        escort_object = GameObject.Find("Escort Object");
+        mage = GameObject.Find("Mage");
+        warrior = GameObject.Find("Knight");
         ec.target = escort_object;
+
     }
 
     public void Tank(float time)

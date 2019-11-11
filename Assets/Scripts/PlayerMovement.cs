@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     public bool tauntOnCD = false;
     public ParticleSystem ps;
     bool first = true;
-    bool taunt = false;
+    public bool taunt = false;
     public GameObject tauntBox;
     Collider col;
     public ParticleSystem tauntPS;
@@ -65,102 +65,108 @@ public class PlayerMovement : MonoBehaviour
         //{
         
         Vector3 current_input = GetInput();
+
+
+        if(GameController.instance.isGameBegin)
+        {
+            if (active.yButton.wasPressedThisFrame && !sprinting && !dashOnCD)
+            {
+                Debug.Log("y button pressed");
+                rb.velocity = transform.forward.normalized * 20;
+                Debug.Log(rb.velocity);
+                sprinting = true;
+                dashCDset = false;
+                dashOnCD = true;
+                StartCoroutine(StartSprint());
+            }
+
+            if (active.xButton.wasPressedThisFrame && !taunt && !tauntOnCD)
+            {
+                Debug.Log("x button pressed");
+                anim.SetTrigger("taunt");
+                taunt = true;
+                //tauntCDset = false;
+                tauntOnCD = true;
+                StartCoroutine(StartTaunt());
+            }
+
+            if (sprinting)
+            {
+                rb.velocity = transform.forward.normalized * 20;
+                if (active.aButton.wasPressedThisFrame)
+                {
+                    comboIndex = 0;
+                    Debug.Log("pressed a");
+                    anim.SetTrigger("attack1");
+                    comboIndex++;
+                    lastAttackTime = Time.time;
+                }
+            }
+            if (!canMove && first)
+            {
+                anim.SetBool("movement", false);
+                anim.Play("Idle");
+                first = false;
+            }
+            if (!sprinting && canMove && !taunt)
+            {
+                first = true;
+                anim.SetBool("movement", current_input != Vector3.zero);
+                anim.SetFloat("movespeed", movementSpeed);
+
+
+                if (current_input.magnitude != 0)
+                {
+                    transform.rotation = Quaternion.LookRotation(current_input);
+                }
+
+                if (canMove)
+                {
+                    rb.velocity = current_input;
+                    //Debug.Log("move");
+                }
+                else
+                {
+                    rb.velocity = Vector3.zero;
+                }
+
+                //}
+                //Debug.Log(rb.velocity);
+
+                if ((Time.time - lastAttackTime > maxDelay || comboIndex >= 3))
+                {
+
+                    comboIndex = 0;
+                    anim.SetTrigger("reset");
+                    //Debug.Log("reset triggered");
+                }
+
+                if (comboIndex > 0)
+                {
+                    anim.SetBool("combo", false);
+                }
+                else
+                {
+                    anim.SetBool("combo", true);
+                }
+                if (active.aButton.wasPressedThisFrame && comboIndex < comboParams.Length)
+                {
+                    Debug.Log(comboParams[comboIndex] + " triggered");
+                    anim.SetTrigger(comboParams[comboIndex]);
+                    if (comboIndex == 2)
+                        anim.SetBool("attack2finished", false);
+                    if (comboIndex == 1)
+                        anim.SetBool("attack1finished", false);
+                    comboIndex++;
+                    lastAttackTime = Time.time;
+                    //StartCoroutine(attack());
+                }
+
+
+            }
+        }
+
         
-        if (active.yButton.wasPressedThisFrame && !sprinting && !dashOnCD)
-        {
-            Debug.Log("y button pressed");
-            rb.velocity = transform.forward.normalized * 20;
-            Debug.Log(rb.velocity);
-            sprinting = true;
-            dashCDset = false;
-            dashOnCD = true;
-            StartCoroutine(StartSprint());
-        }
-
-        if (active.xButton.wasPressedThisFrame && !taunt && !tauntOnCD)
-        {
-            Debug.Log("x button pressed");
-            anim.SetTrigger("taunt");
-            taunt = true;
-            //tauntCDset = false;
-            tauntOnCD = true;
-            StartCoroutine(StartTaunt());
-        }
-
-        if (sprinting)
-        {
-            rb.velocity = transform.forward.normalized * 20;
-            if (active.aButton.wasPressedThisFrame)
-            {
-                comboIndex = 0;
-                Debug.Log("pressed a");
-                anim.SetTrigger("attack1");
-                comboIndex++;
-                lastAttackTime = Time.time;
-            }
-        }
-        if(!canMove && first)
-        {
-            anim.SetBool("movement", false);
-            anim.Play("Idle");
-            first = false;
-        }
-        if (!sprinting && canMove && !taunt)
-        {
-            first = true;
-            anim.SetBool("movement", current_input != Vector3.zero);
-            anim.SetFloat("movespeed", movementSpeed);
-
-
-            if (current_input.magnitude != 0)
-            {
-                transform.rotation = Quaternion.LookRotation(current_input);
-            }
-
-            if(canMove)
-            {
-                rb.velocity = current_input;
-                //Debug.Log("move");
-            }
-            else
-            {
-                rb.velocity = Vector3.zero;
-            }
-            
-            //}
-            //Debug.Log(rb.velocity);
-
-            if ((Time.time - lastAttackTime > maxDelay || comboIndex >= 3))
-            {
-
-                comboIndex = 0;
-                anim.SetTrigger("reset");
-                //Debug.Log("reset triggered");
-            }
-
-            if (comboIndex > 0)
-            {
-                anim.SetBool("combo", false);
-            }
-            else
-            {
-                anim.SetBool("combo", true);
-            }
-            if (active.aButton.wasPressedThisFrame && comboIndex < comboParams.Length)
-            {
-                Debug.Log(comboParams[comboIndex] + " triggered");
-                anim.SetTrigger(comboParams[comboIndex]);
-                if (comboIndex == 2)
-                    anim.SetBool("attack2finished", false);
-                if (comboIndex == 1)
-                    anim.SetBool("attack1finished", false);
-                comboIndex++;
-                lastAttackTime = Time.time;
-                //StartCoroutine(attack());
-            }
-            
-            
-        }
         
         //Debug.Log(numButtonPressed);
 
@@ -210,11 +216,9 @@ public class PlayerMovement : MonoBehaviour
         Collider[] cols = Physics.OverlapSphere(col.bounds.center, 8f);
         foreach (Collider c in cols)
         {
-            if (c.gameObject.CompareTag("Enemy"))
+            if (c.gameObject.CompareTag("Enemy") && c.gameObject.name != "Obstacle_Road")
             {
-
                 c.gameObject.GetComponent<AimSystem>().Tank(5f);
-
             }
             
         }
