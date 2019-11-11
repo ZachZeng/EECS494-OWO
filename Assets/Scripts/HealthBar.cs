@@ -12,14 +12,17 @@ public class HealthBar : MonoBehaviour
     public float updateSpeed = 0.5f;
 
     public bool isEnemy = true;
-
+    loseHealthEffect healthPS;
     private void Awake()
     {
         GetComponent<Health>().onHealthChange += Handle_OnHealthChange;
+        healthPS = GetComponent<loseHealthEffect>();
     }
 
     void Handle_OnHealthChange(float pct)
     {
+        if (isEnemy && healthPS != null)
+            healthPS.healthEffect();
         StartCoroutine(ChangeToPct(pct));
     }
 
