@@ -9,6 +9,9 @@ TagManager:
   - Escort_Navigation_Target_Final
   - Enemy
   - Obstacle
+  - enemyBug
+  - Castle
+  - Dead
   layers:
   - Default
   - TransparentFX

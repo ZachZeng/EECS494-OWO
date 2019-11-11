@@ -8,6 +8,7 @@ public class Health : MonoBehaviour
     [SerializeField] int maxHealth;
     public int currentHealth;
     public event Action<float> onHealthChange = delegate { };
+    public GameObject floatingText;
 
     private void Awake()
     {
@@ -15,11 +16,20 @@ public class Health : MonoBehaviour
     }
     public void ModifyHealth(int amount)
     {
+        if (floatingText != null)
+        {
+            showFloatingText(amount);
+        }
         currentHealth += amount;
         float currentHealthPct = (float)currentHealth / (float)maxHealth;
         onHealthChange(currentHealthPct);
     }
 
+    void showFloatingText(int amount)
+    {
+        GameObject ft = Instantiate(floatingText, transform.position, Quaternion.identity, transform);
+        ft.GetComponent<TextMesh>().text = amount.ToString();
+    }
 
     // Update is called once per frame
     void Update()
@@ -53,7 +63,8 @@ public class Health : MonoBehaviour
             }
             else
             {
-                Destroy(gameObject);
+                GetComponent<Animator>().SetTrigger("Die");
+                Destroy(gameObject, 1f);
             }
         }
     }

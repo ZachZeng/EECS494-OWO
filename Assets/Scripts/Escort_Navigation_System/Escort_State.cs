@@ -49,7 +49,7 @@ public class Escort_State : MonoBehaviour
     }
     public void decreaseCurrentEscortHealth(int value) {
         curEscortHealth -= value;
-        Camera.main.GetComponent<shakeController>().enabled = true;
+        //Camera.main.GetComponent<shakeController>().enabled = true;
     }
     public void increaseCurrentEscortHealth(int value)
     {
