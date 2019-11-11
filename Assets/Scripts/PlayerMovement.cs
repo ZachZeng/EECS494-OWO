@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     public bool dashCDset = false;
     public bool dashOnCD = false;
     public ParticleSystem ps;
+    public GameObject dashBox;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -178,9 +179,11 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log(rb.velocity);
         ps.Stop();
         ps.Play();
+        dashBox.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         anim.SetBool("sprint", false);
         sprinting = false;
+        dashBox.SetActive(false);
         if (!dashCDset)
         {
             StartCoroutine(StartDashCD());

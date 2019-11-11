@@ -4,11 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Obstacle
   - Escort_Object
   - Escort_Navigation_Target
   - Escort_Navigation_Target_Final
   - Enemy
-  - Obstacle
   layers:
   - Default
   - TransparentFX
@@ -18,14 +18,9 @@ TagManager:
   - UI
   - 
   - 
-<<<<<<< HEAD
-  - 
-  - post_processing
-=======
-  - Enemy
-  - 
->>>>>>> fe1b9c2f7076af0337726420c28b767dbf82ca00
-  - 
+  - dashBox
+  - enemy
+  - Player
   - 
   - 
   - 
