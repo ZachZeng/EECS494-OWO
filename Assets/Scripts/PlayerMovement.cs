@@ -18,14 +18,25 @@ public class PlayerMovement : MonoBehaviour
     public string[] comboParams;
     public AttackLogic myAttackStatus;
     public bool canMove;
+    // dash parameters
     public bool sprinting = false;
     public Image dashImg;
     public Text dashCD;
     public bool dashCDset = false;
     public bool dashOnCD = false;
-    public ParticleSystem ps;
     public GameObject dashBox;
+    // taunt parameters
+    public Image tauntImg;
+    public Text tauntCD;
+    //public bool tauntCDset = false;
+    public bool tauntOnCD = false;
+    public ParticleSystem ps;
     bool first = true;
+    bool taunt = false;
+    public GameObject tauntBox;
+    Collider col;
+    public ParticleSystem tauntPS;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -36,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void Start()
     {
+        col = tauntBox.GetComponent<SphereCollider>();
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         myAttackStatus = GetComponent<AttackLogic>();
@@ -65,6 +77,16 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(StartSprint());
         }
 
+        if (active.xButton.wasPressedThisFrame && !taunt && !tauntOnCD)
+        {
+            Debug.Log("x button pressed");
+            anim.SetTrigger("taunt");
+            taunt = true;
+            //tauntCDset = false;
+            tauntOnCD = true;
+            StartCoroutine(StartTaunt());
+        }
+
         if (sprinting)
         {
             rb.velocity = transform.forward.normalized * 20;
@@ -83,7 +105,7 @@ public class PlayerMovement : MonoBehaviour
             anim.Play("Idle");
             first = false;
         }
-        if (!sprinting && canMove)
+        if (!sprinting && canMove && !taunt)
         {
             first = true;
             anim.SetBool("movement", current_input != Vector3.zero);
@@ -179,7 +201,47 @@ public class PlayerMovement : MonoBehaviour
 
         }
     }
+    IEnumerator StartTaunt()
+    {
+        tauntPS.Stop();
+        tauntPS.Play();
+        yield return new WaitForSeconds(0.5f);
+       
+        Collider[] cols = Physics.OverlapSphere(col.bounds.center, 8f);
+        foreach (Collider c in cols)
+        {
+            if (c.gameObject.CompareTag("Enemy"))
+            {
 
+                c.gameObject.GetComponent<AimSystem>().Tank(5f);
+
+            }
+            
+        }
+        yield return new WaitForSeconds(1f);
+        taunt = false;
+
+        StartCoroutine(StartTauntCD());
+
+    }
+    public IEnumerator StartTauntCD()
+    {
+        tauntCD.text = "10";
+        tauntImg.enabled = true;
+        tauntCD.enabled = true;
+        for (int i = 10; i > 0; --i)
+        {
+            tauntCD.text = i.ToString();
+            yield return new WaitForSeconds(1f);
+        }
+        tauntOnCD = false;
+        tauntImg.enabled = false;
+        tauntCD.enabled = false;
+    }
+    public void TauntCD()
+    {
+        StartCoroutine(StartTauntCD());
+    }
     IEnumerator StartSprint()
     {
         anim.SetBool("sprint", true);
