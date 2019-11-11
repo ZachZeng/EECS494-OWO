@@ -8,6 +8,11 @@ TagManager:
   - Escort_Navigation_Target_Final
   - Enemy
   - Escort_Object
+  - enemyBug
+  - Castle
+  - Obstacle
+  - Fireball_Weapon
+  - Sword_Weapon
   layers:
   - Default
   - TransparentFX

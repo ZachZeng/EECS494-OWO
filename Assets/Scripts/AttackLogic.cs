@@ -48,6 +48,8 @@ public class AttackLogic : MonoBehaviour
                 {
                     encountered.Add(c);
                     c.gameObject.GetComponent<Health>().ModifyHealth(-ATK);
+                    if(c.gameObject.name != "Obstacle_Road")
+                        c.gameObject.GetComponent<AimSystem>().warrior_aim[0] += c.gameObject.GetComponent<AimSystem>().warrior_aim_change_per;
                     hitEnemy = true;
 
                 }

@@ -5024,9 +5024,10 @@ GameObject:
   - component: {fileID: 8059275734304040600}
   - component: {fileID: 8059275734304040601}
   - component: {fileID: 5781568589857763585}
+  - component: {fileID: -771350478452156726}
   m_Layer: 0
   m_Name: Boximon Fiery
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5040,7 +5041,7 @@ Transform:
   m_GameObject: {fileID: 8059275734304040593}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 2.38, y: 0.38, z: -4.46}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children:
   - {fileID: 8059275735822309966}
   - {fileID: 8059275733946222444}
@@ -5090,8 +5091,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.1407417, y: 1, z: 1.2490201}
+  m_Center: {x: -0.0011348724, y: 0, z: -0.019413233}
 --- !u!195 &8059275734304040604
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5102,7 +5103,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 2
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -5154,11 +5155,13 @@ MonoBehaviour:
   escort_object: {fileID: 0}
   mage: {fileID: 0}
   warrior: {fileID: 0}
-  escort_aim: 100
-  mage_aim_change_per: 10
-  warrior_aim_change_per: 20
-  mage_aim_cool_per: 8
-  warrior_aim_cool_per: 5
+  escort_aim: 10
+  mage_aim_change_per: 13
+  warrior_aim_change_per: 15
+  mage_aim_cool_per: 1
+  warrior_aim_cool_per: 1
+  mage_aim: 000000000000000000000000
+  warrior_aim: 000000000000000000000000
 --- !u!114 &8059275734304040600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5202,6 +5205,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 448910935a7ad7a4d800e152108887f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ps: {fileID: 0}
+--- !u!114 &-771350478452156726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8059275734304040593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 695ca6cbb632cac4ab2fd3e9ddde97d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyDamage: 10
+  EnemyDamageFrequency: 1
 --- !u!1 &8059275734354172411
 GameObject:
   m_ObjectHideFlags: 0

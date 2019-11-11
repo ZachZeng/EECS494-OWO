@@ -8,6 +8,7 @@ public class MageAttack : MonoBehaviour
 {
     Animator anim;
     MagePlayerMovement magePlayerMovement;
+    MageArrowControl mageArrowControl;
     public GameObject CastCDUI;
     public GameObject HealCDUI;
     public GameObject fireball;
@@ -36,6 +37,7 @@ public class MageAttack : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         magePlayerMovement = GetComponent<MagePlayerMovement>();
+        mageArrowControl = GetComponent<MageArrowControl>();
         isAttack = false;
         castTimer = 0;
         cdTimer = 0;
@@ -47,17 +49,17 @@ public class MageAttack : MonoBehaviour
     {
         Gamepad gamepad = Gamepad.all[magePlayerMovement.playerNum];
 
-
+        Vector2 arrow_dir = mageArrowControl.direction;
 
         if (gamepad.rightTrigger.wasPressedThisFrame && !isAttack && magePlayerMovement.canMove)
         {
             StartCoroutine(attack());
             anim.SetTrigger("attack");
-            Instantiate(fireball, transform.position + new Vector3(0,0.6f,0), Quaternion.LookRotation(magePlayerMovement.direction));
+            Instantiate(fireball, transform.position + new Vector3(arrow_dir.x, 0.3f, arrow_dir.y), Quaternion.LookRotation(new Vector3(arrow_dir.x, 0, arrow_dir.y)));
         }
 
         //Start Heal
-        if (!isHeal && gamepad.yButton.wasPressedThisFrame && !isHealCD && magePlayerMovement.canMove)
+        if (!isHeal && gamepad.leftTrigger.wasPressedThisFrame && !isHealCD && magePlayerMovement.canMove)
         {
             healCDTimer = 0f;
             isHeal = true;
@@ -66,18 +68,18 @@ public class MageAttack : MonoBehaviour
             isHealCD = true;
         }
 
-        if(isHeal)
+        if (isHeal)
         {
             healCDTimer += Time.deltaTime;
             HealCDUI.GetComponent<Text>().text = Mathf.RoundToInt(healCD - healCDTimer).ToString();
         }
 
-        if(!isHealCD)
+        if (!isHealCD)
         {
             HealCDUI.GetComponent<Text>().text = "Y";
         }
 
-        if(healCDTimer >= healCD)
+        if (healCDTimer >= healCD)
         {
             isHeal = false;
             healCDTimer = 0;
@@ -89,23 +91,23 @@ public class MageAttack : MonoBehaviour
         //Finish Cast
         if (isCasting && gamepad.aButton.wasPressedThisFrame && castTimer >= castTime)
         {
-            FinishCast(); 
+            FinishCast();
         }
 
         //Stop Cast
-        if(isCasting && gamepad.bButton.wasPressedThisFrame)
+        if (isCasting && gamepad.bButton.wasPressedThisFrame)
         {
             StopCast();
         }
 
         //Start Cast
-        if(!isCasting && gamepad.aButton.wasPressedThisFrame && !isCD && magePlayerMovement.canMove)
+        if (!isCasting && gamepad.aButton.wasPressedThisFrame && !isCD && magePlayerMovement.canMove)
         {
             StartCast();
         }
 
         //cast time caculate
-        if(isCasting)
+        if (isCasting)
         {
             castTimer += Time.deltaTime;
             Vector3 castScale = new Vector3(castTimer / castTime, castTimer / castTime, castTimer / castTime);
@@ -114,19 +116,19 @@ public class MageAttack : MonoBehaviour
         }
 
         //ready to cast
-        if(castTimer >= castTime)
+        if (castTimer >= castTime)
         {
             castTimer = castTime;
         }
 
-        if(isCD)
+        if (isCD)
         {
             cdTimer += Time.deltaTime;
             //Update CastCD
             CastCDUI.GetComponent<Text>().text = Mathf.RoundToInt(castCD - cdTimer).ToString();
         }
 
-        if(!isCD)
+        if (!isCD)
         {
             CastCDUI.GetComponent<Text>().text = "A";
         }
@@ -137,9 +139,9 @@ public class MageAttack : MonoBehaviour
             cdTimer = 0;
         }
 
-        
 
-        
+
+
     }
 
     public void StopCast()
@@ -198,7 +200,8 @@ public class MageAttack : MonoBehaviour
     {
         anim.SetTrigger("heal");
         yield return new WaitForSeconds(1f);
-        Instantiate(healball, transform.position + new Vector3(0, 0.5f, 0) + magePlayerMovement.direction * 0.1f, Quaternion.LookRotation(magePlayerMovement.direction));
+        Vector2 arrow_dir = mageArrowControl.direction;
+        Instantiate(healball, transform.position + new Vector3(arrow_dir.x, 0.6f, arrow_dir.y), Quaternion.LookRotation(new Vector3(arrow_dir.x, 0, arrow_dir.y)));
         yield return new WaitForSeconds(1f);
         magePlayerMovement.canMove = true;
     }

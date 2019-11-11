@@ -26,9 +26,13 @@ public class Health : MonoBehaviour
         {
             showFloatingText(amount);
         }
-        currentHealth += amount;
-        float currentHealthPct = (float)currentHealth / (float)maxHealth;
-        onHealthChange(currentHealthPct);
+
+        if(!respawned)
+        {
+            currentHealth += amount;
+            float currentHealthPct = (float)currentHealth / (float)maxHealth;
+            onHealthChange(currentHealthPct);
+        }
     }
 
     void showFloatingText(int amount)
@@ -71,6 +75,7 @@ public class Health : MonoBehaviour
             {
                 if (gameObject.name == "Obstacle_Road") {
                     Escort_State.instance.setBlockState(false);
+                    Destroy(gameObject);
                 }
                 GetComponent<Animator>().SetTrigger("Die");
                 Destroy(gameObject, 1f);
@@ -82,7 +87,7 @@ public class Health : MonoBehaviour
     IEnumerator Respawn()
     {
         respawned = true;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         respawner.Respawn();
         for (int i = 1; i < 5; i++)
         {

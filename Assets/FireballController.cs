@@ -6,6 +6,7 @@ public class FireballController : MonoBehaviour
 {
     public float speed;
     public int ATK;
+    public GameObject hitParticle;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,7 @@ public class FireballController : MonoBehaviour
         {
             collision.gameObject.GetComponent<Health>().ModifyHealth(-ATK);
         }
+        Instantiate(hitParticle, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }

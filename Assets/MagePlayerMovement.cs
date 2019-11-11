@@ -26,31 +26,36 @@ public class MagePlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //if (!myAttackStatus.knocked_back)
-        //{
-        Vector3 current_input = GetInput();
-        anim.SetBool("movement", current_input != Vector3.zero);
-        anim.SetFloat("movespeed", movementSpeed);
 
-        if (current_input.magnitude != 0 && canMove)
+        if(GameController.instance.isGameBegin)
         {
-            direction = current_input;
-            transform.rotation = Quaternion.LookRotation(direction);
+            //if (!myAttackStatus.knocked_back)
+            //{
+            Vector3 current_input = GetInput();
+            anim.SetBool("movement", current_input != Vector3.zero);
+            anim.SetFloat("movespeed", movementSpeed);
+
+            if (current_input.magnitude != 0 && canMove)
+            {
+                direction = current_input;
+                transform.rotation = Quaternion.LookRotation(direction);
+            }
+
+            if (canMove)
+            {
+                rb.velocity = current_input;
+            }
+            else
+            {
+                rb.velocity = Vector3.zero;
+                anim.SetBool("movement", false);
+            }
+
+
+            //}
+            //Debug.Log(rb.velocity);
         }
 
-        if(canMove)
-        {
-            rb.velocity = current_input;
-        }
-        else
-        {
-            rb.velocity = Vector3.zero;
-            anim.SetBool("movement", false);
-        }
-            
-
-        //}
-        //Debug.Log(rb.velocity);
 
 
     }
