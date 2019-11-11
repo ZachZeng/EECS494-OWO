@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     public bool dashOnCD = false;
     public ParticleSystem ps;
     public GameObject dashBox;
+    bool first = true;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -76,9 +77,15 @@ public class PlayerMovement : MonoBehaviour
                 lastAttackTime = Time.time;
             }
         }
-
-        if (!sprinting)
+        if(!canMove && first)
         {
+            anim.SetBool("movement", false);
+            anim.Play("Idle");
+            first = false;
+        }
+        if (!sprinting && canMove)
+        {
+            first = true;
             anim.SetBool("movement", current_input != Vector3.zero);
             anim.SetFloat("movespeed", movementSpeed);
 

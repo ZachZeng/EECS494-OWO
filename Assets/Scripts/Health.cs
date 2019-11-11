@@ -8,10 +8,13 @@ public class Health : MonoBehaviour
     [SerializeField] int maxHealth;
     public int currentHealth;
     public event Action<float> onHealthChange = delegate { };
+    PlayerRespawn respawner;
+    bool respawned = false;
 
     private void Awake()
     {
         currentHealth = maxHealth;
+        respawner = GetComponent<PlayerRespawn>();
     }
     public void ModifyHealth(int amount)
     {
@@ -35,7 +38,7 @@ public class Health : MonoBehaviour
         }
         if (currentHealth <= 0)
         {
-            if(gameObject.tag == "Player")
+            if(gameObject.tag == "Player" && !respawned)
             {
                 if(gameObject.name == "Knight")
                 {
@@ -51,7 +54,7 @@ public class Health : MonoBehaviour
                 }
                 StartCoroutine(Respawn());
             }
-            else
+            else if (gameObject.tag != "Player")
             {
                 if (gameObject.name == "Obstacle_Road") {
                     Escort_State.instance.setBlockState(false);
@@ -64,7 +67,15 @@ public class Health : MonoBehaviour
 
     IEnumerator Respawn()
     {
-        yield return new WaitForSeconds(3);
+        respawned = true;
+        yield return new WaitForSeconds(1);
+        respawner.Respawn();
+        for (int i = 1; i < 5; i++)
+        {
+            onHealthChange(i * 0.25f);
+            yield return new WaitForSeconds(1f);
+        }
+        //yield return new WaitForSeconds(4);
         if (gameObject.name == "Knight")
         {
             gameObject.GetComponent<PlayerMovement>().canMove = true;
@@ -74,7 +85,8 @@ public class Health : MonoBehaviour
         {
             gameObject.GetComponent<MagePlayerMovement>().canMove = true;
         }
-        onHealthChange(1);
+        //onHealthChange(1);
         currentHealth = 100;
+        respawned = false;
     }
 }
