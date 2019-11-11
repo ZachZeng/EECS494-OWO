@@ -23,6 +23,8 @@ public class PlayerMovement : MonoBehaviour
     public Text dashCD;
     public bool dashCDset = false;
     public bool dashOnCD = false;
+    public ParticleSystem ps;
+    public GameObject dashBox;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -175,9 +177,13 @@ public class PlayerMovement : MonoBehaviour
     {
         anim.SetBool("sprint", true);
         Debug.Log(rb.velocity);
+        ps.Stop();
+        ps.Play();
+        dashBox.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         anim.SetBool("sprint", false);
         sprinting = false;
+        dashBox.SetActive(false);
         if (!dashCDset)
         {
             StartCoroutine(StartDashCD());
@@ -188,6 +194,7 @@ public class PlayerMovement : MonoBehaviour
     public IEnumerator StartDashCD()
     {
         dashCD.text = "8";
+        ps.Stop();
         dashImg.enabled = true;
         dashCD.enabled = true;
         for (int i = 5; i > 0; --i)

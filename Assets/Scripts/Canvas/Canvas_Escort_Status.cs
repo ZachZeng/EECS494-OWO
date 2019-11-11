@@ -2,15 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class Canvas_Escort_Status : MonoBehaviour
 {
+    [SerializeField]
+    EventSystem myEventSystem;
     [SerializeField]
     GameObject currentHealth;
     [SerializeField]
     GameObject gameOverNotify;
     [SerializeField]
     GameObject winNotify;
+    [SerializeField]
+    GameObject winNotifyButton;
     [SerializeField]
     GameObject panel;
 
@@ -36,6 +41,11 @@ public class Canvas_Escort_Status : MonoBehaviour
         {
             winNotify.SetActive(true);
             panel.SetActive(true);
+            Debug.Log("hello");
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(winNotifyButton);
+            Debug.Log("set00");
+            //panel.SetActive(true);
             gameController.isGameOver = true;
         }
     }

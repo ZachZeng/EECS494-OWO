@@ -4,14 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Escort_Object
   - Escort_Navigation_Target
   - Escort_Navigation_Target_Final
   - Enemy
-  - Obstacle
-  - enemyBug
-  - Castle
-  - Dead
+  - Escort_Object
   layers:
   - Default
   - TransparentFX
