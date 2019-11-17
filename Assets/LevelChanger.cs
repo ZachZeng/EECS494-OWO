@@ -33,4 +33,9 @@ public class LevelChanger : MonoBehaviour
     {
         SceneManager.LoadScene(levelToLoad);
     }
+    public void StartGame()
+    {
+        GameController.instance.playerChosen[0] = 0;
+        GameController.instance.playerChosen[1] = 1;
+    }
 }

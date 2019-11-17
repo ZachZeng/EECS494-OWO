@@ -5,28 +5,42 @@ using UnityEngine;
 public class jointLogic : MonoBehaviour
 {
     // Start is called before the first frame update
+    //Vector3 position;
+    //Quaternion rotation;
+    
     void Start()
     {
-        
+        //position = transform.localPosition;
+        //rotation = transform.localRotation;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //transform.position = position;
+        //transform.rotation = rotation;
     }
     // not used at the moment
+
     private void OnCollisionEnter(Collision other)
     {
         GameObject enemy = other.gameObject;
+        Debug.Log(enemy.tag);
         if(enemy.CompareTag("Enemy"))
         {
-            if (enemy.GetComponent<Rigidbody>() == null)
+            Rigidbody rb = enemy.GetComponent<Rigidbody>();
+            if (rb == null)
             {
                 Debug.LogWarning("enemy rigidbody null!");
             }
             else
             {
+                //stunEnemy(enemy);
+                Vector3 dir = enemy.transform.position - other.contacts[0].point;
+                dir = dir.normalized;
+                dir = new Vector3(dir.x, 0, dir.z);
+                DashImpact di = enemy.GetComponent<DashImpact>();
+                di.SetImpact(dir);
                 stunEnemy(enemy);
                 Debug.Log("not null");
 
@@ -36,7 +50,7 @@ public class jointLogic : MonoBehaviour
 
     void stunEnemy(GameObject enemy)
     {
-        ParticleSystem ps = enemy.GetComponentInChildren<ParticleSystem>();
+        ParticleSystem ps = enemy.GetComponentsInChildren<ParticleSystem>()[1];
         //ps.enableEmission = true;
         ps.Stop();
         ps.Play();

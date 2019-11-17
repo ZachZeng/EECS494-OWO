@@ -61,7 +61,7 @@ public class AttackLogic : MonoBehaviour
     public bool LaunchAttack3()
     {
         bool hitEnemy = false;
-        Collider[] cols = Physics.OverlapSphere(col.bounds.center, 4f);
+        Collider[] cols = Physics.OverlapSphere(col.bounds.center, 3f);
         foreach (Collider c in cols)
         {
             if (c.gameObject.CompareTag("Enemy"))
@@ -109,9 +109,9 @@ public class AttackLogic : MonoBehaviour
         {
             //Debug.Log("hello");
             model_mr.material = pureRed;
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.1f);
             model_mr.material = originalMaterial;
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.1f);
         }
         model_mr.material = originalMaterial;
     }
