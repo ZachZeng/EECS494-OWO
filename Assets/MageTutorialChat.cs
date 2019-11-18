@@ -16,8 +16,8 @@ public class MageTutorialChat : MonoBehaviour
     public GameObject dashTutorial;
     void Start()
     {
-        //ToastManager.instance.magetoasts.Enqueue("Hey there, welcome to Escort Hero!");
-        //ToastManager.instance.magetoasts.Enqueue("I am Princess Elsa, whom you will be escorting.");
+        ToastManager.instance.magetoasts.Enqueue("Hey there, welcome to Escort Hero!");
+        ToastManager.instance.magetoasts.Enqueue("I am Princess Elsa, whom you will be escorting.");
         ToastManager.instance.magetoasts.Enqueue("Before we embark on this journey together,\nlet's see what you can do!");
     }
 

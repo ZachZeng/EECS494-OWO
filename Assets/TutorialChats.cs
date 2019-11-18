@@ -15,8 +15,8 @@ public class TutorialChats : MonoBehaviour
     public GameObject dashTutorial;
     void Start()
     {
-        //ToastManager.instance.toasts.Enqueue("Hey there, welcome to Escort Hero!");
-        //ToastManager.instance.toasts.Enqueue("I am Princess Elsa, whom you will be escorting.");
+        ToastManager.instance.toasts.Enqueue("Hey there, welcome to Escort Hero!");
+        ToastManager.instance.toasts.Enqueue("I am Princess Elsa, whom you will be escorting.");
         ToastManager.instance.toasts.Enqueue("Before we embark on this journey together,\nlet's see what you can do!");
     }
 
