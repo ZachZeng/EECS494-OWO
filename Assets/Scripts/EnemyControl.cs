@@ -101,6 +101,12 @@ public class EnemyControl : MonoBehaviour
 
     IEnumerator Frozen()
     {
+        if(ToastManager.instance != null && !ToastManager.instance.frozen)
+        {
+            ToastManager.instance.frozen = true;
+            ToastManager.instance.MageCount += 1;
+            ToastManager.instance.magetoasts.Enqueue("Good job! Now let's wait for Knight to finish\nand move on to the healing skill.");
+        }
         na.speed *= 0.1f;
         srd.material = frozen;
         yield return new WaitForSeconds(frozenTime);

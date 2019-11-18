@@ -16,16 +16,12 @@ public class LevelChanger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Scene scene = SceneManager.GetActiveScene();
 
-        if (GameController.instance.playerChosen[0] != -1 && GameController.instance.playerChosen[1] != -1 && scene.name == "StartScene")
-        {
-            FadeToLevel(1);
-        }
     }
     public void FadeToLevel(int levelIndex)
     {
-
+        GameController.instance.playerChosen[0] = 0;
+        GameController.instance.playerChosen[1] = 1;
         animator.SetTrigger("FadeOut");
         levelToLoad = levelIndex;
     }
@@ -37,5 +33,7 @@ public class LevelChanger : MonoBehaviour
     {
         GameController.instance.playerChosen[0] = 0;
         GameController.instance.playerChosen[1] = 1;
+
+        FadeToLevel(1);
     }
 }

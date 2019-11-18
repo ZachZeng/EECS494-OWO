@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ChildCount : MonoBehaviour
 {
+    public bool isMage = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,8 +16,16 @@ public class ChildCount : MonoBehaviour
     {
         if(GetComponentsInChildren<Transform>().Length == 1)
         {
-            ToastManager.instance.count += 1;
-            ToastManager.instance.toasts.Enqueue("Hooray! You have learned the movement and\ncombo attack system. Now let's move on to the skills.");
+            if (!isMage)
+            {
+                ToastManager.instance.count += 1;
+                ToastManager.instance.toasts.Enqueue("Hooray! You have learned the movement and\ncombo attack system. Now let's move on to the skills.");
+            }
+            else
+            {
+                ToastManager.instance.MageCount += 1;
+                ToastManager.instance.magetoasts.Enqueue("Hooray! You have learned the movement and\naiming system. Now let's move on to the skills.");
+            }
             gameObject.SetActive(false);
         }
     }

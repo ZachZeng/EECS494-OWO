@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ToastFirstEnemy : MonoBehaviour
 {
+    public bool isMage = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,9 @@ public class ToastFirstEnemy : MonoBehaviour
     }
     private void OnDestroy()
     {
-        ToastManager.instance.count += 1;
+        if (!isMage)
+            ToastManager.instance.count += 1;
+        else
+            ToastManager.instance.MageCount += 1;
     }
 }

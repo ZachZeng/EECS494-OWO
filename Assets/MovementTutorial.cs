@@ -5,6 +5,7 @@ using UnityEngine;
 public class MovementTutorial : MonoBehaviour
 {
     public ParticleSystem ps;
+    public bool isMage = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,8 +19,16 @@ public class MovementTutorial : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        ToastManager.instance.toasts.Enqueue("Nice work!");
-        ToastManager.instance.count += 1;
+        if (!isMage)
+        {
+            ToastManager.instance.toasts.Enqueue("Nice work!");
+            ToastManager.instance.count += 1;
+        }
+        else
+        {
+            ToastManager.instance.magetoasts.Enqueue("Nice work!");
+            ToastManager.instance.MageCount += 1;
+        }
         ps.Stop();
         gameObject.SetActive(false);
     }
