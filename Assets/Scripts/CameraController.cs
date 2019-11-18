@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraController : MonoBehaviour
 {
@@ -36,13 +37,17 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(overviewMap());
+        if (SceneManager.GetActiveScene().name == "MainScene3")
+        {
+            StartCoroutine(overviewMap());
+        }
+
     }
 
 
     private void FixedUpdate()
     {
-
+        
         if (gameController.isGameBegin)
         {
             // Move the camera towards a desired position.

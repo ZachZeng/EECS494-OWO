@@ -18,7 +18,7 @@ public class startScreenKnight : MonoBehaviour
     {
         startPosition = transform;
         anim = GetComponent<Animator>();
-        loopAnimation();
+        //loopAnimation();
     }
 
     // Update is called once per frame

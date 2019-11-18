@@ -213,7 +213,7 @@ public class PlayerMovement : MonoBehaviour
         tauntPS.Play();
         yield return new WaitForSeconds(0.5f);
        
-        Collider[] cols = Physics.OverlapSphere(col.bounds.center, 8f);
+        Collider[] cols = Physics.OverlapSphere(col.bounds.center, 4f);
         foreach (Collider c in cols)
         {
             if (c.gameObject.CompareTag("Enemy") && c.gameObject.name != "Obstacle_Road")
