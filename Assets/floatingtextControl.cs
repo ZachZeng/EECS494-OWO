@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class floatingtextControl : MonoBehaviour
 {
@@ -14,6 +15,4 @@ public class floatingtextControl : MonoBehaviour
         transform.localPosition += offset;
         transform.localPosition += new Vector3((Random.Range(-random.x, random.x)), 0, 0);
     }
-
-    // Update is called once per frame
 }
