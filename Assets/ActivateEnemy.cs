@@ -21,29 +21,29 @@ public class ActivateEnemy : MonoBehaviour
         if(gameObject.name == "Escort_Navigation_Target_No1")
         {
             GameObject.Find("SpawnPoint1").transform.GetChild(0).GetComponent<GenerateEnemy>().enabled = false;
-            GameObject.Find("SpawnPoint1").transform.GetChild(1).GetComponent<GenerateEnemy>().enabled = false;
+            GameObject.Find("SpawnPoint1").transform.GetChild(2).GetComponent<GenerateEnemy>().enabled = false;
         }
         if(gameObject.name == "Escort_Navigation_Target_No2")
         {
             GameObject.Find("SpawnPoint2").transform.GetChild(0).GetComponent<GenerateEnemy>().enabled = true;
-            GameObject.Find("SpawnPoint2").transform.GetChild(1).GetComponent<GenerateEnemy>().enabled = true;
+            GameObject.Find("SpawnPoint2").transform.GetChild(2).GetComponent<GenerateEnemy>().enabled = true;
         }
         if (gameObject.name == "Escort_Navigation_Target_No3")
         {
             GameObject.Find("SpawnPoint2").transform.GetChild(0).GetComponent<GenerateEnemy>().enabled = false;
-            GameObject.Find("SpawnPoint2").transform.GetChild(1).GetComponent<GenerateEnemy>().enabled = false;
+            GameObject.Find("SpawnPoint2").transform.GetChild(2).GetComponent<GenerateEnemy>().enabled = false;
         }
         if (gameObject.name == "Escort_Navigation_Target_No4")
         {
             GameObject.Find("SpawnPoint3").transform.GetChild(0).GetComponent<GenerateEnemy>().enabled = true;
-            GameObject.Find("SpawnPoint3").transform.GetChild(1).GetComponent<GenerateEnemy>().enabled = true;
+            GameObject.Find("SpawnPoint3").transform.GetChild(2).GetComponent<GenerateEnemy>().enabled = true;
         }
         if (gameObject.name == "Escort_Navigation_Target_No5")
         {
             GameObject.Find("SpawnPoint3").transform.GetChild(0).GetComponent<GenerateEnemy>().enabled = false;
-            GameObject.Find("SpawnPoint3").transform.GetChild(1).GetComponent<GenerateEnemy>().enabled = false;
+            GameObject.Find("SpawnPoint3").transform.GetChild(2).GetComponent<GenerateEnemy>().enabled = false;
             GameObject.Find("SpawnPoint4").transform.GetChild(0).GetComponent<GenerateEnemy>().enabled = true;
-            GameObject.Find("SpawnPoint4").transform.GetChild(1).GetComponent<GenerateEnemy>().enabled = true;
+            GameObject.Find("SpawnPoint4").transform.GetChild(2).GetComponent<GenerateEnemy>().enabled = true;
         }
 
     }

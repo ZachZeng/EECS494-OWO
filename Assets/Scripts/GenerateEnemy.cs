@@ -10,6 +10,7 @@ public class GenerateEnemy : MonoBehaviour
     public float lastestTime;
     public bool canGenerate;
     public float timer;
+    public int enemyNum;
 
 
 
@@ -21,14 +22,13 @@ public class GenerateEnemy : MonoBehaviour
         enemyCount = 0;
         spawnPos = this.transform.position;
         timer = 0;
-        lastestTime = 3f;
     }
     // Update is called once per frame
     void Update()
     {
         if(GameController.instance.isGameBegin)
         {
-            canGenerate &= enemyCount < 10;
+            canGenerate &= enemyCount < enemyNum;
             timer += Time.deltaTime;
             if (timer >= lastestTime && canGenerate)
             {

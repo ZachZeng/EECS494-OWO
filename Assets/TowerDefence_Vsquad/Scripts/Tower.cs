@@ -11,7 +11,7 @@ public class Tower : MonoBehaviour {
     public GameObject bullet;
     public GameObject DestroyParticle;
     public Vector3 impactNormal_2;
-    public Transform target;
+    private Transform target;
     public int dmg = 10;
     public float shootDelay;
     bool isShoot;
@@ -24,6 +24,7 @@ public class Tower : MonoBehaviour {
     {
         anim_2 = GetComponent<Animator>();
         homeY = LookAtObj.transform.localRotation.eulerAngles.y;
+        target = null;
     }
 
 
@@ -112,8 +113,14 @@ public class Tower : MonoBehaviour {
             target = null;
             anim_2.SetBool("Attack", false);
             anim_2.SetBool("T_pose", true);        
-        } 
-          
+        }
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        target = GameObject.Find("Escort Object").transform;
+    }
+
 
 }
 

@@ -13,13 +13,18 @@ public class CameraController : MonoBehaviour
     public Transform[] m_Targets; // All the targets the camera needs to encompass.
 
     GameController gameController;
-    public GameObject final_destination;
-    public GameObject target1;
-    public GameObject target2;
-    public GameObject original_position;
+    public Transform[] wayPonts;
+
+    public GameObject topPanel;
+    public GameObject bottomPanel;
+
+    Animator animator1;
+    Animator animator2;
 
     public float overviewSpeed;
     public float backSpeed;
+
+    public GameObject playerUI;
 
 
 
@@ -33,6 +38,8 @@ public class CameraController : MonoBehaviour
     {
         m_Camera = GetComponentInChildren<Camera>();
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
+        animator1 = topPanel.GetComponent<Animator>();
+        animator2 = bottomPanel.GetComponent<Animator>();
     }
 
     private void Start()
@@ -156,38 +163,49 @@ public class CameraController : MonoBehaviour
 
     IEnumerator overviewMap()
     {
-        m_Camera.orthographicSize = 10;
+        m_Camera.orthographicSize = 12;
 
-        while (transform.position != target1.transform.position)
+        if(animator1 != null)
         {
-            transform.position = Vector3.MoveTowards(transform.position, target1.transform.position, Time.deltaTime * overviewSpeed);
-            yield return transform.position;
+            animator1.SetBool("beginCutScene", true);
+        }
+        if (animator2 != null)
+        {
+            animator2.SetBool("beginCutScene", true);
+        }
+        yield return new WaitForSeconds(1f);
+
+        for (int i = 1; i < wayPonts.Length; i++)
+        {
+            while (transform.position != wayPonts[i].position)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, wayPonts[i].position, Time.deltaTime * overviewSpeed);
+                yield return transform.position;
+            }
+            yield return new WaitForSeconds(0.5f);
         }
 
-        while (transform.position != target2.transform.position)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, target2.transform.position, Time.deltaTime * overviewSpeed);
-            yield return transform.position;
-        }
 
-        while (transform.position != final_destination.transform.position)
+        while (transform.position != wayPonts[0].position)
         {
-            transform.position = Vector3.MoveTowards(transform.position, final_destination.transform.position, Time.deltaTime * overviewSpeed);
+            transform.position = Vector3.MoveTowards(transform.position, wayPonts[0].position, Time.deltaTime * backSpeed);
             yield return transform.position;
         }
 
         yield return new WaitForSeconds(1);
 
-        while (transform.position != original_position.transform.position)
+        if (animator1 != null)
         {
-            transform.position = Vector3.MoveTowards(transform.position, original_position.transform.position, Time.deltaTime * backSpeed);
-            yield return transform.position;
+            animator1.SetBool("beginCutScene", false);
         }
-
-        yield return new WaitForSeconds(1);
+        if (animator2 != null)
+        {
+            animator2.SetBool("beginCutScene", false);
+        }
 
         gameController.isGameBegin = true;
         Move();
         Zoom();
+        playerUI.GetComponent<Animator>().SetBool("beginUI", true);
     }
 }

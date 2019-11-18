@@ -42,8 +42,9 @@ public class ToastManager : MonoBehaviour
     }
     IEnumerator switchScenes()
     {
-        yield return new WaitForSeconds(5f);
-        Fader.GetComponent<LevelChanger>().FadeToLevel(3);
+        yield return new WaitForSeconds(3f);
+        GameController.instance.isGameBegin = false;
+        Fader.GetComponent<LevelChanger>().FadeToLevel(1);
         
     }
 }

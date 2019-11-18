@@ -9,8 +9,6 @@ public class MageAttack : MonoBehaviour
     Animator anim;
     MagePlayerMovement magePlayerMovement;
     MageArrowControl mageArrowControl;
-    public GameObject CastCDUI;
-    public GameObject HealCDUI;
     public GameObject fireball;
     public GameObject healball;
     public GameObject castRange;
@@ -20,17 +18,23 @@ public class MageAttack : MonoBehaviour
     public bool isAttack;
     public float attackCD = 0.3f;
 
-    public bool isCasting;
-    private float castTimer;
-    public float castTime;
-    public float castCD;
-    private float cdTimer;
-    public bool isCD;
+    public bool isHailCasting;
+    private float hailCastTimer;
+    public float hailCastTime;
+    public float hailCD;
+    private float hailCDTimer;
+    public bool isHailCD;
 
     public bool isHeal;
     public float healCD;
     private float healCDTimer;
     public bool isHealCD;
+
+    public Image healImg;
+    public Text healCDText;
+    public Image hailImg;
+    public Text hailCDText;
+
 
 
     void Start()
@@ -39,8 +43,8 @@ public class MageAttack : MonoBehaviour
         magePlayerMovement = GetComponent<MagePlayerMovement>();
         mageArrowControl = GetComponent<MageArrowControl>();
         isAttack = false;
-        castTimer = 0;
-        cdTimer = 0;
+        hailCastTimer = 0;
+        hailCDTimer = 0;
         healCDTimer = 0;
     }
 
@@ -71,12 +75,15 @@ public class MageAttack : MonoBehaviour
         if (isHeal)
         {
             healCDTimer += Time.deltaTime;
-            HealCDUI.GetComponent<Text>().text = Mathf.RoundToInt(healCD - healCDTimer).ToString();
+            healCDText.GetComponent<Text>().enabled = true;
+            healImg.GetComponent<Image>().enabled = true;
+            healCDText.GetComponent<Text>().text = Mathf.RoundToInt(healCD - healCDTimer).ToString();
         }
 
         if (!isHealCD)
         {
-            HealCDUI.GetComponent<Text>().text = "Y";
+            healCDText.GetComponent<Text>().enabled = false;
+            healImg.GetComponent<Image>().enabled = false;
         }
 
         if (healCDTimer >= healCD)
@@ -89,54 +96,57 @@ public class MageAttack : MonoBehaviour
 
 
         //Finish Cast
-        if (isCasting && gamepad.aButton.wasPressedThisFrame && castTimer >= castTime)
+        if (isHailCasting && gamepad.aButton.wasPressedThisFrame && hailCastTimer >= hailCastTime)
         {
             FinishCast();
         }
 
         //Stop Cast
-        if (isCasting && gamepad.bButton.wasPressedThisFrame)
+        if (isHailCasting && gamepad.bButton.wasPressedThisFrame)
         {
             StopCast();
         }
 
         //Start Cast
-        if (!isCasting && gamepad.aButton.wasPressedThisFrame && !isCD && magePlayerMovement.canMove)
+        if (!isHailCasting && gamepad.aButton.wasPressedThisFrame && !isHailCD && magePlayerMovement.canMove)
         {
             StartCast();
         }
 
         //cast time caculate
-        if (isCasting)
+        if (isHailCasting)
         {
-            castTimer += Time.deltaTime;
-            Vector3 castScale = new Vector3(castTimer / castTime, castTimer / castTime, castTimer / castTime);
-            //Debug.Log(castTimer / castTime);
+            hailCastTimer += Time.deltaTime;
+            Vector3 castScale = new Vector3(hailCastTimer / hailCastTime, hailCastTimer / hailCastTime, hailCastTimer / hailCastTime);
+            //Debug.Log(hailCastTimer / hailCastTime);
             castRangeClone.transform.GetChild(0).localScale = castScale;
         }
 
         //ready to cast
-        if (castTimer >= castTime)
+        if (hailCastTimer >= hailCastTime)
         {
-            castTimer = castTime;
+            hailCastTimer = hailCastTime;
         }
 
-        if (isCD)
+        if (isHailCD)
         {
-            cdTimer += Time.deltaTime;
-            //Update CastCD
-            CastCDUI.GetComponent<Text>().text = Mathf.RoundToInt(castCD - cdTimer).ToString();
+            hailCDTimer += Time.deltaTime;
+            //Update hailCD
+            hailCDText.GetComponent<Text>().enabled = true;
+            hailImg.GetComponent<Image>().enabled = true;
+            hailCDText.GetComponent<Text>().text = Mathf.RoundToInt(hailCD - hailCDTimer).ToString();
         }
 
-        if (!isCD)
+        if (!isHailCD)
         {
-            CastCDUI.GetComponent<Text>().text = "A";
+            hailCDText.GetComponent<Text>().enabled = false;
+            hailImg.GetComponent<Image>().enabled = false;
         }
 
-        if (cdTimer >= castCD)
+        if (hailCDTimer >= hailCD)
         {
-            isCD = false;
-            cdTimer = 0;
+            isHailCD = false;
+            hailCDTimer = 0;
         }
 
 
@@ -149,24 +159,24 @@ public class MageAttack : MonoBehaviour
         if (castRangeClone)
             Destroy(castRangeClone);
         magePlayerMovement.canMove = true;
-        isCasting = false;
-        isCD = false;
-        anim.SetBool("isCasting", false);
+        isHailCasting = false;
+        isHailCD = false;
+        anim.SetBool("isHailCasting", false);
     }
 
     public void StartCast()
     {
         magePlayerMovement.canMove = false;
-        castTimer = 0f;
-        isCasting = true;
+        hailCastTimer = 0f;
+        isHailCasting = true;
         castRangeClone = Instantiate(castRange, transform.position + new Vector3(0, 0.3f, 0), Quaternion.identity);
-        anim.SetBool("isCasting", true);
+        anim.SetBool("isHailCasting", true);
     }
 
     public void FinishCast()
     {
-        isCD = true;
-        anim.SetBool("isCasting", false);
+        isHailCD = true;
+        anim.SetBool("isHailCasting", false);
         castRangeClone.GetComponent<RangeController>().canMove = false;
         StartCoroutine(castAnim());
     }
@@ -193,7 +203,7 @@ public class MageAttack : MonoBehaviour
         if (castRangeClone)
             Destroy(castRangeClone);
         magePlayerMovement.canMove = true;
-        isCasting = false;
+        isHailCasting = false;
     }
 
     IEnumerator castHeal()

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using TMPro;
+
 public class Health : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -15,10 +17,13 @@ public class Health : MonoBehaviour
     public GameObject floatingText;
 
 
+
+
     private void Awake()
     {
         currentHealth = maxHealth;
         respawner = GetComponent<PlayerRespawn>();
+
     }
 
     public void ModifyHealth(int amount)
@@ -28,7 +33,8 @@ public class Health : MonoBehaviour
             showFloatingText(amount);
         }
 
-        if(!respawned)
+
+        if (!respawned)
         {
             currentHealth += amount;
             float currentHealthPct = (float)currentHealth / (float)maxHealth;
@@ -65,7 +71,7 @@ public class Health : MonoBehaviour
                 else if(gameObject.name == "Mage")
                 {
                     gameObject.GetComponent<MagePlayerMovement>().canMove = false;
-                    if(gameObject.GetComponent<MageAttack>().isCasting)
+                    if(gameObject.GetComponent<MageAttack>().isHailCasting)
                     {
                         gameObject.GetComponent<MageAttack>().StopCast();
                     }
