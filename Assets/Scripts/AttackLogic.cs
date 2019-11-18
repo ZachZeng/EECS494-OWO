@@ -87,7 +87,7 @@ public class AttackLogic : MonoBehaviour
             if (!knocked_back && myCollider.CompareTag("Player"))
             {
                 Debug.Log("enemy collided with me");
-                myHealth.ModifyHealth(-10);
+                myHealth.ModifyHealth(collision.gameObject.GetComponent<Escort_Enemy_example>().EnemyDamage);
                 //Rigidbody enemyRB = collision.gameObject.GetComponent<Rigidbody>();
                 //Vector3 movedirection = (transform.position - enemyRB.transform.position).normalized;
                 StartCoroutine(InvincibleFrame());

@@ -10,10 +10,12 @@ public class TutorialChats : MonoBehaviour
     bool displaying = false;
     public GameObject movementTutorial;
     public GameObject attackTutorial;
+    public GameObject attackTutorial2;
+    public GameObject tauntTutorial;
     void Start()
     {
-        ToastManager.instance.toasts.Enqueue("Hey there, welcome to Escort Hero!");
-        ToastManager.instance.toasts.Enqueue("I am Princess Elsa, whom you will be escorting.");
+        //ToastManager.instance.toasts.Enqueue("Hey there, welcome to Escort Hero!");
+        //ToastManager.instance.toasts.Enqueue("I am Princess Elsa, whom you will be escorting.");
         ToastManager.instance.toasts.Enqueue("Before we embark on this journey together,\nlet's see what you can do!");
     }
 
@@ -40,6 +42,24 @@ public class TutorialChats : MonoBehaviour
                 ToastManager.instance.count += 1;
                 attackTutorial.SetActive(true);
             }
+            if (ToastManager.instance.count == 4)
+            {
+                ToastManager.instance.toasts.Enqueue("Well done! If the first two attacks both hit an enemy, the third\nwill be enhanced to a ground smash! Try it out!!!");
+                StartCoroutine(DisplayTextIncrement());
+            }
+            if (ToastManager.instance.count == 5)
+            {
+                attackTutorial2.SetActive(true);
+            }
+            if (ToastManager.instance.count == 6)
+            {
+                ToastManager.instance.toasts.Enqueue("Your 'X' button unleashes a globe of fury, and attracts\nenemies nearby to attack you. Attract then kill that Boximon!");
+                StartCoroutine(DisplayTextIncrement());
+            }
+            if (ToastManager.instance.count == 7)
+            {
+                tauntTutorial.SetActive(true);
+            }
         }
     }
     IEnumerator DisplayText()
@@ -54,5 +74,11 @@ public class TutorialChats : MonoBehaviour
         }
         yield return new WaitForSeconds(1f);
         displaying = false;
+    }
+
+    IEnumerator DisplayTextIncrement()
+    {
+        yield return StartCoroutine(DisplayText());
+        ToastManager.instance.count += 1;
     }
 }
