@@ -20,6 +20,7 @@ public class Health : MonoBehaviour
         currentHealth = maxHealth;
         respawner = GetComponent<PlayerRespawn>();
     }
+
     public void ModifyHealth(int amount)
     {
         if (floatingText != null)
