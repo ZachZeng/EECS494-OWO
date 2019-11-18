@@ -55,7 +55,7 @@ public class MageAttack : MonoBehaviour
         {
             StartCoroutine(attack());
             anim.SetTrigger("attack");
-            Instantiate(fireball, transform.position + new Vector3(arrow_dir.x, 0.3f, arrow_dir.y), Quaternion.LookRotation(new Vector3(arrow_dir.x, 0, arrow_dir.y)));
+            Instantiate(fireball, transform.position + new Vector3(arrow_dir.x, 0.5f, arrow_dir.y), Quaternion.LookRotation(new Vector3(arrow_dir.x, 0, arrow_dir.y)));
         }
 
         //Start Heal
