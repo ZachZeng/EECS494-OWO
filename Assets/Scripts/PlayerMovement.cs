@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     // taunt parameters
     public Image tauntImg;
     public Text tauntCD;
+    public int tauntCoolDown = 10;
     //public bool tauntCDset = false;
     public bool tauntOnCD = false;
     public ParticleSystem ps;
@@ -213,7 +214,7 @@ public class PlayerMovement : MonoBehaviour
         tauntPS.Play();
         yield return new WaitForSeconds(0.5f);
        
-        Collider[] cols = Physics.OverlapSphere(col.bounds.center, 8f);
+        Collider[] cols = Physics.OverlapSphere(col.bounds.center, 4f);
         foreach (Collider c in cols)
         {
             if (c.gameObject.CompareTag("Enemy") && c.gameObject.name != "Obstacle_Road")
@@ -230,10 +231,10 @@ public class PlayerMovement : MonoBehaviour
     }
     public IEnumerator StartTauntCD()
     {
-        tauntCD.text = "10";
+        tauntCD.text = tauntCoolDown.ToString();
         tauntImg.enabled = true;
         tauntCD.enabled = true;
-        for (int i = 10; i > 0; --i)
+        for (int i = tauntCoolDown; i > 0; --i)
         {
             tauntCD.text = i.ToString();
             yield return new WaitForSeconds(1f);

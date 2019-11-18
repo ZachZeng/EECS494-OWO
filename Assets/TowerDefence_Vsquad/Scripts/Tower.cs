@@ -88,7 +88,8 @@ public class Tower : MonoBehaviour {
         if (target && Catcher == false)
         {
             GameObject b = GameObject.Instantiate(bullet, shootElement.position, Quaternion.identity) as GameObject;
-            b.GetComponent<TowerBullet>().target = target;
+            Transform ta = target.transform;
+            b.GetComponent<TowerBullet>().Curr_target = ta;
             b.GetComponent<TowerBullet>().twr = this;
           
         }

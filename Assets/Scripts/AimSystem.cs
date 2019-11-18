@@ -14,6 +14,7 @@ public class AimSystem : MonoBehaviour
     public int warrior_aim_change_per = 20;
     public int mage_aim_cool_per = 8;
     public int warrior_aim_cool_per = 5;
+    public GameObject Exclamation;
 
     public HashSet<string> magesWeapons;
     public HashSet<string> warriorWeapons;
@@ -42,8 +43,9 @@ public class AimSystem : MonoBehaviour
 
     private void Start()
     {
+        Exclamation.SetActive(false);
         ec = GetComponent<EnemyControl>();
-        escort_object = GameObject.Find("Escort Object");
+        escort_object = GameObject.FindWithTag("Escort_Object");
         mage = GameObject.Find("Mage");
         warrior = GameObject.Find("Knight");
         ec.target = escort_object;
@@ -53,6 +55,7 @@ public class AimSystem : MonoBehaviour
     public void Tank(float time)
     {
         warrior_aim[2] = 1;
+        Exclamation.SetActive(true);
         StartCoroutine(Wait(time));
     }
 
@@ -60,6 +63,7 @@ public class AimSystem : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         warrior_aim[2] = 0;
+        Exclamation.SetActive(false);
     }
 
 

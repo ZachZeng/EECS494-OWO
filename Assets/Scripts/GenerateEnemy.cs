@@ -37,6 +37,6 @@ public class GenerateEnemy : MonoBehaviour
                 enemyCount++;
                 timer = 0;
             }
-        } 
+        }
     }
 }

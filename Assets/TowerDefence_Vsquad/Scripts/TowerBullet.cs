@@ -4,7 +4,8 @@ using System.Collections;
 public class TowerBullet : MonoBehaviour {
 
     public float Speed;
-    public Transform target;
+    private Transform target;
+    public Transform Curr_target;
     public GameObject impactParticle; // bullet impact
     
     public Vector3 impactNormal; 
@@ -12,15 +13,17 @@ public class TowerBullet : MonoBehaviour {
     public Tower twr;    
     float i = 0.05f; // delay time of bullet destruction
 
-    
+    private void Start()
+    {
+        target = Curr_target.transform;
+    }
+
     void Update() {
 
         // Bullet move
 
         if (target) 
         {        
-            
-            transform.LookAt(target);
             transform.position = Vector3.MoveTowards(transform.position, target.position, Time.deltaTime * Speed); 
             lastBulletPosition = target.transform.position; 
 
