@@ -12,6 +12,7 @@ public class TutorialChats : MonoBehaviour
     public GameObject attackTutorial;
     public GameObject attackTutorial2;
     public GameObject tauntTutorial;
+    public GameObject dashTutorial;
     void Start()
     {
         //ToastManager.instance.toasts.Enqueue("Hey there, welcome to Escort Hero!");
@@ -30,10 +31,14 @@ public class TutorialChats : MonoBehaviour
         {
             if (ToastManager.instance.count == 0)
             {
-                ToastManager.instance.count += 1;
+              
+                ToastManager.instance.toasts.Enqueue("Use LEFT JOYSTICK to move to the flashing area!");
+                StartCoroutine(DisplayTextIncrement());
+            }
+            if (ToastManager.instance.count == 1)
+            {
                 movementTutorial.SetActive(true);
                 movementTutorial.GetComponent<MovementTutorial>().playEffect();
-                ToastManager.instance.toasts.Enqueue("Use LEFT JOYSTICK to move to the flashing area!");
             }
             if (ToastManager.instance.count == 2)
             {
@@ -60,6 +65,13 @@ public class TutorialChats : MonoBehaviour
             {
                 tauntTutorial.SetActive(true);
             }
+            if (ToastManager.instance.count == 8)
+            {
+                ToastManager.instance.count += 1;
+                ToastManager.instance.toasts.Enqueue("Press 'Y' to dash in the direction you're currently facing.\nThe force will push and stun the enemies along the way!");
+                dashTutorial.SetActive(true);
+            }
+
         }
     }
     IEnumerator DisplayText()

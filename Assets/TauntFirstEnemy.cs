@@ -26,5 +26,6 @@ public class TauntFirstEnemy : MonoBehaviour
     {
         ToastManager.instance.count += 1;
         ToastManager.instance.toasts.Enqueue("Good job! Now let's move on to the dash skill.");
+
     }
 }

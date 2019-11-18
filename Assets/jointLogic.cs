@@ -35,6 +35,11 @@ public class jointLogic : MonoBehaviour
             }
             else
             {
+                if (ToastManager.instance != null && ToastManager.instance.count == 9)
+                {
+                    ToastManager.instance.toasts.Enqueue("The enemies will be stunned for 3 seconds.\n Congratulations, you have finished the Knight Tutorial.");
+                    ToastManager.instance.count += 1;
+                }
                 //stunEnemy(enemy);
                 Vector3 dir = enemy.transform.position - other.contacts[0].point;
                 dir = dir.normalized;
@@ -63,4 +68,5 @@ public class jointLogic : MonoBehaviour
         Debug.Log("Stop");*/
 
     }
+
 }
