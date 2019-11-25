@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 990ddec02af7041d9aef2d2dd9167858, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.2
+  speed: 0.4
   ATK: 10
   hitParticle: {fileID: 9176653719411188750, guid: 8c2061db91b5d4172a957f92d98aaa87,
     type: 3}

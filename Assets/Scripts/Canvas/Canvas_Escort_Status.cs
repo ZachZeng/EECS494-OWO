@@ -17,6 +17,8 @@ public class Canvas_Escort_Status : MonoBehaviour
     [SerializeField]
     GameObject winNotifyButton;
     [SerializeField]
+    GameObject gameOverNotifyButton;
+    [SerializeField]
     GameObject panel;
 
     public GameController gameController;
@@ -35,6 +37,8 @@ public class Canvas_Escort_Status : MonoBehaviour
         if (!Escort_State.instance.getStatus() && !gameController.isGameOver) {
             gameOverNotify.SetActive(true);
             panel.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(gameOverNotifyButton);
             gameController.isGameOver = true;
         }
         if (Escort_State.instance.getGoalState() && !gameController.isGameOver)

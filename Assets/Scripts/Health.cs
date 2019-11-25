@@ -108,9 +108,9 @@ public class Health : MonoBehaviour
       
         yield return new WaitForSeconds(3);
         respawner.Respawn();
-        for (int i = 1; i < 5; i++)
+        for (int i = 1; i < 3; i++)
         {
-            onHealthChange(i * 0.25f);
+            onHealthChange(i * 0.5f);
             yield return new WaitForSeconds(1f);
         }
         //yield return new WaitForSeconds(4);

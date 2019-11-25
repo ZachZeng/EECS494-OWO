@@ -12,7 +12,6 @@ public class CameraController : MonoBehaviour
     /*[HideInInspector]*/
     public Transform[] m_Targets; // All the targets the camera needs to encompass.
 
-    GameController gameController;
     public Transform[] wayPonts;
 
     public GameObject topPanel;
@@ -37,16 +36,23 @@ public class CameraController : MonoBehaviour
     private void Awake()
     {
         m_Camera = GetComponentInChildren<Camera>();
-        gameController = GameObject.Find("GameController").GetComponent<GameController>();
+        
         animator1 = topPanel.GetComponent<Animator>();
         animator2 = bottomPanel.GetComponent<Animator>();
+
+        
     }
 
     private void Start()
     {
-        if (SceneManager.GetActiveScene().name == "MainScene3")
+        GameController.instance.isGameOver = false;
+        if (GameController.instance.isGameBegin == false)
         {
             StartCoroutine(overviewMap());
+        }
+        else
+        {
+            playerUI.GetComponent<Animator>().SetBool("beginUI", true);
         }
 
     }
@@ -55,7 +61,7 @@ public class CameraController : MonoBehaviour
     private void FixedUpdate()
     {
         
-        if (gameController.isGameBegin)
+        if (GameController.instance.isGameBegin)
         {
             // Move the camera towards a desired position.
             Move();
@@ -203,7 +209,7 @@ public class CameraController : MonoBehaviour
             animator2.SetBool("beginCutScene", false);
         }
 
-        gameController.isGameBegin = true;
+        GameController.instance.isGameBegin = true;
         Move();
         Zoom();
         playerUI.GetComponent<Animator>().SetBool("beginUI", true);

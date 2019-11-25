@@ -48,8 +48,18 @@ public class AttackLogic : MonoBehaviour
                 {
                     encountered.Add(c);
                     c.gameObject.GetComponent<Health>().ModifyHealth(-ATK);
-                    if(c.gameObject.name != "Obstacle_Road" && !c.gameObject.name.Contains("HM_cannon_1"))
+                    if(c.gameObject.name != "Obstacle_Road" && !c.gameObject.name.Contains("HM_cannon_1") && !c.gameObject.name.Contains("Toon") )
+                    {
                         c.gameObject.GetComponent<AimSystem>().warrior_aim[0] += c.gameObject.GetComponent<AimSystem>().warrior_aim_change_per;
+                        c.gameObject.GetComponent<EnemyControl>().StartKnockBack(gameObject);
+                    }
+
+                    if(c.gameObject.name == "Obstacle_Road")
+                    {
+                        c.gameObject.transform.GetChild(1).GetComponent<ParticleSystem>().Stop();
+                        c.gameObject.transform.GetChild(1).GetComponent<ParticleSystem>().Play();
+                    }
+
                     hitEnemy = true;
 
                 }
@@ -62,7 +72,7 @@ public class AttackLogic : MonoBehaviour
     public bool LaunchAttack3()
     {
         bool hitEnemy = false;
-        Collider[] cols = Physics.OverlapSphere(col.bounds.center, 3f);
+        Collider[] cols = Physics.OverlapSphere(col.bounds.center, 1.5f);
         foreach (Collider c in cols)
         {
             if (c.gameObject.CompareTag("Enemy"))
@@ -72,8 +82,15 @@ public class AttackLogic : MonoBehaviour
                     encountered.Add(c);
                     c.gameObject.GetComponent<Health>().ModifyHealth(-ATK - 10);
                     hitEnemy = true;
-
+                    c.gameObject.GetComponent<EnemyControl>().StartKnockBack(gameObject);
+                    if (c.gameObject.name == "Obstacle_Road")
+                    {
+                        c.gameObject.transform.GetChild(1).GetComponent<ParticleSystem>().Stop();
+                        c.gameObject.transform.GetChild(1).GetComponent<ParticleSystem>().Play();
+                    }
                 }
+
+
             }
         }
         return hitEnemy;

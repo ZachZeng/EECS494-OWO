@@ -5260,13 +5260,15 @@ MonoBehaviour:
     type: 3}
   impactNormal: {x: 0, y: 0, z: 0}
   isTrapped: 0
-  ATK: 0
+  ATK: 10
   isAttacking: 0
   getAttacked: 0
   mRender: {fileID: 1707535977578438730}
   flash: {fileID: 2100000, guid: 204402a50944bc2488439a31ec8ed56f, type: 2}
   frozen: {fileID: 2100000, guid: a341904835d994c508c8d980e66d1cc5, type: 2}
   knocked_back: 0
+  knockBackForce: 10000
+  knockBackTime: 0.05
   frozenTime: 10
 --- !u!114 &1707535977258067679
 MonoBehaviour:

@@ -21,10 +21,11 @@ public class EnemyControl : MonoBehaviour
     public Material flash;
     public Material frozen;
     public bool knocked_back;
-
+    public int knockBackForce;
+    public float knockBackTime;
     private float frozenTimer;
     public float frozenTime;
- 
+
     // Update is called once per frame
     private void Start()
     {
@@ -36,37 +37,39 @@ public class EnemyControl : MonoBehaviour
         original = srd.material;
         frozenTimer = 0;
         ATK = 10;
-        na.stoppingDistance = 1f;
+        na.stoppingDistance = 2f;
     }
+
+
 
     private void OnCollisionStay(Collision collision)
     {
         isAttacking |= (collision.gameObject.tag.Contains("Player") || collision.gameObject.tag == "Escort_Object");
-        if(collision.gameObject.tag.Contains("Player"))
+        if(collision.gameObject.tag.Contains("Player") && !isTrapped)
         {
             collision.gameObject.GetComponent<PlayerHealthControl>().getAttack(ATK);
         }
     }
 
 
-
-
     private void OnTriggerStay(Collider other)
     {
         isTrapped |= other.gameObject.name == "CastRange(Clone)";
-        if(other.gameObject.name == "CastRange(Clone)")
+        if (other.gameObject.name == "CastRange(Clone)")
             gameObject.GetComponent<AimSystem>().mage_aim[0] += 30;
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        getAttacked |= collision.gameObject.tag.Contains("Weapon");
 
+    public void StartKnockBack(GameObject collider)
+    {
+        getAttacked = true;
+        StartCoroutine(KnockBack(collider));
     }
+
     private void OnCollisionExit(Collision collision)
     {
         isAttacking &= (!collision.gameObject.tag.Contains("Player") && collision.gameObject.tag != "Escort_Object");
-        
+
         //Debug.Log("exit collision" + isAttacking);
     }
 
@@ -76,7 +79,6 @@ public class EnemyControl : MonoBehaviour
         if (isAttacking)
         {
             am.SetTrigger("Attack 01");
-
         }
     }
 
@@ -94,6 +96,20 @@ public class EnemyControl : MonoBehaviour
         }
     }
 
+    IEnumerator KnockBack(GameObject attacker)
+    {
+        na.isStopped = true;
+        gameObject.GetComponent<Rigidbody>().isKinematic = false;
+        Vector3 dir = transform.position - attacker.transform.position;
+        dir.y = 0;
+        Debug.Log(dir);
+        gameObject.GetComponent<Rigidbody>().AddForce(dir.normalized * knockBackForce);
+        yield return new WaitForSeconds(knockBackTime);
+        gameObject.GetComponent<Rigidbody>().isKinematic = true;
+        gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        na.isStopped = false;
+    }
+
     void JudgeTrapped()
     {
         if (isTrapped)
@@ -108,7 +124,7 @@ public class EnemyControl : MonoBehaviour
 
     IEnumerator Frozen()
     {
-        if(ToastManager.instance != null && !ToastManager.instance.frozen)
+        if (ToastManager.instance != null && !ToastManager.instance.frozen)
         {
             ToastManager.instance.frozen = true;
             ToastManager.instance.MageCount += 1;
@@ -120,6 +136,7 @@ public class EnemyControl : MonoBehaviour
         isTrapped = false;
     }
 
+
     void Update()
     {
         if (target != null && !isAttacking && !getAttacked && !isTrapped)
@@ -128,7 +145,6 @@ public class EnemyControl : MonoBehaviour
             am.SetBool("Walk Forward", true);
             na.SetDestination(target.transform.position);
         }
-
         JudgeAttack();
         JudageGetAttacked();
         JudgeTrapped();
@@ -145,5 +161,6 @@ public class EnemyControl : MonoBehaviour
         getAttacked = false;
         na.isStopped = false;
     }
+
 
 }

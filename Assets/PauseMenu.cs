@@ -14,6 +14,9 @@ public class PauseMenu : MonoBehaviour
     public GameObject player2;
     public GameObject fader;
     // Start is called before the first frame update
+
+    public AudioClip clickAudio;
+
     void Start()
     {
         isPaused = false;
@@ -39,6 +42,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        AudioSource.PlayClipAtPoint(clickAudio, Camera.main.transform.position);
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         if(player1.gameObject.name == "Knight")
@@ -57,6 +61,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
+        AudioSource.PlayClipAtPoint(clickAudio, Camera.main.transform.position);
         pauseMenuUI.SetActive(true);
         myEventSystem.SetSelectedGameObject(null);
         myEventSystem.SetSelectedGameObject(myEventSystem.firstSelectedGameObject);
@@ -76,6 +81,7 @@ public class PauseMenu : MonoBehaviour
     // not used 
     public void Menu()
     {
+        AudioSource.PlayClipAtPoint(clickAudio, Camera.main.transform.position);
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;

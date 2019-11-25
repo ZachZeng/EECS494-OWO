@@ -1631,6 +1631,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2945898831078046902, guid: 9d4bb9410713441bb875ca2e7b764a36,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2034168292574792135, guid: 9d4bb9410713441bb875ca2e7b764a36,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3004799533023944092, guid: 9d4bb9410713441bb875ca2e7b764a36,
         type: 3}
       propertyPath: m_ApplyRootMotion
@@ -1650,16 +1660,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 84
-      objectReference: {fileID: 0}
-    - target: {fileID: 2945898831078046902, guid: 9d4bb9410713441bb875ca2e7b764a36,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2034168292574792135, guid: 9d4bb9410713441bb875ca2e7b764a36,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1530672229, guid: 9d4bb9410713441bb875ca2e7b764a36, type: 3}
       propertyPath: m_Volume
@@ -2133,6 +2133,14 @@ PrefabInstance:
       propertyPath: hailCD
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 393324260, guid: 1dbfac427d5c0405e8f16a33cdc0171d, type: 3}
+      propertyPath: launchFireballAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: a7c0d14377c8749128e8b52c722ce8c5, type: 3}
+    - target: {fileID: 393324260, guid: 1dbfac427d5c0405e8f16a33cdc0171d, type: 3}
+      propertyPath: launchHailAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 4d53cfdf85b064aec8c746fd05e7088c, type: 3}
     - target: {fileID: 2031741893, guid: 1dbfac427d5c0405e8f16a33cdc0171d, type: 3}
       propertyPath: m_SizeDelta.x
       value: 28
@@ -2164,10 +2172,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 393324258, guid: 1dbfac427d5c0405e8f16a33cdc0171d, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 393324261, guid: 1dbfac427d5c0405e8f16a33cdc0171d, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
@@ -2306,6 +2310,10 @@ PrefabInstance:
     - target: {fileID: 7109715678757326190, guid: 1dbfac427d5c0405e8f16a33cdc0171d,
         type: 3}
       propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 393324261, guid: 1dbfac427d5c0405e8f16a33cdc0171d, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

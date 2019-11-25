@@ -35,6 +35,9 @@ public class MageAttack : MonoBehaviour
     public Image hailImg;
     public Text hailCDText;
 
+    public AudioClip launchFireballAudio;
+    public AudioClip launchHailAudio;
+
 
 
     void Start()
@@ -59,6 +62,7 @@ public class MageAttack : MonoBehaviour
         {
             StartCoroutine(attack());
             anim.SetTrigger("attack");
+            AudioSource.PlayClipAtPoint(launchFireballAudio, Camera.main.transform.position);
             Instantiate(fireball, transform.position + new Vector3(arrow_dir.x, 0.5f, arrow_dir.y), Quaternion.LookRotation(new Vector3(arrow_dir.x, 0, arrow_dir.y)));
         }
 
@@ -195,6 +199,7 @@ public class MageAttack : MonoBehaviour
 
     IEnumerator castAnim()
     {
+        AudioSource.PlayClipAtPoint(launchHailAudio, Camera.main.transform.position);
         castRangeClone.GetComponent<CapsuleCollider>().enabled = true;
         anim.SetTrigger("finishCast");
         castRangeClone.transform.GetChild(3).GetComponent<ParticleSystem>().Play();

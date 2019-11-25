@@ -9,7 +9,7 @@ public class GenerateEnemy : MonoBehaviour
     public GameObject enemy;
     public float lastestTime;
     public bool canGenerate;
-    public float timer;
+    private float timer;
     public int enemyNum;
 
 
