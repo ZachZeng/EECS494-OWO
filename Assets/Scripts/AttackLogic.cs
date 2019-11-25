@@ -48,12 +48,13 @@ public class AttackLogic : MonoBehaviour
                 {
                     encountered.Add(c);
                     c.gameObject.GetComponent<Health>().ModifyHealth(-ATK);
-                    if(c.gameObject.name != "Obstacle_Road")
+                    if(c.gameObject.name != "Obstacle_Road" && !c.gameObject.name.Contains("HM_cannon_1"))
                         c.gameObject.GetComponent<AimSystem>().warrior_aim[0] += c.gameObject.GetComponent<AimSystem>().warrior_aim_change_per;
                     hitEnemy = true;
 
                 }
             }
+
         }
         return hitEnemy;
     }
@@ -78,24 +79,24 @@ public class AttackLogic : MonoBehaviour
         return hitEnemy;
     }
 
-    private void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            Collider myCollider = collision.contacts[0].thisCollider;
-            //Debug.Log(myCollider.tag);
-            if (!knocked_back && myCollider.CompareTag("Player"))
-            {
-                Debug.Log("enemy collided with me");
-                myHealth.ModifyHealth(collision.gameObject.GetComponent<Escort_Enemy_example>().EnemyDamage);
-                //Rigidbody enemyRB = collision.gameObject.GetComponent<Rigidbody>();
-                //Vector3 movedirection = (transform.position - enemyRB.transform.position).normalized;
-                StartCoroutine(InvincibleFrame());
-                StartCoroutine(Flash());
-                //StartCoroutine(Knockback(rb, movedirection));
-            }
-        }
-    }
+    //private void OnCollisionStay(Collision collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Enemy"))
+    //    {
+    //        Collider myCollider = collision.contacts[0].thisCollider;
+    //        //Debug.Log(myCollider.tag);
+    //        if (!knocked_back && myCollider.CompareTag("Player"))
+    //        {
+    //            //Debug.Log("enemy collided with me");
+    //            //myHealth.ModifyHealth(collision.gameObject.GetComponent<Escort_Enemy_example>().EnemyDamage);
+    //            //Rigidbody enemyRB = collision.gameObject.GetComponent<Rigidbody>();
+    //            //Vector3 movedirection = (transform.position - enemyRB.transform.position).normalized;
+    //            StartCoroutine(InvincibleFrame());
+    //            StartCoroutine(Flash());
+    //            //StartCoroutine(Knockback(rb, movedirection));
+    //        }
+    //    }
+    //}
 
     IEnumerator InvincibleFrame()
     {

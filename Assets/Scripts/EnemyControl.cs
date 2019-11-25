@@ -42,7 +42,13 @@ public class EnemyControl : MonoBehaviour
     private void OnCollisionStay(Collision collision)
     {
         isAttacking |= (collision.gameObject.tag.Contains("Player") || collision.gameObject.tag == "Escort_Object");
+        if(collision.gameObject.tag.Contains("Player"))
+        {
+            collision.gameObject.GetComponent<PlayerHealthControl>().getAttack(ATK);
+        }
     }
+
+
 
 
     private void OnTriggerStay(Collider other)
@@ -70,6 +76,7 @@ public class EnemyControl : MonoBehaviour
         if (isAttacking)
         {
             am.SetTrigger("Attack 01");
+
         }
     }
 
@@ -121,6 +128,7 @@ public class EnemyControl : MonoBehaviour
             am.SetBool("Walk Forward", true);
             na.SetDestination(target.transform.position);
         }
+
         JudgeAttack();
         JudageGetAttacked();
         JudgeTrapped();

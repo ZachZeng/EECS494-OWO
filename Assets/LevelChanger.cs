@@ -33,6 +33,8 @@ public class LevelChanger : MonoBehaviour
     {
         GameController.instance.playerChosen[0] = 0;
         GameController.instance.playerChosen[1] = 1;
+        GameController.instance.isGameBegin = false;
+        GameController.instance.isGameOver = false;
 
         FadeToLevel(1);
     }

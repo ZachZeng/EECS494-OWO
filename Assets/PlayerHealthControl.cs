@@ -29,18 +29,15 @@ public class PlayerHealthControl : MonoBehaviour
 
     }
 
-    private void OnCollisionStay(Collision collision)
+    public void getAttack(int Damage)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            if (!knocked_back)
+        if (!knocked_back)
             {
-                //Debug.Log("enemy collided with me");
-                myHealth.ModifyHealth(-10);
+                Debug.Log("enemy collided with me");
+                myHealth.ModifyHealth(-Damage);
                 StartCoroutine(InvincibleFrame());
                 StartCoroutine(Flash());
             }
-        }
     }
 
     IEnumerator InvincibleFrame()

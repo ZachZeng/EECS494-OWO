@@ -84,8 +84,17 @@ public class Health : MonoBehaviour
                     Escort_State.instance.setBlockState(false);
                     Destroy(gameObject);
                 }
-                GetComponent<Animator>().SetTrigger("Die");
-                Destroy(gameObject, 1f);
+                else if(gameObject.name.Contains("HM_cannon_1"))
+                {
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    GetComponent<Animator>().SetTrigger("Die");
+                    Destroy(gameObject, 1f);
+                }
+
+                
             }
         }
     }
@@ -94,7 +103,10 @@ public class Health : MonoBehaviour
     IEnumerator Respawn()
     {
         respawned = true;
-        yield return new WaitForSeconds(2);
+        gameObject.GetComponent<Bouding>().enabled = false;
+        gameObject.transform.position = new Vector3(-90f, 0, -3f);
+      
+        yield return new WaitForSeconds(3);
         respawner.Respawn();
         for (int i = 1; i < 5; i++)
         {
@@ -113,6 +125,8 @@ public class Health : MonoBehaviour
         }
         //onHealthChange(1);
         currentHealth = 100;
+        gameObject.GetComponent<Bouding>().enabled = true;
         respawned = false;
+
     }
 }

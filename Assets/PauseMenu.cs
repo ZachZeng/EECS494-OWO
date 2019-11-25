@@ -79,6 +79,8 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
+        GameController.instance.isGameBegin = false;
+        GameController.instance.isGameOver = false;
         GameController.instance.playerChosen = new int[2] { -1, -1 };
         fader.GetComponent<LevelChanger>().FadeToLevel(0);
     }
