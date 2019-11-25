@@ -86,13 +86,22 @@ public class Escort_Obj_Movement : MonoBehaviour
             Escort_State.instance.setGoalState();
             Destroy(other.gameObject);
         }
+        if (other.gameObject.name == "BlockCube") {
+            ArenaWall.instance.letWallUp();
+            stopPosition = gameObject.transform.position;
+            Escort_State.instance.setBlockState(true);
+
+        }
     }
 
     private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.name == "Obstacle_Road") {
-            stopPosition = gameObject.transform.position;
-            Escort_State.instance.setBlockState(true);
+            if (!Escort_State.instance.getBlockState()) {
+                stopPosition = gameObject.transform.position;
+                Escort_State.instance.setBlockState(true);
+            }
+            
         }
     }
 }
