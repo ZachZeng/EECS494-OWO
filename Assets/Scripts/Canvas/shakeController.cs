@@ -40,7 +40,7 @@ public class shakeController : MonoBehaviour
 
         m_duration = 0.2f;
         m_speed = 30;
-        m_size = 1;
+        m_size = 2;
     }
 
     // Start Animation
