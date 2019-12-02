@@ -13,6 +13,7 @@ TagManager:
   - Obstacle
   - Fireball_Weapon
   - Sword_Weapon
+  - Enemy_Boss
   layers:
   - Default
   - TransparentFX

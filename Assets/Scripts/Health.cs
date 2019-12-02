@@ -62,7 +62,12 @@ public class Health : MonoBehaviour
         }
         if (currentHealth <= 0)
         {
-            if(gameObject.tag == "Player" && !respawned)
+            if (gameObject.tag.Contains("Boss"))
+            {
+                GameObject.Find("Boss").GetComponent<BossControl>().isBossDead = true;
+                GameObject.Find("DoorControl").GetComponent<ArenaWall>().letWallDown();
+            }
+            if (gameObject.tag == "Player" && !respawned)
             {
                 if(gameObject.name == "Knight")
                 {

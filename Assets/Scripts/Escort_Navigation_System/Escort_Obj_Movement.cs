@@ -17,6 +17,9 @@ public class Escort_Obj_Movement : MonoBehaviour
     public Transform target;
     public float speed;
     Vector3 stopPosition;
+    GameObject doorControl;
+    ArenaWall aw;
+    float originSpeed;
 
     void Start()
     {
@@ -26,6 +29,10 @@ public class Escort_Obj_Movement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         //rb.constraints = RigidbodyConstraints.FreezePositionZ;
         rb.constraints = RigidbodyConstraints.FreezePosition;
+        doorControl = GameObject.Find("DoorControl");
+        aw = doorControl.GetComponent<ArenaWall>();
+        originSpeed = speed;
+
     }
 
     void Update()
@@ -53,6 +60,10 @@ public class Escort_Obj_Movement : MonoBehaviour
             transform.position = new Vector3(transform.position.x, 0.8f, transform.position.z);
         }
 
+        if (speed < originSpeed && GameObject.FindWithTag("Enemy_Boss").GetComponent<BossControl>().isBossDead)
+        {
+            speed = originSpeed;
+        }
     }
 
     //if the escort object reaches the previous target, then get a new target
@@ -62,6 +73,12 @@ public class Escort_Obj_Movement : MonoBehaviour
         {
             if (EscortNavigationTargetTrans[i] != null)
             {
+                if (i == 6)
+                {
+                    aw.letWallUp();
+                    GameObject.FindWithTag("Enemy_Boss").GetComponent<BossControl>().meetBoss = true;
+                    speed = 0.0f;
+                }
                 return EscortNavigationTargetTrans[i];
             }
         }
@@ -86,12 +103,12 @@ public class Escort_Obj_Movement : MonoBehaviour
             Escort_State.instance.setGoalState();
             Destroy(other.gameObject);
         }
-        if (other.gameObject.name == "BlockCube") {
-            ArenaWall.instance.letWallUp();
-            stopPosition = gameObject.transform.position;
-            Escort_State.instance.setBlockState(true);
+        //if (other.gameObject.name == "BlockCube") {
+        //    ArenaWall.instance.letWallUp();
+        //    stopPosition = gameObject.transform.position;
+        //    Escort_State.instance.setBlockState(true);
 
-        }
+        //}
     }
 
     private void OnCollisionEnter(Collision other)

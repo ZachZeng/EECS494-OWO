@@ -25,7 +25,7 @@ public class AimSystem : MonoBehaviour
     public int[] warrior_aim = new[] { 0, 0, 0 };
 
     EnemyControl ec;
-    GameObject target;
+    public GameObject target;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -49,6 +49,7 @@ public class AimSystem : MonoBehaviour
         mage = GameObject.Find("Mage");
         warrior = GameObject.Find("Knight");
         ec.target = escort_object;
+        target = escort_object;
 
     }
 
@@ -72,14 +73,17 @@ public class AimSystem : MonoBehaviour
         if (mage_aim[0] > warrior_aim[0] && mage_aim[0] > escort_aim)
         {
             ec.target = mage;
+            target = mage;
         }
         else if (mage_aim[0] <= warrior_aim[0] && warrior_aim[0] > escort_aim)
         {
             ec.target = warrior;
+            target = warrior;
         }
         else
         {
             ec.target = escort_object;
+            target = escort_object;
         }
     }
     
@@ -89,6 +93,7 @@ public class AimSystem : MonoBehaviour
         if (warrior_aim[2] == 1)
         {
             ec.target = warrior;
+            target = warrior;
         }
         else
         {

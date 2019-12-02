@@ -52,7 +52,7 @@ public class EnemyControl : MonoBehaviour
     }
 
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         isTrapped |= other.gameObject.name == "CastRange(Clone)";
         if (other.gameObject.name == "CastRange(Clone)")
@@ -87,6 +87,7 @@ public class EnemyControl : MonoBehaviour
         if (getAttacked)
         {
             am.ResetTrigger("Attack 01");
+            am.ResetTrigger("Attack 02");
             am.SetTrigger("Take Damage");
             GameObject ip = Instantiate(impactParticle, gameObject.transform.position, Quaternion.FromToRotation(Vector3.up, impactNormal));
             ip.transform.parent = gameObject.transform;
@@ -142,13 +143,19 @@ public class EnemyControl : MonoBehaviour
         if (target != null && !isAttacking && !getAttacked && !isTrapped)
         {
             srd.material = original;
-            am.SetBool("Walk Forward", true);
-            na.SetDestination(target.transform.position);
+            if (gameObject.tag == "Enemy")
+            {
+                am.SetBool("Walk Forward", true);
+                na.SetDestination(target.transform.position);
+            }
         }
-        JudgeAttack();
+
+        if (gameObject.tag == "Enemy")
+        {
+            JudgeAttack();
+        }
         JudageGetAttacked();
         JudgeTrapped();
-
     }
 
     IEnumerator Flash()
