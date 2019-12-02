@@ -71,7 +71,10 @@ public class TutorialChats : MonoBehaviour
                 ToastManager.instance.toasts.Enqueue("Press 'Y' to dash in the direction you're currently facing.\nThe force will push and stun the enemies along the way!");
                 dashTutorial.SetActive(true);
             }
-
+            if (ToastManager.instance.count == 10 && !displaying)
+            {
+                ToastManager.instance.KnightFinished = true;
+            }
         }
     }
     IEnumerator DisplayText()

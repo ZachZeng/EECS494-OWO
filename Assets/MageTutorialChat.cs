@@ -50,7 +50,7 @@ public class MageTutorialChat : MonoBehaviour
             }
             if (ToastManager.instance.MageCount == 4)
             {
-                ToastManager.instance.magetoasts.Enqueue("Well done! Now let's test your aiming skills!!!");
+                ToastManager.instance.magetoasts.Enqueue("Well done! Now let's test your FIREBALL aiming skill!!!");
                 StartCoroutine(DisplayTextIncrement());
             }
             if (ToastManager.instance.MageCount == 5)
@@ -66,7 +66,7 @@ public class MageTutorialChat : MonoBehaviour
             {
                 tauntTutorial.SetActive(true);
             }
-            if (ToastManager.instance.MageCount == 8)
+            if (ToastManager.instance.MageCount == 8 && !displaying)
             {
                 ToastManager.instance.MageFinished = true;
             }
