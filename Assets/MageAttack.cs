@@ -17,6 +17,7 @@ public class MageAttack : MonoBehaviour
 
     public bool isAttack;
     public float attackCD = 0.3f;
+    public bool triggerAttack;
 
     public bool isHailCasting;
     private float hailCastTimer;
@@ -46,6 +47,7 @@ public class MageAttack : MonoBehaviour
         magePlayerMovement = GetComponent<MagePlayerMovement>();
         mageArrowControl = GetComponent<MageArrowControl>();
         isAttack = false;
+        triggerAttack = false;
         hailCastTimer = 0;
         hailCDTimer = 0;
         healCDTimer = 0;
@@ -58,13 +60,25 @@ public class MageAttack : MonoBehaviour
 
         Vector2 arrow_dir = mageArrowControl.direction;
 
-        if (gamepad.rightTrigger.wasPressedThisFrame && !isAttack && magePlayerMovement.canMove)
+        if(gamepad.rightTrigger.wasPressedThisFrame)
+        {
+            triggerAttack = true;
+        }
+
+        if(gamepad.rightTrigger.wasReleasedThisFrame)
+        {
+            triggerAttack = false;
+        }
+
+        if (triggerAttack && !isAttack && magePlayerMovement.canMove)
         {
             StartCoroutine(attack());
             anim.SetTrigger("attack");
             AudioSource.PlayClipAtPoint(launchFireballAudio, Camera.main.transform.position);
             Instantiate(fireball, transform.position + new Vector3(arrow_dir.x, 0.5f, arrow_dir.y), Quaternion.LookRotation(new Vector3(arrow_dir.x, 0, arrow_dir.y)));
         }
+
+
 
         //Start Heal
         if (!isHeal && gamepad.leftTrigger.wasPressedThisFrame && !isHealCD && magePlayerMovement.canMove)

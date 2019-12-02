@@ -42,7 +42,7 @@ public class AttackLogic : MonoBehaviour
         Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents, col.transform.rotation);
         foreach (Collider c in cols)
         {
-            if (c.gameObject.CompareTag("Enemy"))
+            if (c.gameObject.tag.Contains("Enemy"))
             {
                 if (!encountered.Contains(c))
                 {
@@ -56,6 +56,7 @@ public class AttackLogic : MonoBehaviour
 
                     if(c.gameObject.name == "Obstacle_Road")
                     {
+                        c.gameObject.GetComponent<Wobble>().wobbleEffect();
                         c.gameObject.transform.GetChild(1).GetComponent<ParticleSystem>().Stop();
                         c.gameObject.transform.GetChild(1).GetComponent<ParticleSystem>().Play();
                     }
@@ -75,16 +76,19 @@ public class AttackLogic : MonoBehaviour
         Collider[] cols = Physics.OverlapSphere(col.bounds.center, 1.5f);
         foreach (Collider c in cols)
         {
-            if (c.gameObject.CompareTag("Enemy"))
+            if (c.gameObject.tag.Contains("Enemy"))
             {
                 if (!encountered.Contains(c))
                 {
                     encountered.Add(c);
                     c.gameObject.GetComponent<Health>().ModifyHealth(-ATK - 10);
                     hitEnemy = true;
-                    c.gameObject.GetComponent<EnemyControl>().StartKnockBack(gameObject);
+                    EnemyControl ec = c.gameObject.GetComponent<EnemyControl>();
+                    if (ec != null)
+                        ec.StartKnockBack(gameObject);
                     if (c.gameObject.name == "Obstacle_Road")
                     {
+                        c.gameObject.GetComponent<Wobble>().wobbleEffect();
                         c.gameObject.transform.GetChild(1).GetComponent<ParticleSystem>().Stop();
                         c.gameObject.transform.GetChild(1).GetComponent<ParticleSystem>().Play();
                     }

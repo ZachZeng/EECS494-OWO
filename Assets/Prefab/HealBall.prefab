@@ -106,8 +106,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d20286d62ab24344a70a7b97c76c045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.07
+  speed: 0.1
   healAmount: 50
+  healTime: 2
+  healDis: 5
 --- !u!108 &1584766334312345468
 Light:
   m_ObjectHideFlags: 0

@@ -32,6 +32,7 @@ public class CameraController : MonoBehaviour
     private Vector3 m_MoveVelocity;                 // Reference velocity for the smooth damping of the position.
     private Vector3 m_DesiredPosition;              // The position the camera is moving towards.
 
+    private bool eventHappen;
 
     private void Awake()
     {
@@ -40,7 +41,10 @@ public class CameraController : MonoBehaviour
         animator1 = topPanel.GetComponent<Animator>();
         animator2 = bottomPanel.GetComponent<Animator>();
 
-        
+        eventHappen = false;
+
+
+
     }
 
     private void Start()
@@ -61,13 +65,14 @@ public class CameraController : MonoBehaviour
     private void FixedUpdate()
     {
         
-        if (GameController.instance.isGameBegin)
+        if (GameController.instance.isGameBegin && !eventHappen)
         {
             // Move the camera towards a desired position.
             Move();
 
             // Change the size of the camera based.
             Zoom();
+
         }
 
     }
@@ -214,4 +219,112 @@ public class CameraController : MonoBehaviour
         Zoom();
         playerUI.GetComponent<Animator>().SetBool("beginUI", true);
     }
+
+
+
+    public void GameOverCamListener()
+    {
+        Debug.Log("EventCam");
+        StartCoroutine(GameOverCam());
+    }
+
+    public void GameWinCamListener()
+    {
+        Debug.Log("EventCam");
+        StartCoroutine(GameWinCam());
+    }
+
+    public void EventCamListener(GameObject item)
+    {
+        Debug.Log("EventCam");
+        StartCoroutine(EventCam(item));
+    }
+
+
+
+    IEnumerator EventCam(GameObject item)
+    {
+        eventHappen = true;
+        if (animator1 != null)
+        {
+            animator1.SetBool("beginCutScene", true);
+        }
+        if (animator2 != null)
+        {
+            animator2.SetBool("beginCutScene", true);
+        }
+        while (transform.position != item.transform.position && m_Camera.orthographicSize != 5)
+        {
+            transform.position = Vector3.SmoothDamp(transform.position, item.transform.position, ref m_MoveVelocity, m_DampTime);
+            m_Camera.orthographicSize = Mathf.SmoothDamp(m_Camera.orthographicSize, 5, ref m_ZoomSpeed, m_DampTime);
+            yield return null;
+        }
+            
+        yield return new WaitForSeconds(0.5f);
+        if (animator1 != null)
+        {
+            animator1.SetBool("beginCutScene", false);
+        }
+        if (animator2 != null)
+        {
+            animator2.SetBool("beginCutScene", false);
+        }
+        eventHappen = false;
+    }
+
+
+
+    IEnumerator GameOverCam()
+    {
+        if (animator1 != null)
+        {
+            animator1.SetBool("beginCutScene", true);
+        }
+        if (animator2 != null)
+        {
+            animator2.SetBool("beginCutScene", true);
+        }
+        eventHappen = true;
+        while( transform.position != m_Targets[0].position && m_Camera.orthographicSize != 5)
+        {
+            transform.position = Vector3.SmoothDamp(transform.position, m_Targets[0].position, ref m_MoveVelocity, m_DampTime);
+            m_Camera.orthographicSize = Mathf.SmoothDamp(m_Camera.orthographicSize, 5, ref m_ZoomSpeed, m_DampTime);
+            yield return null;
+        }
+        yield return new WaitWhile(() => true);
+        eventHappen = false;
+        if (animator1 != null)
+        {
+            animator1.SetBool("beginCutScene", false);
+        }
+        if (animator2 != null)
+        {
+            animator2.SetBool("beginCutScene", false);
+        }
+
+    }
+
+    IEnumerator GameWinCam()
+    {
+        if (animator1 != null)
+        {
+            animator1.SetBool("beginCutScene", true);
+        }
+        if (animator2 != null)
+        {
+            animator2.SetBool("beginCutScene", true);
+        }
+        eventHappen = true;
+        yield return null;
+        eventHappen = false;
+        if (animator1 != null)
+        {
+            animator1.SetBool("beginCutScene", false);
+        }
+        if (animator2 != null)
+        {
+            animator2.SetBool("beginCutScene", false);
+        }
+    }
+
 }

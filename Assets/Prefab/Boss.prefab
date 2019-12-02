@@ -1552,9 +1552,6 @@ GameObject:
   - component: {fileID: 8479169962322939547}
   - component: {fileID: 8479169962322939550}
   - component: {fileID: 8479169962322939545}
-  - component: {fileID: 8479169962322939544}
-  - component: {fileID: 8479169962322939557}
-  - component: {fileID: 8479169962322939559}
   - component: {fileID: 8479169962322939558}
   m_Layer: 0
   m_Name: Boss
@@ -1672,78 +1669,6 @@ MonoBehaviour:
   foreground: {fileID: 7070214681773661065}
   updateSpeed: 0.5
   isEnemy: 1
---- !u!114 &8479169962322939544
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8480245806299945440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69f2d5390c6cd4341bc9d3044eecd1e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  escort_object: {fileID: 0}
-  mage: {fileID: 0}
-  warrior: {fileID: 0}
-  escort_aim: 100
-  mage_aim_change_per: 10
-  warrior_aim_change_per: 20
-  mage_aim_cool_per: 8
-  warrior_aim_cool_per: 5
-  Exclamation: {fileID: 0}
-  mage_aim: 000000000000000000000000
-  warrior_aim: 000000000000000000000000
-  target: {fileID: 0}
---- !u!114 &8479169962322939557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8480245806299945440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02fb601bf4f07466b89596fc0057d015, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  impactParticle: {fileID: 0}
-  impactNormal: {x: 0, y: 0, z: 0}
-  isTrapped: 0
-  ATK: 0
-  isAttacking: 0
-  getAttacked: 0
-  mRender: {fileID: 8478464830165163340}
-  flash: {fileID: 2100000, guid: 204402a50944bc2488439a31ec8ed56f, type: 2}
-  frozen: {fileID: 2100000, guid: a341904835d994c508c8d980e66d1cc5, type: 2}
-  knocked_back: 0
-  knockBackForce: 0
-  knockBackTime: 0
-  frozenTime: 0
---- !u!195 &8479169962322939559
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8480245806299945440}
-  m_Enabled: 1
-  m_AgentTypeID: -1372625422
-  m_Radius: 0.5
-  m_Speed: 0
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!114 &8479169962322939558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1759,14 +1684,20 @@ MonoBehaviour:
   attackFreq: 2
   specialFrq: 10
   isAttacking: 0
+  isTrapped: 0
   spATK: 0
   hitbox: {fileID: 8479169960938428044}
-  ATK: 0
+  ATK: 20
   meetBoss: 0
   isBossDead: 0
   onGround: {fileID: 2420881766772281738, guid: 35d4afdefba53ec47934aaca6faf944f,
     type: 3}
   bullet: {fileID: 1240887441953726, guid: 8a976dcd328a4664c85144f33b9c46b0, type: 3}
+  mRender: {fileID: 8478464830165163340}
+  frozenTime: 10
+  getAttacked: 0
+  flash: {fileID: 2100000, guid: 204402a50944bc2488439a31ec8ed56f, type: 2}
+  frozen: {fileID: 2100000, guid: a341904835d994c508c8d980e66d1cc5, type: 2}
 --- !u!1 &8480262025571431454
 GameObject:
   m_ObjectHideFlags: 0

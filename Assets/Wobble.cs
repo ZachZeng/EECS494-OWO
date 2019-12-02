@@ -5,23 +5,17 @@ using UnityEngine;
 public class Wobble : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+
+    public void wobbleEffect()
     {
         StartCoroutine(wobble());
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     IEnumerator wobble()
     {
-        while(true)
+        for(int i = 0; i < 10; ++i)
         {
-            transform.eulerAngles = new Vector3(Random.Range(-10, 10), Random.Range(80, 100), Random.Range(-10, 10));
-            yield return new WaitForSeconds(0.025f);
+            transform.eulerAngles = new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), Random.Range(-5, 5));
+            yield return new WaitForSeconds(0.1f);
         }
     }
 }

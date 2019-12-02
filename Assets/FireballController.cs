@@ -21,7 +21,7 @@ public class FireballController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //Debug.Log(collision.gameObject.name);
-        if (collision.gameObject.CompareTag("Enemy") && gameObject)
+        if (collision.gameObject.tag.Contains("Enemy") && gameObject)
         {
             collision.gameObject.GetComponent<Health>().ModifyHealth(-ATK);
             EnemyControl ec = collision.gameObject.GetComponent<EnemyControl>();
@@ -31,6 +31,7 @@ public class FireballController : MonoBehaviour
             }
             if (collision.gameObject.name == "Obstacle_Road")
             {
+                collision.gameObject.GetComponent<Wobble>().wobbleEffect();
                 collision.gameObject.transform.GetChild(1).GetComponent<ParticleSystem>().Stop();
                 collision.gameObject.transform.GetChild(1).GetComponent<ParticleSystem>().Play();
             }

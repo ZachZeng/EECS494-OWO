@@ -17,7 +17,7 @@ public class Escort_State : MonoBehaviour
     //escortHealth: current health of this escort object
     private int curEscortHealth;
     //escortStatus: the life state of this escort object
-    bool escortStatus;
+    public bool escortStatus;
     //initialEscortHealth : the initial value of health
     [SerializeField]
     int initialEscortHealth = 1000;
@@ -43,7 +43,8 @@ public class Escort_State : MonoBehaviour
     void Update()
     {
         if (curEscortHealth <= 0) {
-            escortStatus = false;
+            GameObject.Find("CameraRig").GetComponent<CameraController>().GameOverCamListener();
+            GameObject.Find("Escort Object").GetComponent<ExplosionDeath>().explode();
         }
     }
     //Method for Health:

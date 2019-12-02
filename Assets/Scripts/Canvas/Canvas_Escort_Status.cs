@@ -38,12 +38,11 @@ public class Canvas_Escort_Status : MonoBehaviour
             / Escort_State.instance.getMaxEscortHealth());
         if (!Escort_State.instance.getStatus() && !gameController.isGameOver) {
             gameController.isGameOver = true;
-            payload.GetComponent<ExplosionDeath>().explode();
-            // gameOverNotify.SetActive(true);
-            // panel.SetActive(true);
-            // EventSystem.current.SetSelectedGameObject(null);
-            // EventSystem.current.SetSelectedGameObject(gameOverNotifyButton);
-            
+            gameOverNotify.SetActive(true);
+            panel.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(gameOverNotifyButton);
+
         }
         if (Escort_State.instance.getGoalState() && !gameController.isGameOver)
         {

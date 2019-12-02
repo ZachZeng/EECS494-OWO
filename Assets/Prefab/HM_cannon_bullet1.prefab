@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 23972824282041216}
   - component: {fileID: 114438478815032154}
   - component: {fileID: 65923475919724998}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: HM_cannon_bullet1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 4718672092507590}
   - component: {fileID: 198675176984076890}
   - component: {fileID: 199649127611144004}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Smoke_trail1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4878,7 +4878,7 @@ GameObject:
   - component: {fileID: 4571428054930038}
   - component: {fileID: 198913002333648172}
   - component: {fileID: 199734427342937072}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Smoke_trail2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -14,7 +14,7 @@ public class Bouding : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if (GameController.instance.isGameBegin)
+        if (GameController.instance.isGameBegin && !GameController.instance.isGameOver)
         {
             Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
             pos.x = Mathf.Clamp01(pos.x);

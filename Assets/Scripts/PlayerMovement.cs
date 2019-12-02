@@ -219,7 +219,11 @@ public class PlayerMovement : MonoBehaviour
         {
             if (c.gameObject.CompareTag("Enemy") && c.gameObject.name != "Obstacle_Road")
             {
-                c.gameObject.GetComponent<AimSystem>().Tank(5f);
+                AimSystem aim = c.gameObject.GetComponent<AimSystem>();
+                if (aim != null)
+                {
+                    aim.Tank(5f);
+                }
             }
             
         }

@@ -26,9 +26,9 @@ TagManager:
   - dashBox
   - Enemy
   - Player
-  - 
-  - 
-  - 
+  - Airblock
+  - Projectile
+  - EnemyProjectile
   - 
   - 
   - 

@@ -36,6 +36,7 @@ public class ExplosionDeath : MonoBehaviour
         //Escort_State.instance.setBlockState(true);
         yield return StartCoroutine(wobble());
         Explode();
+        Escort_State.instance.escortStatus = false;
 
     }
     IEnumerator wobble()
