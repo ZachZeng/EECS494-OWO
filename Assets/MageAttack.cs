@@ -213,6 +213,13 @@ public class MageAttack : MonoBehaviour
 
     IEnumerator castHeal()
     {
+        if (ToastManager.instance != null && ToastManager.instance.togetherCount >= 3 && !ToastManager.instance.healed)
+        {
+            // ToastManager.instance.frozen = true;
+            ToastManager.instance.healed = true;
+            ToastManager.instance.togetherCount += 1;
+            ToastManager.instance.togethertoasts.Enqueue("Knight: Try catching the healing ball!");
+        }
         anim.SetTrigger("heal");
         yield return new WaitForSeconds(1f);
         Vector2 arrow_dir = mageArrowControl.direction;

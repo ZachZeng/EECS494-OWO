@@ -9,6 +9,8 @@ public class Canvas_Escort_Status : MonoBehaviour
     [SerializeField]
     EventSystem myEventSystem;
     [SerializeField]
+    GameObject payload;
+    [SerializeField]
     GameObject currentHealth;
     [SerializeField]
     GameObject gameOverNotify;
@@ -35,11 +37,13 @@ public class Canvas_Escort_Status : MonoBehaviour
             Mathf.Lerp( 0 , 1 , (float)Escort_State.instance.getCurrentEscortHealth()
             / Escort_State.instance.getMaxEscortHealth());
         if (!Escort_State.instance.getStatus() && !gameController.isGameOver) {
-            gameOverNotify.SetActive(true);
-            panel.SetActive(true);
-            EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(gameOverNotifyButton);
             gameController.isGameOver = true;
+            payload.GetComponent<ExplosionDeath>().explode();
+            // gameOverNotify.SetActive(true);
+            // panel.SetActive(true);
+            // EventSystem.current.SetSelectedGameObject(null);
+            // EventSystem.current.SetSelectedGameObject(gameOverNotifyButton);
+            
         }
         if (Escort_State.instance.getGoalState() && !gameController.isGameOver)
         {
