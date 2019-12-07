@@ -1,270 +1,106 @@
 fileFormatVersion: 2
-guid: eb54fd8cbea60a642a25f03ce0730b31
+guid: 64894164e54de704ca84ecc268677b21
 ModelImporter:
-  serializedVersion: 26
-  internalIDToNameTable:
-  - first:
-      1: 100000
-    second: ahoge
-  - first:
-      1: 100002
-    second: body
-  - first:
-      1: 100004
-    second: hat_fukuoka
-  - first:
-      1: 100006
-    second: head
-  - first:
-      1: 100008
-    second: joint3
-  - first:
-      1: 100010
-    second: L_arm
-  - first:
-      1: 100012
-    second: L_arm2
-  - first:
-      1: 100014
-    second: L_foot
-  - first:
-      1: 100016
-    second: L_hand
-  - first:
-      1: 100018
-    second: L_leg
-  - first:
-      1: 100020
-    second: L_leg2
-  - first:
-      1: 100022
-    second: PQ_body
-  - first:
-      1: 100024
-    second: PQ_earphone
-  - first:
-      1: 100026
-    second: PQ_face
-  - first:
-      1: 100028
-    second: PQ_hair
-  - first:
-      1: 100030
-    second: PQ_hair_top
-  - first:
-      1: 100032
-    second: PQ_leg
-  - first:
-      1: 100034
-    second: R_arm
-  - first:
-      1: 100036
-    second: R_arm2
-  - first:
-      1: 100038
-    second: R_foot
-  - first:
-      1: 100040
-    second: R_hand
-  - first:
-      1: 100042
-    second: R_leg
-  - first:
-      1: 100044
-    second: R_leg2
-  - first:
-      1: 100046
-    second: SD_QUERY_04
-  - first:
-      1: 100048
-    second: //RootNode
-  - first:
-      1: 100050
-    second: SD_QUERY_04_Reference
-  - first:
-      1: 100052
-    second: upper
-  - first:
-      4: 400000
-    second: ahoge
-  - first:
-      4: 400002
-    second: body
-  - first:
-      4: 400004
-    second: hat_fukuoka
-  - first:
-      4: 400006
-    second: head
-  - first:
-      4: 400008
-    second: joint3
-  - first:
-      4: 400010
-    second: L_arm
-  - first:
-      4: 400012
-    second: L_arm2
-  - first:
-      4: 400014
-    second: L_foot
-  - first:
-      4: 400016
-    second: L_hand
-  - first:
-      4: 400018
-    second: L_leg
-  - first:
-      4: 400020
-    second: L_leg2
-  - first:
-      4: 400022
-    second: PQ_body
-  - first:
-      4: 400024
-    second: PQ_earphone
-  - first:
-      4: 400026
-    second: PQ_face
-  - first:
-      4: 400028
-    second: PQ_hair
-  - first:
-      4: 400030
-    second: PQ_hair_top
-  - first:
-      4: 400032
-    second: PQ_leg
-  - first:
-      4: 400034
-    second: R_arm
-  - first:
-      4: 400036
-    second: R_arm2
-  - first:
-      4: 400038
-    second: R_foot
-  - first:
-      4: 400040
-    second: R_hand
-  - first:
-      4: 400042
-    second: R_leg
-  - first:
-      4: 400044
-    second: R_leg2
-  - first:
-      4: 400046
-    second: //RootNode
-  - first:
-      4: 400048
-    second: SD_QUERY_04
-  - first:
-      4: 400050
-    second: SD_QUERY_04_Reference
-  - first:
-      4: 400052
-    second: upper
-  - first:
-      43: 4300000
-    second: hat_fukuoka
-  - first:
-      43: 4300002
-    second: PQ_face
-  - first:
-      43: 4300004
-    second: PQ_earphone
-  - first:
-      43: 4300006
-    second: PQ_hair_top
-  - first:
-      43: 4300008
-    second: PQ_hair
-  - first:
-      43: 4300010
-    second: PQ_body
-  - first:
-      43: 4300012
-    second: PQ_leg
-  - first:
-      74: 7400000
-    second: 0300_Def
-  - first:
-      74: 7400002
-    second: 0301_Stand
-  - first:
-      74: 7400004
-    second: 0302_Walk
-  - first:
-      74: 7400006
-    second: 0303_Run
-  - first:
-      74: 7400008
-    second: 0304_Idle
-  - first:
-      74: 7400010
-    second: 0305_Fukuokadance1
-  - first:
-      74: 7400012
-    second: 0306_Fukuokadance2
-  - first:
-      74: 7400014
-    second: 0307_Waiwai
-  - first:
-      74: 7400016
-    second: 0350_Pose_Fukuokapose1
-  - first:
-      74: 7400018
-    second: 0351_Pose_Fukuokapose2
-  - first:
-      74: 7400020
-    second: 0352_Pose_Hirune
-  - first:
-      95: 9500000
-    second: //RootNode
-  - first:
-      111: 11100000
-    second: //RootNode
-  - first:
-      137: 13700000
-    second: hat_fukuoka
-  - first:
-      137: 13700002
-    second: PQ_body
-  - first:
-      137: 13700004
-    second: PQ_earphone
-  - first:
-      137: 13700006
-    second: PQ_face
-  - first:
-      137: 13700008
-    second: PQ_hair
-  - first:
-      137: 13700010
-    second: PQ_hair_top
-  - first:
-      137: 13700012
-    second: PQ_leg
-  - first:
-      41386430: 2186277476908879412
-    second: ImportLogs
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: ahoge
+    100002: body
+    100004: hat_fukuoka
+    100006: head
+    100008: joint3
+    100010: L_arm
+    100012: L_arm2
+    100014: L_foot
+    100016: L_hand
+    100018: L_leg
+    100020: L_leg2
+    100022: PQ_body
+    100024: PQ_earphone
+    100026: PQ_face
+    100028: PQ_hair
+    100030: PQ_hair_top
+    100032: PQ_leg
+    100034: R_arm
+    100036: R_arm2
+    100038: R_foot
+    100040: R_hand
+    100042: R_leg
+    100044: R_leg2
+    100046: SD_QUERY_04
+    100048: //RootNode
+    100050: SD_QUERY_04_Reference
+    100052: upper
+    400000: ahoge
+    400002: body
+    400004: hat_fukuoka
+    400006: head
+    400008: joint3
+    400010: L_arm
+    400012: L_arm2
+    400014: L_foot
+    400016: L_hand
+    400018: L_leg
+    400020: L_leg2
+    400022: PQ_body
+    400024: PQ_earphone
+    400026: PQ_face
+    400028: PQ_hair
+    400030: PQ_hair_top
+    400032: PQ_leg
+    400034: R_arm
+    400036: R_arm2
+    400038: R_foot
+    400040: R_hand
+    400042: R_leg
+    400044: R_leg2
+    400046: //RootNode
+    400048: SD_QUERY_04
+    400050: SD_QUERY_04_Reference
+    400052: upper
+    4300000: hat_fukuoka
+    4300002: PQ_face
+    4300004: PQ_earphone
+    4300006: PQ_hair_top
+    4300008: PQ_hair
+    4300010: PQ_body
+    4300012: PQ_leg
+    7400000: 0300_Def
+    7400002: 0301_Stand
+    7400004: 0302_Walk
+    7400006: 0303_Run
+    7400008: 0304_Idle
+    7400010: 0305_Fukuokadance1
+    7400012: 0306_Fukuokadance2
+    7400014: 0307_Waiwai
+    7400016: 0350_Pose_Fukuokapose1
+    7400018: 0351_Pose_Fukuokapose2
+    7400020: 0352_Pose_Hirune
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: hat_fukuoka
+    13700002: PQ_body
+    13700004: PQ_earphone
+    13700006: PQ_face
+    13700008: PQ_hair
+    13700010: PQ_hair_top
+    13700012: PQ_leg
+    2186277476908879412: ImportLogs
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Mat_Body_Fukuoka
-    second: {fileID: 2100000, guid: 8548e4deb4352c5448cd3818aa551124, type: 2}
+    second: {fileID: 2100000, guid: 2c8de0e0ca4e630499b9b70dd93e5225, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Mat_Face_Defo
-    second: {fileID: 2100000, guid: 332931ae78625534f806e160219ffb24, type: 2}
+    second: {fileID: 2100000, guid: aa18597f460a227469c9ff1dad1ac802, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Mat_Hat_Fukuoka
-    second: {fileID: 2100000, guid: 16905d53bec4c89449ff592997265008, type: 2}
+    second: {fileID: 2100000, guid: 59d2da32a4ed0d345a724a43722ef906, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -298,7 +134,6 @@ ModelImporter:
     - serializedVersion: 16
       name: 0300_Def
       takeName: Take 001
-      internalID: 0
       firstFrame: 0
       lastFrame: 0.1
       wrapMode: 0
@@ -381,7 +216,6 @@ ModelImporter:
     - serializedVersion: 16
       name: 0301_Stand
       takeName: Take 001
-      internalID: 0
       firstFrame: 1
       lastFrame: 1.1
       wrapMode: 0
@@ -464,7 +298,6 @@ ModelImporter:
     - serializedVersion: 16
       name: 0302_Walk
       takeName: Take 001
-      internalID: 0
       firstFrame: 2
       lastFrame: 64
       wrapMode: 0
@@ -547,7 +380,6 @@ ModelImporter:
     - serializedVersion: 16
       name: 0303_Run
       takeName: Take 001
-      internalID: 0
       firstFrame: 70
       lastFrame: 110
       wrapMode: 0
@@ -630,7 +462,6 @@ ModelImporter:
     - serializedVersion: 16
       name: 0304_Idle
       takeName: Take 001
-      internalID: 0
       firstFrame: 120
       lastFrame: 180
       wrapMode: 0
@@ -713,7 +544,6 @@ ModelImporter:
     - serializedVersion: 16
       name: 0305_Fukuokadance1
       takeName: Take 001
-      internalID: 0
       firstFrame: 200
       lastFrame: 319
       wrapMode: 0
@@ -796,7 +626,6 @@ ModelImporter:
     - serializedVersion: 16
       name: 0306_Fukuokadance2
       takeName: Take 001
-      internalID: 0
       firstFrame: 320
       lastFrame: 439
       wrapMode: 0
@@ -879,7 +708,6 @@ ModelImporter:
     - serializedVersion: 16
       name: 0307_Waiwai
       takeName: Take 001
-      internalID: 0
       firstFrame: 500
       lastFrame: 610
       wrapMode: 0
@@ -962,7 +790,6 @@ ModelImporter:
     - serializedVersion: 16
       name: 0350_Pose_Fukuokapose1
       takeName: Take 001
-      internalID: 0
       firstFrame: 650
       lastFrame: 650.1
       wrapMode: 0
@@ -1045,7 +872,6 @@ ModelImporter:
     - serializedVersion: 16
       name: 0351_Pose_Fukuokapose2
       takeName: Take 001
-      internalID: 0
       firstFrame: 651
       lastFrame: 651.1
       wrapMode: 0
@@ -1128,7 +954,6 @@ ModelImporter:
     - serializedVersion: 16
       name: 0352_Pose_Hirune
       takeName: Take 001
-      internalID: 0
       firstFrame: 652
       lastFrame: 652.1
       wrapMode: 0
@@ -1214,8 +1039,6 @@ ModelImporter:
     globalScale: 0.1
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
-    sortHierarchyByName: 1
     importVisibility: 0
     importBlendShapes: 1
     importCameras: 0
@@ -1223,32 +1046,27 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
+    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
-    skinWeightsMode: 0
-    maxBonesPerVertex: 4
-    minBoneWeight: 0.001
-    meshOptimizationFlags: -1
     indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 0
+    previousCalculatedGlobalScale: 0.1
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 4
     normalCalculationMode: 0
-    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
-    blendShapeNormalImportMode: 1
-    normalSmoothingSource: 0
-  referencedClips: []
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
-    serializedVersion: 3
+    serializedVersion: 2
     human:
     - boneName: body
       humanName: Hips
@@ -1529,8 +1347,8 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.1
     rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 0

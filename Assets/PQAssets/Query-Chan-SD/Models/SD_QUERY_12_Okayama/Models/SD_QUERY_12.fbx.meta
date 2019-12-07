@@ -1,266 +1,108 @@
 fileFormatVersion: 2
-guid: 741e449caee4955428f4994e661b3e60
+guid: 63cbcab26a9dc7344b57242452657616
 ModelImporter:
-  serializedVersion: 26
-  internalIDToNameTable:
-  - first:
-      1: 100000
-    second: ahoge
-  - first:
-      1: 100002
-    second: body
-  - first:
-      1: 100004
-    second: chest
-  - first:
-      1: 100006
-    second: earphone
-  - first:
-      1: 100008
-    second: face
-  - first:
-      1: 100010
-    second: hair
-  - first:
-      1: 100012
-    second: hair_leef
-  - first:
-      1: 100014
-    second: hair_top
-  - first:
-      1: 100016
-    second: head
-  - first:
-      1: 100018
-    second: hip
-  - first:
-      1: 100020
-    second: L_arm
-  - first:
-      1: 100022
-    second: L_foot
-  - first:
-      1: 100024
-    second: L_hand
-  - first:
-      1: 100026
-    second: L_leg
-  - first:
-      1: 100028
-    second: L_upperarm
-  - first:
-      1: 100030
-    second: L_upperleg
-  - first:
-      1: 100032
-    second: leg
-  - first:
-      1: 100034
-    second: momo
-  - first:
-      1: 100036
-    second: R_arm
-  - first:
-      1: 100038
-    second: R_foot
-  - first:
-      1: 100040
-    second: R_hand
-  - first:
-      1: 100042
-    second: R_leg
-  - first:
-      1: 100044
-    second: R_upperarm
-  - first:
-      1: 100046
-    second: R_upperleg
-  - first:
-      1: 100048
-    second: ribon
-  - first:
-      1: 100050
-    second: //RootNode
-  - first:
-      1: 100052
-    second: SD_QUERY_12
-  - first:
-      1: 100054
-    second: SD_QUERY_12_Reference
-  - first:
-      1: 100056
-    second: spine
-  - first:
-      4: 400000
-    second: ahoge
-  - first:
-      4: 400002
-    second: body
-  - first:
-      4: 400004
-    second: chest
-  - first:
-      4: 400006
-    second: earphone
-  - first:
-      4: 400008
-    second: face
-  - first:
-      4: 400010
-    second: hair
-  - first:
-      4: 400012
-    second: hair_leef
-  - first:
-      4: 400014
-    second: hair_top
-  - first:
-      4: 400016
-    second: head
-  - first:
-      4: 400018
-    second: hip
-  - first:
-      4: 400020
-    second: L_arm
-  - first:
-      4: 400022
-    second: L_foot
-  - first:
-      4: 400024
-    second: L_hand
-  - first:
-      4: 400026
-    second: L_leg
-  - first:
-      4: 400028
-    second: L_upperarm
-  - first:
-      4: 400030
-    second: L_upperleg
-  - first:
-      4: 400032
-    second: leg
-  - first:
-      4: 400034
-    second: momo
-  - first:
-      4: 400036
-    second: R_arm
-  - first:
-      4: 400038
-    second: R_foot
-  - first:
-      4: 400040
-    second: R_hand
-  - first:
-      4: 400042
-    second: R_leg
-  - first:
-      4: 400044
-    second: R_upperarm
-  - first:
-      4: 400046
-    second: R_upperleg
-  - first:
-      4: 400048
-    second: ribon
-  - first:
-      4: 400050
-    second: //RootNode
-  - first:
-      4: 400052
-    second: SD_QUERY_12
-  - first:
-      4: 400054
-    second: SD_QUERY_12_Reference
-  - first:
-      4: 400056
-    second: spine
-  - first:
-      43: 4300000
-    second: momo
-  - first:
-      43: 4300002
-    second: face
-  - first:
-      43: 4300004
-    second: earphone
-  - first:
-      43: 4300006
-    second: hair_top
-  - first:
-      43: 4300008
-    second: hair
-  - first:
-      43: 4300010
-    second: hair_leef
-  - first:
-      43: 4300012
-    second: ribon
-  - first:
-      43: 4300014
-    second: body
-  - first:
-      43: 4300016
-    second: leg
-  - first:
-      74: 7400000
-    second: Take 001
-  - first:
-      95: 9500000
-    second: //RootNode
-  - first:
-      137: 13700000
-    second: body
-  - first:
-      137: 13700002
-    second: earphone
-  - first:
-      137: 13700004
-    second: face
-  - first:
-      137: 13700006
-    second: hair
-  - first:
-      137: 13700008
-    second: hair_leef
-  - first:
-      137: 13700010
-    second: hair_top
-  - first:
-      137: 13700012
-    second: leg
-  - first:
-      137: 13700014
-    second: momo
-  - first:
-      137: 13700016
-    second: ribon
-  - first:
-      41386430: 2186277476908879412
-    second: ImportLogs
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: ahoge
+    100002: body
+    100004: chest
+    100006: earphone
+    100008: face
+    100010: hair
+    100012: hair_leef
+    100014: hair_top
+    100016: head
+    100018: hip
+    100020: L_arm
+    100022: L_foot
+    100024: L_hand
+    100026: L_leg
+    100028: L_upperarm
+    100030: L_upperleg
+    100032: leg
+    100034: momo
+    100036: R_arm
+    100038: R_foot
+    100040: R_hand
+    100042: R_leg
+    100044: R_upperarm
+    100046: R_upperleg
+    100048: ribon
+    100050: //RootNode
+    100052: SD_QUERY_12
+    100054: SD_QUERY_12_Reference
+    100056: spine
+    400000: ahoge
+    400002: body
+    400004: chest
+    400006: earphone
+    400008: face
+    400010: hair
+    400012: hair_leef
+    400014: hair_top
+    400016: head
+    400018: hip
+    400020: L_arm
+    400022: L_foot
+    400024: L_hand
+    400026: L_leg
+    400028: L_upperarm
+    400030: L_upperleg
+    400032: leg
+    400034: momo
+    400036: R_arm
+    400038: R_foot
+    400040: R_hand
+    400042: R_leg
+    400044: R_upperarm
+    400046: R_upperleg
+    400048: ribon
+    400050: //RootNode
+    400052: SD_QUERY_12
+    400054: SD_QUERY_12_Reference
+    400056: spine
+    4300000: momo
+    4300002: face
+    4300004: earphone
+    4300006: hair_top
+    4300008: hair
+    4300010: hair_leef
+    4300012: ribon
+    4300014: body
+    4300016: leg
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: body
+    13700002: earphone
+    13700004: face
+    13700006: hair
+    13700008: hair_leef
+    13700010: hair_top
+    13700012: leg
+    13700014: momo
+    13700016: ribon
+    2186277476908879412: ImportLogs
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Mat_Body_Defo
-    second: {fileID: 2100000, guid: 159a03ff9353a184cac70fce18b5a379, type: 2}
+    second: {fileID: 2100000, guid: d3b82d3a189581241a9145b4e5af99f7, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Mat_Face_Defo
-    second: {fileID: 2100000, guid: bfed64406b274744897a369ec5959762, type: 2}
+    second: {fileID: 2100000, guid: 3887d330c8dcb0b458244e1542f3a100, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Mat_Hat_Okayama
-    second: {fileID: 2100000, guid: 1766039c39de5484984c250a10e21fb2, type: 2}
+    second: {fileID: 2100000, guid: 148f17d9e0b90514a9f3ef89dc6ad01c, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: phong1
-    second: {fileID: 2100000, guid: 552999f16615acf478d1c585a03a0857, type: 2}
+    second: {fileID: 2100000, guid: 485715ac354774c8b9cf46381bd1c798, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -297,8 +139,6 @@ ModelImporter:
     globalScale: 0.1
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
-    sortHierarchyByName: 1
     importVisibility: 0
     importBlendShapes: 1
     importCameras: 0
@@ -306,32 +146,27 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
+    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
-    skinWeightsMode: 0
-    maxBonesPerVertex: 4
-    minBoneWeight: 0.001
-    meshOptimizationFlags: -1
     indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 0
+    previousCalculatedGlobalScale: 0.1
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 4
     normalCalculationMode: 0
-    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
-    blendShapeNormalImportMode: 1
-    normalSmoothingSource: 0
-  referencedClips: []
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
-    serializedVersion: 3
+    serializedVersion: 2
     human:
     - boneName: hip
       humanName: Hips
@@ -622,8 +457,8 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.1
     rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 0

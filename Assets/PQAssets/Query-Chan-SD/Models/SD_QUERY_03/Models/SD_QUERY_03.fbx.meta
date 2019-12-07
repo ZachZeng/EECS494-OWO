@@ -1,267 +1,105 @@
 fileFormatVersion: 2
-guid: ddd3f4b8bb9d4c74389a77117481a995
+guid: 05ec22e4c0ee78b4cb878bf80c50cdd3
 ModelImporter:
-  serializedVersion: 26
-  internalIDToNameTable:
-  - first:
-      1: 100000
-    second: ahoge
-  - first:
-      1: 100002
-    second: hat_osaka
-  - first:
-      1: 100004
-    second: head
-  - first:
-      1: 100006
-    second: hip
-  - first:
-      1: 100008
-    second: L_arm
-  - first:
-      1: 100010
-    second: L_arm2
-  - first:
-      1: 100012
-    second: L_foot
-  - first:
-      1: 100014
-    second: L_hand
-  - first:
-      1: 100016
-    second: L_leg
-  - first:
-      1: 100018
-    second: L_leg2
-  - first:
-      1: 100020
-    second: PQ_body
-  - first:
-      1: 100022
-    second: PQ_earphone
-  - first:
-      1: 100024
-    second: PQ_face
-  - first:
-      1: 100026
-    second: PQ_hair1
-  - first:
-      1: 100028
-    second: PQ_hair_top
-  - first:
-      1: 100030
-    second: PQ_leg
-  - first:
-      1: 100032
-    second: R_arm
-  - first:
-      1: 100034
-    second: R_arm2
-  - first:
-      1: 100036
-    second: R_foot
-  - first:
-      1: 100038
-    second: R_hand
-  - first:
-      1: 100040
-    second: R_leg
-  - first:
-      1: 100042
-    second: R_leg2
-  - first:
-      1: 100044
-    second: //RootNode
-  - first:
-      1: 100046
-    second: SD_QUERY_03
-  - first:
-      1: 100048
-    second: SD_QUERY_03_Reference
-  - first:
-      1: 100050
-    second: spine
-  - first:
-      1: 100052
-    second: upper
-  - first:
-      4: 400000
-    second: ahoge
-  - first:
-      4: 400002
-    second: hat_osaka
-  - first:
-      4: 400004
-    second: head
-  - first:
-      4: 400006
-    second: hip
-  - first:
-      4: 400008
-    second: L_arm
-  - first:
-      4: 400010
-    second: L_arm2
-  - first:
-      4: 400012
-    second: L_foot
-  - first:
-      4: 400014
-    second: L_hand
-  - first:
-      4: 400016
-    second: L_leg
-  - first:
-      4: 400018
-    second: L_leg2
-  - first:
-      4: 400020
-    second: PQ_body
-  - first:
-      4: 400022
-    second: PQ_earphone
-  - first:
-      4: 400024
-    second: PQ_face
-  - first:
-      4: 400026
-    second: PQ_hair1
-  - first:
-      4: 400028
-    second: PQ_hair_top
-  - first:
-      4: 400030
-    second: PQ_leg
-  - first:
-      4: 400032
-    second: R_arm
-  - first:
-      4: 400034
-    second: R_arm2
-  - first:
-      4: 400036
-    second: R_foot
-  - first:
-      4: 400038
-    second: R_hand
-  - first:
-      4: 400040
-    second: R_leg
-  - first:
-      4: 400042
-    second: R_leg2
-  - first:
-      4: 400044
-    second: //RootNode
-  - first:
-      4: 400046
-    second: SD_QUERY_03
-  - first:
-      4: 400048
-    second: SD_QUERY_03_Reference
-  - first:
-      4: 400050
-    second: spine
-  - first:
-      4: 400052
-    second: upper
-  - first:
-      43: 4300000
-    second: hat_osaka
-  - first:
-      43: 4300002
-    second: PQ_face
-  - first:
-      43: 4300004
-    second: PQ_earphone
-  - first:
-      43: 4300006
-    second: PQ_hair_top
-  - first:
-      43: 4300008
-    second: PQ_hair1
-  - first:
-      43: 4300010
-    second: PQ_body
-  - first:
-      43: 4300012
-    second: PQ_leg
-  - first:
-      74: 7400000
-    second: 0200_Def
-  - first:
-      74: 7400002
-    second: 0201_Stand
-  - first:
-      74: 7400004
-    second: 0252_Pose_Exit
-  - first:
-      74: 7400006
-    second: 0204_Idle
-  - first:
-      74: 7400008
-    second: 0205_Tukkomi
-  - first:
-      74: 7400010
-    second: 0206_Boke
-  - first:
-      74: 7400012
-    second: 0207_Clap
-  - first:
-      74: 7400014
-    second: 0250_Pose_Goal
-  - first:
-      74: 7400016
-    second: 0251_Pose_Tehepero
-  - first:
-      74: 7400018
-    second: 0202_Walk
-  - first:
-      74: 7400020
-    second: 0203_Run
-  - first:
-      95: 9500000
-    second: //RootNode
-  - first:
-      137: 13700000
-    second: hat_osaka
-  - first:
-      137: 13700002
-    second: PQ_body
-  - first:
-      137: 13700004
-    second: PQ_earphone
-  - first:
-      137: 13700006
-    second: PQ_face
-  - first:
-      137: 13700008
-    second: PQ_hair1
-  - first:
-      137: 13700010
-    second: PQ_hair_top
-  - first:
-      137: 13700012
-    second: PQ_leg
-  - first:
-      41386430: 2186277476908879412
-    second: ImportLogs
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: ahoge
+    100002: hat_osaka
+    100004: head
+    100006: hip
+    100008: L_arm
+    100010: L_arm2
+    100012: L_foot
+    100014: L_hand
+    100016: L_leg
+    100018: L_leg2
+    100020: PQ_body
+    100022: PQ_earphone
+    100024: PQ_face
+    100026: PQ_hair1
+    100028: PQ_hair_top
+    100030: PQ_leg
+    100032: R_arm
+    100034: R_arm2
+    100036: R_foot
+    100038: R_hand
+    100040: R_leg
+    100042: R_leg2
+    100044: //RootNode
+    100046: SD_QUERY_03
+    100048: SD_QUERY_03_Reference
+    100050: spine
+    100052: upper
+    400000: ahoge
+    400002: hat_osaka
+    400004: head
+    400006: hip
+    400008: L_arm
+    400010: L_arm2
+    400012: L_foot
+    400014: L_hand
+    400016: L_leg
+    400018: L_leg2
+    400020: PQ_body
+    400022: PQ_earphone
+    400024: PQ_face
+    400026: PQ_hair1
+    400028: PQ_hair_top
+    400030: PQ_leg
+    400032: R_arm
+    400034: R_arm2
+    400036: R_foot
+    400038: R_hand
+    400040: R_leg
+    400042: R_leg2
+    400044: //RootNode
+    400046: SD_QUERY_03
+    400048: SD_QUERY_03_Reference
+    400050: spine
+    400052: upper
+    4300000: hat_osaka
+    4300002: PQ_face
+    4300004: PQ_earphone
+    4300006: PQ_hair_top
+    4300008: PQ_hair1
+    4300010: PQ_body
+    4300012: PQ_leg
+    7400000: 0200_Def
+    7400002: 0201_Stand
+    7400004: 0252_Pose_Exit
+    7400006: 0204_Idle
+    7400008: 0205_Tukkomi
+    7400010: 0206_Boke
+    7400012: 0207_Clap
+    7400014: 0250_Pose_Goal
+    7400016: 0251_Pose_Tehepero
+    7400018: 0202_Walk
+    7400020: 0203_Run
+    9500000: //RootNode
+    13700000: hat_osaka
+    13700002: PQ_body
+    13700004: PQ_earphone
+    13700006: PQ_face
+    13700008: PQ_hair1
+    13700010: PQ_hair_top
+    13700012: PQ_leg
+    2186277476908879412: ImportLogs
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Mat_Body_Osaka
-    second: {fileID: 2100000, guid: 6ae37a7d6806cd040bde15f830fccb9c, type: 2}
+    second: {fileID: 2100000, guid: b0b5e79f44f71e445be1cc341dbbb8e3, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Mat_Face_Defo
-    second: {fileID: 2100000, guid: b372cc6c9cf5cf54bb769ad88a875f82, type: 2}
+    second: {fileID: 2100000, guid: d6c49e7a4a6f4de4e997d74f525b6ee9, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Mat_Hat_Osaka
-    second: {fileID: 2100000, guid: 73b60087e1676454f8bc18a1296229d3, type: 2}
+    second: {fileID: 2100000, guid: 04164d1514d471d48bf5d586f7b6230d, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -295,7 +133,6 @@ ModelImporter:
     - serializedVersion: 16
       name: 0200_Def
       takeName: Take 001
-      internalID: 0
       firstFrame: 0
       lastFrame: 0.1
       wrapMode: 0
@@ -378,7 +215,6 @@ ModelImporter:
     - serializedVersion: 16
       name: 0201_Stand
       takeName: Take 001
-      internalID: 0
       firstFrame: 1
       lastFrame: 1.1
       wrapMode: 0
@@ -461,7 +297,6 @@ ModelImporter:
     - serializedVersion: 16
       name: 0202_Walk
       takeName: Take 001
-      internalID: 0
       firstFrame: 2
       lastFrame: 64
       wrapMode: 0
@@ -544,7 +379,6 @@ ModelImporter:
     - serializedVersion: 16
       name: 0204_Idle
       takeName: Take 001
-      internalID: 0
       firstFrame: 120
       lastFrame: 180
       wrapMode: 0
@@ -627,7 +461,6 @@ ModelImporter:
     - serializedVersion: 16
       name: 0205_Tukkomi
       takeName: Take 001
-      internalID: 0
       firstFrame: 200
       lastFrame: 300
       wrapMode: 0
@@ -710,7 +543,6 @@ ModelImporter:
     - serializedVersion: 16
       name: 0206_Boke
       takeName: Take 001
-      internalID: 0
       firstFrame: 300
       lastFrame: 384
       wrapMode: 0
@@ -793,7 +625,6 @@ ModelImporter:
     - serializedVersion: 16
       name: 0207_Clap
       takeName: Take 001
-      internalID: 0
       firstFrame: 400
       lastFrame: 464
       wrapMode: 0
@@ -876,7 +707,6 @@ ModelImporter:
     - serializedVersion: 16
       name: 0250_Pose_Goal
       takeName: Take 001
-      internalID: 0
       firstFrame: 500
       lastFrame: 500.1
       wrapMode: 0
@@ -959,7 +789,6 @@ ModelImporter:
     - serializedVersion: 16
       name: 0251_Pose_Tehepero
       takeName: Take 001
-      internalID: 0
       firstFrame: 501
       lastFrame: 501.10004
       wrapMode: 0
@@ -1042,7 +871,6 @@ ModelImporter:
     - serializedVersion: 16
       name: 0252_Pose_Exit
       takeName: Take 001
-      internalID: 0
       firstFrame: 502
       lastFrame: 502.10004
       wrapMode: 0
@@ -1125,7 +953,6 @@ ModelImporter:
     - serializedVersion: 16
       name: 0203_Run
       takeName: Take 001
-      internalID: 0
       firstFrame: 70
       lastFrame: 110
       wrapMode: 0
@@ -1211,8 +1038,6 @@ ModelImporter:
     globalScale: 0.1
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
-    sortHierarchyByName: 1
     importVisibility: 0
     importBlendShapes: 1
     importCameras: 0
@@ -1220,32 +1045,27 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
+    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
-    skinWeightsMode: 0
-    maxBonesPerVertex: 4
-    minBoneWeight: 0.001
-    meshOptimizationFlags: -1
     indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 0
+    previousCalculatedGlobalScale: 0.1
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 4
     normalCalculationMode: 0
-    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
-    blendShapeNormalImportMode: 1
-    normalSmoothingSource: 0
-  referencedClips: []
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
-    serializedVersion: 3
+    serializedVersion: 2
     human:
     - boneName: hip
       humanName: Hips
@@ -1526,8 +1346,8 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.1
     rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 0
