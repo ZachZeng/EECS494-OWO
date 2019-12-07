@@ -1,103 +1,261 @@
 fileFormatVersion: 2
-guid: e1d7244f8344a294aa3f7f85e53d78f5
+guid: 03c4a7c968634da46bc4e19dcc03c0e1
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: ahoge
-    100002: body
-    100004: earphone
-    100006: face
-    100008: hair
-    100010: hair_top
-    100012: hand_left
-    100014: hand_right
-    100016: hat
-    100018: head
-    100020: hip
-    100022: L_arm
-    100024: L_arm2
-    100026: L_foot
-    100028: L_hand
-    100030: L_leg
-    100032: L_leg2
-    100034: leg
-    100036: R_arm
-    100038: R_arm2
-    100040: R_foot
-    100042: R_hand
-    100044: R_leg
-    100046: R_leg2
-    100048: //RootNode
-    100050: SD_QUERY_46_Saga
-    100052: SD_QUERY_46_Saga_Reference
-    100054: spine
-    100056: upper
-    400000: ahoge
-    400002: body
-    400004: earphone
-    400006: face
-    400008: hair
-    400010: hair_top
-    400012: hand_left
-    400014: hand_right
-    400016: hat
-    400018: head
-    400020: hip
-    400022: L_arm
-    400024: L_arm2
-    400026: L_foot
-    400028: L_hand
-    400030: L_leg
-    400032: L_leg2
-    400034: leg
-    400036: R_arm
-    400038: R_arm2
-    400040: R_foot
-    400042: R_hand
-    400044: R_leg
-    400046: R_leg2
-    400048: //RootNode
-    400050: SD_QUERY_46_Saga
-    400052: SD_QUERY_46_Saga_Reference
-    400054: spine
-    400056: upper
-    4300000: hat
-    4300002: body
-    4300004: face
-    4300006: earphone
-    4300008: hair_top
-    4300010: hair
-    4300012: leg
-    4300014: hand_right
-    4300016: hand_left
-    7400000: Take 001
-    9500000: //RootNode
-    13700000: body
-    13700002: earphone
-    13700004: face
-    13700006: hair
-    13700008: hair_top
-    13700010: hand_left
-    13700012: hand_right
-    13700014: hat
-    13700016: leg
-    2186277476908879412: ImportLogs
+  serializedVersion: 26
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: ahoge
+  - first:
+      1: 100002
+    second: body
+  - first:
+      1: 100004
+    second: earphone
+  - first:
+      1: 100006
+    second: face
+  - first:
+      1: 100008
+    second: hair
+  - first:
+      1: 100010
+    second: hair_top
+  - first:
+      1: 100012
+    second: hand_left
+  - first:
+      1: 100014
+    second: hand_right
+  - first:
+      1: 100016
+    second: hat
+  - first:
+      1: 100018
+    second: head
+  - first:
+      1: 100020
+    second: hip
+  - first:
+      1: 100022
+    second: L_arm
+  - first:
+      1: 100024
+    second: L_arm2
+  - first:
+      1: 100026
+    second: L_foot
+  - first:
+      1: 100028
+    second: L_hand
+  - first:
+      1: 100030
+    second: L_leg
+  - first:
+      1: 100032
+    second: L_leg2
+  - first:
+      1: 100034
+    second: leg
+  - first:
+      1: 100036
+    second: R_arm
+  - first:
+      1: 100038
+    second: R_arm2
+  - first:
+      1: 100040
+    second: R_foot
+  - first:
+      1: 100042
+    second: R_hand
+  - first:
+      1: 100044
+    second: R_leg
+  - first:
+      1: 100046
+    second: R_leg2
+  - first:
+      1: 100048
+    second: //RootNode
+  - first:
+      1: 100050
+    second: SD_QUERY_46_Saga
+  - first:
+      1: 100052
+    second: SD_QUERY_46_Saga_Reference
+  - first:
+      1: 100054
+    second: spine
+  - first:
+      1: 100056
+    second: upper
+  - first:
+      4: 400000
+    second: ahoge
+  - first:
+      4: 400002
+    second: body
+  - first:
+      4: 400004
+    second: earphone
+  - first:
+      4: 400006
+    second: face
+  - first:
+      4: 400008
+    second: hair
+  - first:
+      4: 400010
+    second: hair_top
+  - first:
+      4: 400012
+    second: hand_left
+  - first:
+      4: 400014
+    second: hand_right
+  - first:
+      4: 400016
+    second: hat
+  - first:
+      4: 400018
+    second: head
+  - first:
+      4: 400020
+    second: hip
+  - first:
+      4: 400022
+    second: L_arm
+  - first:
+      4: 400024
+    second: L_arm2
+  - first:
+      4: 400026
+    second: L_foot
+  - first:
+      4: 400028
+    second: L_hand
+  - first:
+      4: 400030
+    second: L_leg
+  - first:
+      4: 400032
+    second: L_leg2
+  - first:
+      4: 400034
+    second: leg
+  - first:
+      4: 400036
+    second: R_arm
+  - first:
+      4: 400038
+    second: R_arm2
+  - first:
+      4: 400040
+    second: R_foot
+  - first:
+      4: 400042
+    second: R_hand
+  - first:
+      4: 400044
+    second: R_leg
+  - first:
+      4: 400046
+    second: R_leg2
+  - first:
+      4: 400048
+    second: //RootNode
+  - first:
+      4: 400050
+    second: SD_QUERY_46_Saga
+  - first:
+      4: 400052
+    second: SD_QUERY_46_Saga_Reference
+  - first:
+      4: 400054
+    second: spine
+  - first:
+      4: 400056
+    second: upper
+  - first:
+      43: 4300000
+    second: hat
+  - first:
+      43: 4300002
+    second: body
+  - first:
+      43: 4300004
+    second: face
+  - first:
+      43: 4300006
+    second: earphone
+  - first:
+      43: 4300008
+    second: hair_top
+  - first:
+      43: 4300010
+    second: hair
+  - first:
+      43: 4300012
+    second: leg
+  - first:
+      43: 4300014
+    second: hand_right
+  - first:
+      43: 4300016
+    second: hand_left
+  - first:
+      74: 7400000
+    second: Take 001
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: body
+  - first:
+      137: 13700002
+    second: earphone
+  - first:
+      137: 13700004
+    second: face
+  - first:
+      137: 13700006
+    second: hair
+  - first:
+      137: 13700008
+    second: hair_top
+  - first:
+      137: 13700010
+    second: hand_left
+  - first:
+      137: 13700012
+    second: hand_right
+  - first:
+      137: 13700014
+    second: hat
+  - first:
+      137: 13700016
+    second: leg
+  - first:
+      41386430: 2186277476908879412
+    second: ImportLogs
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Mat_Body_Saga
-    second: {fileID: 2100000, guid: 52819e19d3d282145accd7aa248b4290, type: 2}
+    second: {fileID: 2100000, guid: e993190efba06904c8604dd823dfb352, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Mat_Face_Defo_Saga
-    second: {fileID: 2100000, guid: 6e10c9e28f1e01f49bc12a88a055042f, type: 2}
+    second: {fileID: 2100000, guid: 60c47e115f0dc3c438d1b5049602610a, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Mat_Hat_Saga
-    second: {fileID: 2100000, guid: e20ddadb0dbcf1243985ce06f81901b6, type: 2}
+    second: {fileID: 2100000, guid: d63fe8edfa3a89c4d9fcb4af38e49ef4, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -134,6 +292,8 @@ ModelImporter:
     globalScale: 0.1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 0
     importBlendShapes: 1
     importCameras: 0
@@ -141,27 +301,32 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.1
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human:
     - boneName: hip
       humanName: Hips
@@ -452,8 +617,8 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 0.1
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 0
