@@ -12,17 +12,16 @@ public class ggController : MonoBehaviour
     public int ATK;
     bool isDead;
     BoxCollider bx;
-    NavMeshAgent nv;
     Animator am;
 
     SkinnedMeshRenderer srd;
     public GameObject mRender;
     public Material flash;
     Material original;
+    public float Speed = 2f;
 
     void Start()
     {
-        nv = GetComponent<NavMeshAgent>();
         bx = GetComponent<BoxCollider>();
         am = GetComponent<Animator>();
         am.SetBool("Run", true);
@@ -34,22 +33,24 @@ public class ggController : MonoBehaviour
         StartCoroutine(Flash());
     }
     
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.gameObject.tag.Contains("Player") || other.gameObject.tag.Contains("Escort_Object"))
-    //    {
-    //        Debug.Log(other.gameObject.tag);
-    //        GameObject ip = Instantiate(impactParticle, gameObject.transform.position, Quaternion.FromToRotation(Vector3.up, impactNormal));
-    //        ip.transform.parent = gameObject.transform;
-    //        Destroy(ip, 3);
-    //        bx.enabled = true;
-    //        other.gameObject.GetComponent<Health>().ModifyHealth(-ATK);
-    //        Destroy(gameObject, 1f);
-    //    }
-    //}
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag.Contains("Player") || other.gameObject.tag.Contains("Escort_Object"))
+        {
+            Debug.Log(other.gameObject.tag);
+            GameObject ip = Instantiate(impactParticle, gameObject.transform.position, Quaternion.FromToRotation(Vector3.up, impactNormal));
+            ip.transform.parent = gameObject.transform;
+            Destroy(ip, 3);
+            bx.enabled = true;
+            other.gameObject.GetComponent<Health>().ModifyHealth(-ATK);
+            Destroy(gameObject, 1f);
+        }
+    }
     // Update is called once per frame
     void Update()
     {
+        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * Speed);
+        transform.LookAt(target.transform);
         Debug.Log(Vector3.Distance(transform.position, target.transform.position));
         if (Vector3.Distance(transform.position, target.transform.position) <= 2 && !isDead)
         {
@@ -58,16 +59,16 @@ public class ggController : MonoBehaviour
             bx.enabled = true;
             target.gameObject.GetComponent<Escort_State>().decreaseCurrentEscortHealth(ATK);
             isDead = true;
-            nv.isStopped = true;
+
             Destroy(gameObject);    
         }
 
         
-        nv.SetDestination(target.transform.position);
+
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            nv.isStopped = true;
+
             Destroy(gameObject, 0.5f);
             GameObject ip = Instantiate(impactParticle, gameObject.transform.position, Quaternion.FromToRotation(Vector3.up, impactNormal));
             ip.transform.parent = gameObject.transform;

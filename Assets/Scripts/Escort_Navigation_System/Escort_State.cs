@@ -27,6 +27,7 @@ public class Escort_State : MonoBehaviour
     bool goalState;
     //isBlocked : if the bus is blocked
     bool isBlocked;
+    bool wobbling;
     private void Awake()
     {
         instance = this;
@@ -38,6 +39,7 @@ public class Escort_State : MonoBehaviour
         shieldState = false;
         goalState = false;
         isBlocked = false;
+        wobbling = false;
     }
 
     void Update()
@@ -54,6 +56,8 @@ public class Escort_State : MonoBehaviour
     public void decreaseCurrentEscortHealth(int value) {
         curEscortHealth -= value;
         Camera.main.GetComponent<shakeController>().enabled = true;
+        if (!wobbling)
+            payloadWobble();
     }
     public void increaseCurrentEscortHealth(int value)
     {
@@ -84,5 +88,21 @@ public class Escort_State : MonoBehaviour
     }
     public void setGoalState() {
         goalState = true;
+    }
+    public void payloadWobble()
+    {
+        StartCoroutine(attackedWobble());
+    }
+    IEnumerator attackedWobble()
+    {
+        wobbling = true;
+        for (float i = 0; i < 1;)
+        {
+            i += Time.deltaTime;
+            transform.eulerAngles = new Vector3(Random.Range(-10, 10), 90, Random.Range(-10, 10));
+            yield return new WaitForSeconds(0.025f);
+        }
+        transform.eulerAngles = new Vector3(0, 90, 0);
+        wobbling = false;
     }
 }
