@@ -81,7 +81,7 @@ public class MageTutorialChat : MonoBehaviour
         foreach (char letter in displayMessage)
         {
             myText.text += letter;
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.03f);
         }
         yield return new WaitForSeconds(1f);
         displaying = false;
