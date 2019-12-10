@@ -99,10 +99,10 @@ public class Escort_State : MonoBehaviour
         for (float i = 0; i < 1;)
         {
             i += Time.deltaTime;
-            transform.eulerAngles = new Vector3(Random.Range(-10, 10), 90, Random.Range(-10, 10));
+            transform.eulerAngles = new Vector3(Random.Range(-5, 5),transform.eulerAngles.y, Random.Range(-5, 5));
             yield return new WaitForSeconds(0.025f);
         }
-        transform.eulerAngles = new Vector3(0, 90, 0);
+        // transform.eulerAngles = new Vector3(0, 90, 0);
         wobbling = false;
     }
 }
