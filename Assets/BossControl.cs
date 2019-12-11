@@ -8,10 +8,11 @@ public class BossControl : MonoBehaviour
     public HashSet<Collider> encountered = new HashSet<Collider>();
     public float attackFreq;
     public float specialFrq;
+    public float speed;
+    public GameObject target;
     float specialTimer;
     float timer;
     Animator am;
-    GameObject target;
     public bool isAttacking;
     public bool isTrapped;
     public bool spATK;
@@ -31,6 +32,9 @@ public class BossControl : MonoBehaviour
     Material original;
     public Material flash;
     public Material frozen;
+    public float attackDistance;
+    public GameObject central;
+    public float radious;
 
     void Start()
     {
@@ -40,6 +44,7 @@ public class BossControl : MonoBehaviour
         offset = new Vector3(0, 2f, -5f);
         srd = mRender.GetComponent<SkinnedMeshRenderer>();
         original = srd.material;
+        target = GameObject.Find("Escort Object");
 
     }
 
@@ -60,6 +65,10 @@ public class BossControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Vector3.Distance(central.transform.position, transform.position) > radious)
+        {
+            target = GameObject.Find("Escort Object");
+        }
         if (meetBoss)
         {
             GetComponent<Rigidbody>().useGravity = true;
@@ -67,8 +76,12 @@ public class BossControl : MonoBehaviour
             specialTimer += Time.deltaTime;
             if (!isTrapped)
             {
-                if (timer >= attackFreq)
+                transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * speed);
+                transform.LookAt(target.transform);
+                am.SetBool("Walk Forward", true);
+                if (Vector3.Distance(target.transform.position, transform.position) < attackDistance)
                 {
+                    am.SetBool("Walk Forward", false);
                     if (specialTimer >= specialFrq)
                     {
                         am.SetTrigger("Attack 02");
@@ -86,20 +99,18 @@ public class BossControl : MonoBehaviour
                     LaunchAttack();
                     StartCoroutine(Wait());
                 }
+                    
             }
             JudageGetAttacked();
             JudgeTrapped();
-
         }
+    }
         //if (!isGrounded && gameObject.transform.position.y <= 0f)
         //{
         //    Instantiate(onGround, gameObject.transform.position, Quaternion.identity);
         //    onGround.Play();
         //    isGrounded = true;
         //}
-  
-
-    }
 
 
     void JudgeTrapped()

@@ -1553,6 +1553,7 @@ GameObject:
   - component: {fileID: 8479169962322939550}
   - component: {fileID: 8479169962322939545}
   - component: {fileID: 8479169962322939558}
+  - component: {fileID: -1625902294694326905}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Enemy_Boss
@@ -1683,6 +1684,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackFreq: 2
   specialFrq: 10
+  speed: 0
+  target: {fileID: 0}
   isAttacking: 0
   isTrapped: 0
   spATK: 0
@@ -1698,6 +1701,33 @@ MonoBehaviour:
   getAttacked: 0
   flash: {fileID: 2100000, guid: 204402a50944bc2488439a31ec8ed56f, type: 2}
   frozen: {fileID: 2100000, guid: a341904835d994c508c8d980e66d1cc5, type: 2}
+  attackDistance: 0
+  central: {fileID: 7996824099115808039, guid: 4a1fe5d3c3ae821478c37802b15a2b44, type: 3}
+  radious: 6.5
+--- !u!114 &-1625902294694326905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8480245806299945440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad145928bab569d40a2d3d8ceeb478fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  escort_object: {fileID: 0}
+  mage: {fileID: 0}
+  warrior: {fileID: 0}
+  escort_aim: 100
+  mage_aim_change_per: 10
+  warrior_aim_change_per: 20
+  mage_aim_cool_per: 8
+  warrior_aim_cool_per: 5
+  Exclamation: {fileID: 4394798815658186973}
+  mage_aim: 000000000000000000000000
+  warrior_aim: 000000000000000000000000
+  target: {fileID: 0}
 --- !u!1 &8480262025571431454
 GameObject:
   m_ObjectHideFlags: 0

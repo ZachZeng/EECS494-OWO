@@ -11,6 +11,7 @@ public class Escort_Obj_Movement : MonoBehaviour
     //NavMeshAgent, use it to navigate our obj
     //private NavMeshAgent nav;
     //For future animator
+    public Camera mainCamera;
     private Animator animator;
     private Rigidbody rb;
     //The current target we need to navigate
@@ -100,7 +101,8 @@ public class Escort_Obj_Movement : MonoBehaviour
         if (other.gameObject.tag == "Escort_Navigation_Target_Final")
         {
             Debug.Log("Get Final target!");
-            Escort_State.instance.setGoalState();
+            // Escort_State.instance.setGoalState();
+            mainCamera.GetComponent<ShowGarden>().LerpToGarden();
             Destroy(other.gameObject);
         }
         //if (other.gameObject.name == "BlockCube") {
