@@ -8,7 +8,7 @@ public class BossControl : MonoBehaviour
     public HashSet<Collider> encountered = new HashSet<Collider>();
     public float attackFreq;
     public float specialFrq;
-    public float speed;
+    public float speed = 2.0f;
     public GameObject target;
     float specialTimer;
     float timer;
@@ -22,7 +22,6 @@ public class BossControl : MonoBehaviour
     public bool meetBoss;
     public bool isBossDead;
     public ParticleSystem onGround;
-    bool isGrounded;
     public GameObject bullet;
     Vector3 offset;
     SkinnedMeshRenderer srd;
@@ -32,9 +31,11 @@ public class BossControl : MonoBehaviour
     Material original;
     public Material flash;
     public Material frozen;
-    public float attackDistance;
+    public float attackDistance = 2.0f;
     public GameObject central;
     public float radious;
+    public bool isgrounded;
+    float oriSpeed;
 
     void Start()
     {
@@ -45,7 +46,9 @@ public class BossControl : MonoBehaviour
         srd = mRender.GetComponent<SkinnedMeshRenderer>();
         original = srd.material;
         target = GameObject.Find("Escort Object");
-
+        isgrounded = false;
+        oriSpeed = speed;
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -71,11 +74,16 @@ public class BossControl : MonoBehaviour
         }
         if (meetBoss)
         {
-            GetComponent<Rigidbody>().useGravity = true;
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(76.5f, 0.1f, 41), Time.deltaTime * 20);
             timer += Time.deltaTime;
-            specialTimer += Time.deltaTime;
-            if (!isTrapped)
+            if (transform.position.y <= 0.2f)
             {
+                isgrounded = true;
+            }
+            specialTimer += Time.deltaTime;
+            if (!isTrapped && isgrounded)
+            {
+                Debug.Log("Move!");
                 transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * speed);
                 transform.LookAt(target.transform);
                 am.SetBool("Walk Forward", true);
@@ -105,12 +113,6 @@ public class BossControl : MonoBehaviour
             JudgeTrapped();
         }
     }
-        //if (!isGrounded && gameObject.transform.position.y <= 0f)
-        //{
-        //    Instantiate(onGround, gameObject.transform.position, Quaternion.identity);
-        //    onGround.Play();
-        //    isGrounded = true;
-        //}
 
 
     void JudgeTrapped()
@@ -135,9 +137,11 @@ public class BossControl : MonoBehaviour
     IEnumerator Frozen()
     {
         srd.material = frozen;
+        speed = 0;
         yield return new WaitForSeconds(frozenTime);
         isTrapped = false;
         srd.material = original;
+        speed = oriSpeed;
     }
 
     IEnumerator Wait()
