@@ -70,7 +70,7 @@ public class ShowGarden : MonoBehaviour
         float changeTime = 0.0f;
         float targetSize = 6.24f;
         Vector3 startPos_cam = mainCamera.transform.position;
-        Vector3 endPos_cam = new Vector3(startPos_cam.x +3.22f, startPos_cam.y, startPos_cam.z);
+        Vector3 endPos_cam = new Vector3(startPos_cam.x +7.22f, startPos_cam.y - 3f, startPos_cam.z);
         while (changeTime <= 2.0f)
         {
             mainCamera.transform.position = Vector3.Lerp(startPos_cam, endPos_cam, changeTime / 2.0f);

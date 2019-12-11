@@ -11,7 +11,6 @@ public class BossControl : MonoBehaviour
     public float speed = 2.0f;
     public GameObject target;
     float specialTimer;
-    float timer;
     Animator am;
     public bool isAttacking;
     public bool isTrapped;
@@ -35,7 +34,16 @@ public class BossControl : MonoBehaviour
     public GameObject central;
     public float radious;
     public bool isgrounded;
+    // particle effects
+    public ParticleSystem ps;
+    public ParticleSystem ps1;
+    public GameObject wall;
+    bool first = true;
+    bool second = true;
     float oriSpeed;
+    float groundTime;
+    bool damaged = false;
+    float timer;
 
     void Start()
     {
@@ -56,15 +64,6 @@ public class BossControl : MonoBehaviour
         isTrapped |= other.gameObject.name == "CastRange(Clone)";
     }
 
-
-    private void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.tag.Contains("Player") && !isTrapped)
-        {
-            collision.gameObject.GetComponent<PlayerHealthControl>().getAttack(ATK);
-        }
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -74,21 +73,46 @@ public class BossControl : MonoBehaviour
         }
         if (meetBoss)
         {
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(76.5f, 0.1f, 41), Time.deltaTime * 20);
-            timer += Time.deltaTime;
+            if (!isgrounded)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, new Vector3(76.5f, 0.1f, 41), Time.deltaTime * 30);
+            }
             if (transform.position.y <= 0.2f)
             {
                 isgrounded = true;
             }
-            specialTimer += Time.deltaTime;
-            if (!isTrapped && isgrounded)
+            if (isgrounded && first)
+            {
+                ps.Stop();
+                ps.Play();
+                ps1.Stop();
+                ps1.Play();
+                first = false;
+                groundTime = Time.time;
+
+            }
+
+            if (!first && second)
+            {
+                StartCoroutine(SmoothRise());
+                second = false;
+            }
+            if (!isTrapped && isgrounded && Time.time - groundTime > 2f)
             {
                 Debug.Log("Move!");
-                transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * speed);
-                transform.LookAt(target.transform);
-                am.SetBool("Walk Forward", true);
+                if(!isAttacking)
+                {
+                    am.SetBool("Walk Forward", true);
+                    transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * speed);
+                    transform.LookAt(target.transform);
+                }
+
                 if (Vector3.Distance(target.transform.position, transform.position) < attackDistance)
                 {
+                    isAttacking = true;
+                    timer += Time.deltaTime;
+                    specialTimer += Time.deltaTime;
+                    speed = 0;
                     am.SetBool("Walk Forward", false);
                     if (specialTimer >= specialFrq)
                     {
@@ -103,9 +127,18 @@ public class BossControl : MonoBehaviour
                         spATK = true;
                         am.SetTrigger("Attack 01");
                     }
-                    timer = 0f;
-                    LaunchAttack();
-                    StartCoroutine(Wait());
+                    if (timer >= attackFreq)
+                    {
+                        LaunchAttack();
+                        StartCoroutine(Wait());
+                        timer = 0;
+                    }
+ 
+                }
+                else
+                {
+                    speed = oriSpeed;
+                    isAttacking = false;
                 }
                     
             }
@@ -114,7 +147,18 @@ public class BossControl : MonoBehaviour
         }
     }
 
-
+    IEnumerator SmoothRise()
+    {
+        Vector3 startPos = wall.transform.position;
+        Vector3 endPos = new Vector3(startPos.x, startPos.y + 4f, startPos.z);
+        float changeTime = 0f;
+        while (changeTime <= 2.0f)
+        {
+            wall.transform.position = Vector3.Lerp(startPos, endPos, changeTime / 2.0f);
+            changeTime += Time.deltaTime;
+            yield return null;
+        }
+    }
     void JudgeTrapped()
     {
         if (isTrapped)
@@ -146,7 +190,7 @@ public class BossControl : MonoBehaviour
 
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         spATK = false;
     }
 
@@ -154,6 +198,7 @@ public class BossControl : MonoBehaviour
 
     void LaunchAttack()
     {
+        encountered.Clear();
         Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents, col.transform.rotation);
         foreach (Collider c in cols)
         {
@@ -163,6 +208,14 @@ public class BossControl : MonoBehaviour
                 {
                     encountered.Add(c);
                     c.gameObject.GetComponent<PlayerHealthControl>().getAttack(ATK);
+                }
+            }
+            if (c.gameObject.tag == "Escort_Object")
+            {
+                if (!encountered.Contains(c))
+                {
+                    encountered.Add(c);
+                    Escort_State.instance.decreaseCurrentEscortHealth(ATK);
                 }
             }
         }

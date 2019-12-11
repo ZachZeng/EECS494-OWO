@@ -17,6 +17,8 @@ public class Escort_Obj_Movement : MonoBehaviour
     //The current target we need to navigate
     public Transform target;
     public float speed;
+    public ParticleSystem gate;
+    public GameObject wall;
     Vector3 stopPosition;
     GameObject doorControl;
     ArenaWall aw;
@@ -64,6 +66,7 @@ public class Escort_Obj_Movement : MonoBehaviour
         if (speed < originSpeed && GameObject.FindWithTag("Enemy_Boss").GetComponent<BossControl>().isBossDead)
         {
             speed = originSpeed;
+            wall.SetActive(false);
         }
     }
 

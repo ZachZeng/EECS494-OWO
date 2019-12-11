@@ -15,6 +15,7 @@ public class BossHitBox : MonoBehaviour
         boss = GameObject.FindWithTag("Enemy_Boss");
     }
 
+
     // Update is called once per frame
     void Update()
     {
